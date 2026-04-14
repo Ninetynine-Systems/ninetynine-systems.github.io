@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ninetynine Systems</title>
+  <title>Ninetynine.Systems</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
@@ -117,15 +117,6 @@
       font-weight: 400;
     }
 
-    /* Thin decorative separator between the two lines */
-    .logo__rule {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--ink-mid) 60%, var(--ink-mid));
-      margin: 0.28em 0;
-      opacity: 0.4;
-    }
-
     /* Tagline */
     .tagline {
       position: fixed;
@@ -157,8 +148,7 @@
       animation: reveal 1s ease 0.7s forwards;
     }
 
-    /* Coordinate-style label, top right */
-    .coord {
+    .about-toggle {
       position: fixed;
       top: 96px;
       right: 64px;
@@ -167,12 +157,171 @@
       letter-spacing: 0.15em;
       color: var(--ink-faint);
       text-align: right;
+      text-transform: uppercase;
+      text-decoration: none;
       opacity: 0;
+      z-index: 6;
       animation: reveal 1s ease 0.7s forwards;
+    }
+
+    .about-toggle::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -0.22rem;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 180ms ease, color 180ms ease;
+    }
+
+    .about-toggle:hover,
+    .about-toggle:focus-visible {
+      color: var(--accent);
+    }
+
+    .about-toggle:hover::after,
+    .about-toggle:focus-visible::after {
+      transform: scaleX(1);
+    }
+
+    .about-toggle:focus-visible {
+      outline: none;
     }
 
     .logo-wrap {
       position: relative;
+    }
+
+    .about-panel {
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      display: grid;
+      place-items: center;
+      padding: 112px 64px;
+      background: var(--paper);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 180ms ease, visibility 0s linear 180ms;
+    }
+
+    .about-panel:target {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transition-delay: 0s;
+    }
+
+    .about-panel__card {
+      width: min(100%, 34rem);
+      padding-top: 1rem;
+      border-top: 1px solid var(--ink-mid);
+      transform: translateY(12px);
+      transition: transform 220ms ease;
+    }
+
+    .about-panel:target .about-panel__card {
+      transform: translateY(0);
+    }
+
+    .about-panel__meta {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.9rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .about-panel__close {
+      color: var(--ink-mid);
+      text-decoration: none;
+    }
+
+    .about-panel__body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 2vw, 2rem);
+      line-height: 1.16;
+      color: var(--ink);
+    }
+
+    .about-panel__body p + p {
+      margin-top: 0.8rem;
+    }
+
+    .app-nav {
+      position: fixed;
+      bottom: 96px;
+      left: 64px;
+      z-index: 6;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      line-height: 1.9;
+      opacity: 0;
+      animation: reveal 1s ease 0.9s forwards;
+    }
+
+    .app-nav__label {
+      display: block;
+      color: var(--ink-faint);
+    }
+
+    .app-nav__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--accent2);
+      text-decoration: none;
+      position: relative;
+      transition: color 180ms ease;
+    }
+
+    .app-nav__link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -0.22rem;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 180ms ease;
+    }
+
+    .app-nav__link:hover,
+    .app-nav__link:focus-visible {
+      color: var(--accent);
+    }
+
+    .app-nav__link:hover::after,
+    .app-nav__link:focus-visible::after {
+      transform: scaleX(1);
+    }
+
+    .app-nav__link:focus-visible {
+      outline: none;
+    }
+
+    .app-nav__arrow {
+      font-size: 0.9em;
+      line-height: 1;
+      transform: translateY(-0.04em);
+      transition: transform 180ms ease;
+    }
+
+    .app-nav__link:hover .app-nav__arrow,
+    .app-nav__link:focus-visible .app-nav__arrow {
+      transform: translate(0.08rem, -0.12rem);
     }
 
     @keyframes reveal {
@@ -192,6 +341,55 @@
       pointer-events: none;
       z-index: 20;
     }
+
+    @media (max-width: 640px) {
+      .ident {
+        top: 96px;
+        left: 32px;
+        max-width: calc(100vw - 150px);
+        font-size: 0.52rem;
+        letter-spacing: 0.18em;
+        line-height: 1.75;
+      }
+
+      .about-toggle {
+        top: 96px;
+        right: 32px;
+        font-size: 0.58rem;
+      }
+
+      .tagline {
+        left: 32px;
+        right: 32px;
+        bottom: 132px;
+        text-align: left;
+        font-size: 0.58rem;
+        letter-spacing: 0.14em;
+        line-height: 1.7;
+        max-width: 15rem;
+      }
+
+      .app-nav {
+        left: 32px;
+        bottom: 84px;
+        font-size: 0.58rem;
+        letter-spacing: 0.14em;
+        line-height: 1.7;
+      }
+
+      .about-panel {
+        padding: 112px 32px;
+      }
+
+      .about-panel__meta {
+        font-size: 0.56rem;
+        letter-spacing: 0.14em;
+      }
+
+      .about-panel__body {
+        font-size: 1.25rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -208,24 +406,43 @@
 
   <!-- Top-left identifier -->
   <div class="ident">
-    Ninetynine Systems<br />
+    Ninetynine.Systems<br />
     Est. 2026 — Dhaka, BD<br />
   </div>
 
-  <!-- Top-right coordinate -->
-  <div class="coord">23°46'50.9"N<br />90°24'14.0"E</div>
+  <a class="about-toggle" href="#about">About</a>
 
   <!-- Bottom-right tagline -->
   <div class="tagline">
     Frontier AI · Software · Defense · Civilian<br />
-    Building what comes next.
+    Building what comes next
+  </div>
+
+  <section class="about-panel" id="about" aria-labelledby="about-title">
+    <div class="about-panel__card">
+      <div class="about-panel__meta">
+        <span id="about-title">About</span>
+        <a class="about-panel__close" href="#">Close</a>
+      </div>
+      <div class="about-panel__body">
+        <p>Ninetynine.Systems builds focused software systems around frontier AI.</p>
+        <p>A major focus right now is Agentic AI and systems that operate autonomously, alongside work across software, defense, and civilian tools.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="app-nav">
+    <span class="app-nav__label">Launch</span>
+    <a class="app-nav__link" href="https://ir.ninetynine.systems" target="_blank" rel="noreferrer">
+      Islamic Reflections
+      <span class="app-nav__arrow" aria-hidden="true">&#8599;</span>
+    </a>
   </div>
 
   <main>
     <div class="logo-wrap">
       <div class="logo">
         <span class="logo__primary">Ninetynine</span>
-        <div class="logo__rule"></div>
         <span class="logo__secondary"><span class="dot">.</span>Systems</span>
       </div>
     </div>
