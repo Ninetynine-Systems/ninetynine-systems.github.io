@@ -196,7 +196,7 @@
       position: relative;
     }
 
-    .about-panel {
+    .overlay-panel {
       position: fixed;
       inset: 0;
       z-index: 30;
@@ -210,14 +210,14 @@
       transition: opacity 180ms ease, visibility 0s linear 180ms;
     }
 
-    .about-panel:target {
+    .overlay-panel:target {
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
       transition-delay: 0s;
     }
 
-    .about-panel__card {
+    .overlay-panel__card {
       width: min(100%, 34rem);
       padding-top: 1rem;
       border-top: 1px solid var(--ink-mid);
@@ -225,11 +225,11 @@
       transition: transform 220ms ease;
     }
 
-    .about-panel:target .about-panel__card {
+    .overlay-panel:target .overlay-panel__card {
       transform: translateY(0);
     }
 
-    .about-panel__meta {
+    .overlay-panel__meta {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
@@ -241,19 +241,19 @@
       color: var(--ink-faint);
     }
 
-    .about-panel__close {
+    .overlay-panel__close {
       color: var(--accent);
       text-decoration: none;
     }
 
-    .about-panel__body {
+    .overlay-panel__body {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(1.4rem, 2vw, 2rem);
       line-height: 1.16;
       color: var(--ink);
     }
 
-    .about-panel__body p + p {
+    .overlay-panel__body p + p {
       margin-top: 0.8rem;
     }
 
@@ -277,9 +277,7 @@
     }
 
     .app-nav__link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
+      display: inline-block;
       color: var(--accent);
       font-weight: 500;
       text-decoration: none;
@@ -314,16 +312,70 @@
       outline: none;
     }
 
-    .app-nav__arrow {
-      font-size: 0.9em;
-      line-height: 1;
-      transform: translateY(-0.04em);
-      transition: transform 180ms ease;
+    .app-panel__card {
+      width: min(100%, 38rem);
     }
 
-    .app-nav__link:hover .app-nav__arrow,
-    .app-nav__link:focus-visible .app-nav__arrow {
-      transform: translate(0.08rem, -0.12rem);
+    .app-panel__brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .app-panel__mark {
+      width: 3rem;
+      height: 3rem;
+      flex: none;
+      display: block;
+    }
+
+    .app-panel__title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .app-panel__links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .app-panel__platform {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding-top: 0.45rem;
+      border-top: 1px solid var(--rule);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.66rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .app-panel__platform-name {
+      color: var(--ink-faint);
+    }
+
+    .app-panel__platform-link,
+    .app-panel__platform-status {
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .app-panel__platform-link {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .app-panel__platform-status {
+      color: var(--ink-faint);
     }
 
     @keyframes reveal {
@@ -379,17 +431,43 @@
         line-height: 1.7;
       }
 
-      .about-panel {
+      .overlay-panel {
         padding: 112px 32px;
       }
 
-      .about-panel__meta {
+      .overlay-panel__meta {
         font-size: 0.56rem;
         letter-spacing: 0.14em;
       }
 
-      .about-panel__body {
+      .overlay-panel__body {
         font-size: 1.25rem;
+      }
+
+      .app-panel__brand {
+        gap: 0.8rem;
+        margin-bottom: 1rem;
+      }
+
+      .app-panel__mark {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+
+      .app-panel__title {
+        font-size: 0.66rem;
+        letter-spacing: 0.16em;
+      }
+
+      .app-panel__links {
+        grid-template-columns: 1fr;
+        gap: 0.65rem;
+        margin-top: 1.2rem;
+      }
+
+      .app-panel__platform {
+        font-size: 0.56rem;
+        letter-spacing: 0.14em;
       }
     }
   </style>
@@ -420,13 +498,13 @@
     Building what comes next
   </div>
 
-  <section class="about-panel" id="about" aria-labelledby="about-title">
-    <div class="about-panel__card">
-      <div class="about-panel__meta">
+  <section class="overlay-panel" id="about" aria-labelledby="about-title">
+    <div class="overlay-panel__card">
+      <div class="overlay-panel__meta">
         <span id="about-title">About</span>
-        <a class="about-panel__close" href="#">Close</a>
+        <a class="overlay-panel__close" href="#">Close</a>
       </div>
-      <div class="about-panel__body">
+      <div class="overlay-panel__body">
         <p>Ninetynine.Systems builds focused software systems around frontier AI.</p>
         <p>A major focus right now is Agentic AI and systems that operate autonomously, alongside work across software, defense, and civilian tools.</p>
       </div>
@@ -435,11 +513,58 @@
 
   <div class="app-nav">
     <span class="app-nav__label">Launch</span>
-    <a class="app-nav__link" href="https://ir.ninetynine.systems" target="_blank" rel="noreferrer">
-      Islamic Reflections
-      <span class="app-nav__arrow" aria-hidden="true">&#8599;</span>
-    </a>
+    <a class="app-nav__link" href="#islamic-reflections">Islamic Reflections</a>
   </div>
+
+  <section class="overlay-panel app-panel" id="islamic-reflections" aria-labelledby="ir-title">
+    <div class="overlay-panel__card app-panel__card">
+      <div class="overlay-panel__meta">
+        <span id="ir-title">Islamic Reflections</span>
+        <a class="overlay-panel__close" href="#">Close</a>
+      </div>
+      <div class="app-panel__brand" aria-hidden="true">
+        <svg class="app-panel__mark" viewBox="0 0 1024 1024" focusable="false">
+          <g>
+            <rect x="474" y="86" width="76" height="236" rx="38" fill="#214739"></rect>
+            <rect x="474" y="86" width="76" height="236" rx="38" fill="#B4842A" transform="rotate(72 512 512)"></rect>
+            <rect x="474" y="86" width="76" height="236" rx="38" fill="#A26644" transform="rotate(144 512 512)"></rect>
+            <rect x="474" y="86" width="76" height="236" rx="38" fill="#596AA5" transform="rotate(216 512 512)"></rect>
+            <rect x="474" y="86" width="76" height="236" rx="38" fill="#7C7A57" transform="rotate(288 512 512)"></rect>
+          </g>
+          <g fill="#214739">
+            <path d="M512 416L528 456L568 472L528 488L512 528L496 488L456 472L496 456L512 416Z"></path>
+            <path d="M640 546L650 571L675 581L650 591L640 616L630 591L605 581L630 571L640 546Z"></path>
+            <path d="M390 570L398 590L418 598L398 606L390 626L382 606L362 598L382 590L390 570Z"></path>
+            <path d="M448 670L454 685L469 691L454 697L448 712L442 697L427 691L442 685L448 670Z"></path>
+            <path d="M586 362L592 377L607 383L592 389L586 404L580 389L565 383L580 377L586 362Z"></path>
+          </g>
+        </svg>
+        <div class="app-panel__title">Islamic Reflections</div>
+      </div>
+      <div class="overlay-panel__body">
+        <p>Daily Islamic reflections, reminders, and adhkar for spiritual growth.</p>
+        <p>Built across mobile, web, and terminal, with Quran verses, Hadith, commentary, and multilingual support.</p>
+      </div>
+      <div class="app-panel__links">
+        <div class="app-panel__platform">
+          <span class="app-panel__platform-name">Web</span>
+          <a class="app-panel__platform-link" href="https://ir.ninetynine.systems" target="_blank" rel="noreferrer">Open</a>
+        </div>
+        <div class="app-panel__platform">
+          <span class="app-panel__platform-name">Android</span>
+          <span class="app-panel__platform-status" aria-disabled="true">Coming Soon</span>
+        </div>
+        <div class="app-panel__platform">
+          <span class="app-panel__platform-name">iOS</span>
+          <span class="app-panel__platform-status" aria-disabled="true">Coming Soon</span>
+        </div>
+        <div class="app-panel__platform">
+          <span class="app-panel__platform-name">CLI</span>
+          <span class="app-panel__platform-status" aria-disabled="true">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <main>
     <div class="logo-wrap">
