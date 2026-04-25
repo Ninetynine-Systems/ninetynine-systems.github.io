@@ -70,8 +70,8 @@ for (const scale of [
 
 const selectorRules = [
   [/html, body \{[\s\S]*?font-family: var\(--font-ui\);[\s\S]*?font-size: var\(--text-md\);[\s\S]*?font-weight: 400;/, 'body defaults to Inter/UI at 16px/400'],
-  [/\.logo__primary \{[\s\S]*?font-family: var\(--font-ui\);[\s\S]*?font-weight: 400;/, 'primary logo uses regular Inter/UI'],
-  [/\.logo__secondary \{[\s\S]*?font-family: var\(--font-ui\);[\s\S]*?font-weight: 400;[\s\S]*?letter-spacing: 0\.14em;[\s\S]*?color: var\(--ink-mid\);/, 'secondary logo uses regular spaced Inter/UI'],
+  [/\.logo__primary \{[\s\S]*?font-family: var\(--font-reading\);[\s\S]*?font-weight: 300;[\s\S]*?letter-spacing: -0\.045em;/, 'primary logo uses accepted Source Serif 4 300 logo exception'],
+  [/\.logo__secondary \{[\s\S]*?font-family: var\(--font-ui\);[\s\S]*?font-weight: 400;[\s\S]*?letter-spacing: 0\.14em;[\s\S]*?color: var\(--accent\);/, 'secondary logo uses accepted spaced red Inter/UI exception'],
   [/\.overlay-panel__body \{[\s\S]*?font-family: var\(--font-reading\);/, 'reading panels use Source Serif 4'],
   [/\.ident \{[\s\S]*?font-family: var\(--font-code\);/, 'identifier metadata uses JetBrains Mono'],
   [/\.app-panel__platform \{[\s\S]*?font-family: var\(--font-code\);/, 'structured platform rows use JetBrains Mono'],
@@ -90,13 +90,17 @@ for (const forbidden of [
   'DM Mono',
   'fonts.googleapis.com',
   'fonts.gstatic.com',
-  'font-weight: 300',
   'font-weight: 800',
   'font-weight: 900',
 ]) {
   assert(!html.includes(forbidden), `remove stale/forbidden typography from index.html: ${forbidden}`);
 }
 
+const lightWeightMatches = html.match(/font-weight:\s*300/g) ?? [];
+assert(lightWeightMatches.length === 1, 'font-weight 300 is allowed only once for the Ninetynine logo');
+
+assert(readme.includes('Logo-only exception'), 'README should document the logo-only exception');
+assert(readme.includes('Ninetynine` — Source Serif 4, weight `300`'), 'README should document the Ninetynine logo typography');
 assert(readme.includes('3-font typography system'), 'README should document the 3-font typography system');
 assert(readme.includes('Syne is explicitly removed'), 'README should document that Syne is removed');
 
