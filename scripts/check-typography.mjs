@@ -36,6 +36,7 @@ for (const token of [
   '--font-reading: var(--font-serif)',
   '--font-code: var(--font-mono)',
   '--font-brand: var(--font-display)',
+  '--font-wordmark: var(--font-sans)',
   '--font-user-message: var(--font-ui)',
   '--font-ai-response: var(--font-reading)',
   '--font-heading: var(--font-brand)',
@@ -60,8 +61,8 @@ for (const scale of [
 
 const selectorRules = [
   [/html, body \{[\s\S]*?font-family: var\(--font-ui\);/, 'body defaults to Inter/UI'],
-  [/\.logo__primary \{[\s\S]*?font-family: var\(--font-brand\);/, 'primary logo uses Syne brand font'],
-  [/\.logo__secondary \{[\s\S]*?font-family: var\(--font-brand\);/, 'secondary logo uses Syne brand font'],
+  [/\.logo__primary \{[\s\S]*?font-family: var\(--font-wordmark\);/, 'primary logo uses Inter wordmark font'],
+  [/\.logo__secondary \{[\s\S]*?font-family: var\(--font-wordmark\);/, 'secondary logo uses Inter wordmark font'],
   [/\.overlay-panel__body \{[\s\S]*?font-family: var\(--font-reading\);/, 'reading panels use Source Serif 4'],
   [/\.ident \{[\s\S]*?font-family: var\(--font-code\);/, 'identifier metadata uses JetBrains Mono'],
   [/\.app-panel__platform \{[\s\S]*?font-family: var\(--font-code\);/, 'structured platform rows use JetBrains Mono'],

@@ -9,7 +9,9 @@ This site uses the mandatory ninetynine.systems typography system:
 - **Inter** — default UI/body/navigation/forms.
 - **Source Serif 4** — reading surfaces such as about/product description panels.
 - **JetBrains Mono** — semantic technical metadata, platform rows, code-like identifiers.
-- **Syne** — brand/display identity only. Never use Syne for body text.
+- **Syne** — display identity for section/marketing headings only. Never use Syne for body text or the primary wordmark/logo.
+
+The primary `Ninetynine.Systems` wordmark uses Inter via `--font-wordmark`; Syne stays as a display accent so the logo does not look horizontally stretched.
 
 Fonts are packaged locally under `assets/fonts/` so the site renders consistently without runtime Google Fonts requests.
 

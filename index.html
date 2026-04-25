@@ -34,6 +34,7 @@
       --font-reading: var(--font-serif);
       --font-code: var(--font-mono);
       --font-brand: var(--font-display);
+      --font-wordmark: var(--font-sans);
 
       --font-user-message: var(--font-ui);
       --font-ai-response: var(--font-reading);
@@ -139,10 +140,10 @@
     }
 
     .logo__primary {
-      font-family: var(--font-brand);
+      font-family: var(--font-wordmark);
       font-weight: 700;
       font-size: clamp(var(--text-3xl), 8vw, 7rem);
-      letter-spacing: -0.055em;
+      letter-spacing: -0.05em;
       line-height: 1;
       color: var(--ink);
       white-space: nowrap;
@@ -150,10 +151,10 @@
 
     /* The constraint: .Systems right-aligns with Ninetynine */
     .logo__secondary {
-      font-family: var(--font-brand);
+      font-family: var(--font-wordmark);
       font-weight: 600;
       font-size: clamp(var(--text-md), 2.2vw, var(--text-2xl));
-      letter-spacing: 0.04em;
+      letter-spacing: 0.01em;
       line-height: 1;
       color: var(--ink-mid);
       margin-top: 0.18em;
