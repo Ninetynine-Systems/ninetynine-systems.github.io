@@ -11,7 +11,7 @@ This site uses the mandatory ninetynine.systems typography system:
 - **JetBrains Mono** — semantic technical metadata, platform rows, code-like identifiers.
 - **Syne** — display identity for section/marketing headings only. Never use Syne for body text or the primary wordmark/logo.
 
-The primary `Ninetynine` wordmark uses regular-weight Source Serif 4 via `--font-wordmark`; the `.Systems` suffix uses regular Inter with wider tracking. Syne stays as a display accent so the logo does not look horizontally stretched or overly bold.
+The primary `Ninetynine` wordmark uses regular-weight Source Serif 4 via `--font-wordmark`; the `.Systems` suffix uses regular Inter with wider tracking and the red accent color. Syne stays as a display accent so the logo does not look horizontally stretched or overly bold.
 
 Fonts are packaged locally under `assets/fonts/` so the site renders consistently without runtime Google Fonts requests.
 

@@ -62,7 +62,7 @@ for (const scale of [
 const selectorRules = [
   [/html, body \{[\s\S]*?font-family: var\(--font-ui\);/, 'body defaults to Inter/UI'],
   [/\.logo__primary \{[\s\S]*?font-family: var\(--font-wordmark\);[\s\S]*?font-weight: 400;/, 'primary logo uses regular Source Serif 4 wordmark font'],
-  [/\.logo__secondary \{[\s\S]*?font-family: var\(--font-ui\);[\s\S]*?font-weight: 400;[\s\S]*?letter-spacing: 0\.14em;/, 'secondary logo uses regular spaced Inter/UI font'],
+  [/\.logo__secondary \{[\s\S]*?font-family: var\(--font-ui\);[\s\S]*?font-weight: 400;[\s\S]*?letter-spacing: 0\.14em;[\s\S]*?color: var\(--accent\);/, 'secondary logo uses regular spaced red Inter/UI font'],
   [/\.overlay-panel__body \{[\s\S]*?font-family: var\(--font-reading\);/, 'reading panels use Source Serif 4'],
   [/\.ident \{[\s\S]*?font-family: var\(--font-code\);/, 'identifier metadata uses JetBrains Mono'],
   [/\.app-panel__platform \{[\s\S]*?font-family: var\(--font-code\);/, 'structured platform rows use JetBrains Mono'],
