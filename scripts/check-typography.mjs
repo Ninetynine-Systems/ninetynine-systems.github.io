@@ -4,7 +4,9 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const indexPath = join(root, 'index.html');
+const readmePath = join(root, 'README.md');
 const html = readFileSync(indexPath, 'utf8');
+const readme = readFileSync(readmePath, 'utf8');
 
 function assert(condition, message) {
   if (!condition) {
@@ -17,7 +19,6 @@ for (const href of [
   './assets/fonts/inter/index.css',
   './assets/fonts/source-serif-4/index.css',
   './assets/fonts/jetbrains-mono/index.css',
-  './assets/fonts/syne/index.css',
 ]) {
   assert(html.includes(`href="${href}"`), `index.html should load ${href}`);
   const cssPath = join(root, href.replace(/^\.\//, ''));
@@ -27,23 +28,31 @@ for (const href of [
   assert(readdirSync(filesDir).some((name) => name.endsWith('.woff2')), `${href} should include packaged woff2 fonts`);
 }
 
+assert(!existsSync(join(root, 'assets/fonts/syne')), 'Syne font assets must not be present');
+assert(!html.includes('assets/fonts/syne'), 'index.html must not load Syne');
+
 for (const token of [
   '--font-sans: "Inter Variable"',
   '--font-serif: "Source Serif 4 Variable"',
   '--font-mono: "JetBrains Mono Variable"',
-  '--font-display: "Syne Variable"',
   '--font-ui: var(--font-sans)',
   '--font-reading: var(--font-serif)',
   '--font-code: var(--font-mono)',
-  '--font-brand: var(--font-display)',
-  '--font-wordmark: var(--font-serif)',
   '--font-user-message: var(--font-ui)',
   '--font-ai-response: var(--font-reading)',
-  '--font-heading: var(--font-brand)',
   '--font-dashboard: var(--font-ui)',
   '--font-diagram: var(--font-ui)',
 ]) {
   assert(html.includes(token), `missing CSS token ${token}`);
+}
+
+for (const removedToken of [
+  '--font-display',
+  '--font-brand',
+  '--font-wordmark',
+  '--font-heading',
+]) {
+  assert(!html.includes(removedToken), `remove unnecessary/display token ${removedToken}`);
 }
 
 for (const scale of [
@@ -60,12 +69,13 @@ for (const scale of [
 }
 
 const selectorRules = [
-  [/html, body \{[\s\S]*?font-family: var\(--font-ui\);/, 'body defaults to Inter/UI'],
-  [/\.logo__primary \{[\s\S]*?font-family: var\(--font-wordmark\);[\s\S]*?font-weight: 400;/, 'primary logo uses regular Source Serif 4 wordmark font'],
-  [/\.logo__secondary \{[\s\S]*?font-family: var\(--font-ui\);[\s\S]*?font-weight: 400;[\s\S]*?letter-spacing: 0\.14em;[\s\S]*?color: var\(--accent\);/, 'secondary logo uses regular spaced red Inter/UI font'],
+  [/html, body \{[\s\S]*?font-family: var\(--font-ui\);[\s\S]*?font-size: var\(--text-md\);[\s\S]*?font-weight: 400;/, 'body defaults to Inter/UI at 16px/400'],
+  [/\.logo__primary \{[\s\S]*?font-family: var\(--font-ui\);[\s\S]*?font-weight: 400;/, 'primary logo uses regular Inter/UI'],
+  [/\.logo__secondary \{[\s\S]*?font-family: var\(--font-ui\);[\s\S]*?font-weight: 400;[\s\S]*?letter-spacing: 0\.14em;[\s\S]*?color: var\(--ink-mid\);/, 'secondary logo uses regular spaced Inter/UI'],
   [/\.overlay-panel__body \{[\s\S]*?font-family: var\(--font-reading\);/, 'reading panels use Source Serif 4'],
   [/\.ident \{[\s\S]*?font-family: var\(--font-code\);/, 'identifier metadata uses JetBrains Mono'],
   [/\.app-panel__platform \{[\s\S]*?font-family: var\(--font-code\);/, 'structured platform rows use JetBrains Mono'],
+  [/\.app-panel__title \{[\s\S]*?font-family: var\(--font-ui\);/, 'product headings use Inter/UI'],
   [/\.about-toggle \{[\s\S]*?font-family: var\(--font-ui\);/, 'controls use Inter/UI'],
   [/\.app-nav \{[\s\S]*?font-family: var\(--font-ui\);/, 'navigation uses Inter/UI'],
 ];
@@ -75,6 +85,7 @@ for (const [pattern, message] of selectorRules) {
 }
 
 for (const forbidden of [
+  'Syne',
   'Cormorant Garamond',
   'DM Mono',
   'fonts.googleapis.com',
@@ -83,8 +94,11 @@ for (const forbidden of [
   'font-weight: 800',
   'font-weight: 900',
 ]) {
-  assert(!html.includes(forbidden), `remove stale/forbidden typography: ${forbidden}`);
+  assert(!html.includes(forbidden), `remove stale/forbidden typography from index.html: ${forbidden}`);
 }
+
+assert(readme.includes('3-font typography system'), 'README should document the 3-font typography system');
+assert(readme.includes('Syne is explicitly removed'), 'README should document that Syne is removed');
 
 if (process.exitCode) {
   process.exit(process.exitCode);

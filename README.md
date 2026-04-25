@@ -4,20 +4,19 @@ Static GitHub Pages site for `ninetynine.systems`.
 
 ## Typography standard
 
-This site uses the mandatory ninetynine.systems typography system:
+This site uses the mandatory ninetynine.systems 3-font typography system:
 
-- **Inter** — default UI/body/navigation/forms and the spaced `.Systems` logo suffix.
-- **Source Serif 4** — primary `Ninetynine` wordmark and reading surfaces such as about/product description panels.
+- **Inter** — default UI/body/navigation/forms/cards/logo/general interface text.
+- **Source Serif 4** — reading surfaces such as about/product description panels.
 - **JetBrains Mono** — semantic technical metadata, platform rows, code-like identifiers.
-- **Syne** — display identity for section/marketing headings only. Never use Syne for body text or the primary wordmark/logo.
 
-The primary `Ninetynine` wordmark uses regular-weight Source Serif 4 via `--font-wordmark`; the `.Systems` suffix uses regular Inter with wider tracking and the red accent color. Syne stays as a display accent so the logo does not look horizontally stretched or overly bold.
+No display fonts are used. **Syne is explicitly removed** and must not return.
 
 Fonts are packaged locally under `assets/fonts/` so the site renders consistently without runtime Google Fonts requests.
 
 Required scale: `12 / 14 / 16 / 18 / 24 / 32 / 48 / 64` with `16px` as the body default.
 
-Allowed weights: `400` body, `500` labels, `600` emphasis, `700` headings.
+Allowed weights: `400` body, `500` labels, `600` emphasis, `700` headings. Avoid `800`/`900`.
 
 ## Validation
 
