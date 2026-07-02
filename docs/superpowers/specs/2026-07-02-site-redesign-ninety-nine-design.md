@@ -28,11 +28,11 @@ card-heavy layouts to serif-led poster scale.
 1. Absolute nav over hero → sticky paper bar after scroll.
 2. **Hero** — outlined 99 monument (top-right, cropped by viewport, `-webkit-text-stroke`),
    folio rule line, serif H1 "Focused systems for frontier AI." with oxide period,
-   serif deck, two buttons.
+   serif deck, one internal button ("What we build").
 3. **№ 01 Approach** — three serif statements with hairline rules.
 4. **№ 02 Flagship** — full-bleed ink chapter: giant "Gatekeeper.", thesis line
-   "Nothing happens until someone says yes.", description, fact list, CTAs,
-   `gatekeeper ledger verify` terminal.
+   "Nothing happens until someone says yes.", description, fact list, a single
+   product link, `gatekeeper ledger verify` terminal.
 5. **№ 03 Index of systems** — typographic ledger rows: Gatekeeper, Islamic
    Reflections (with platform links), New systems (dim, Soon).
 6. **№ 04 The studio** — about copy + four-front strip (Frontier AI / Software /
@@ -56,6 +56,14 @@ card-heavy layouts to serif-led poster scale.
   `rel="noopener"` on external links.
 - No external requests: self-hosted fonts only, inline CSS/JS, existing paper-grain overlay kept.
 - `@supports` fallback where `-webkit-text-stroke` is unavailable (faint solid ink).
+
+## Voice
+
+The page establishes the studio's own identity; it does not sell or compare.
+No defensive framings ("not a portfolio of demos", "not glossy magic"), no
+hedging qualifiers ("actually", "right now"). Gatekeeper gets exactly one
+button — inside its own chapter; everywhere else it appears as quiet index
+and footer links. The primary site-wide action is "Get in touch".
 
 ## Out of scope
 
