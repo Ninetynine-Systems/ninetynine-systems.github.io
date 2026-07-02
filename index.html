@@ -696,6 +696,27 @@
       var NCX = 0, NCY = 0;
       var shots = [], nextShot = 1800;
 
+      // star palette — ink plus muted astronomical hues (hot blue-white,
+      // steel blue, sun gold, oxide ember, nebula violet, faint teal),
+      // desaturated so they sit on paper like hand-tinted chart stars
+      var STAR_COLS = [
+        { c: '20,20,19',    w: 0.28 },
+        { c: '91,127,166',  w: 0.18 },
+        { c: '194,145,58',  w: 0.16 },
+        { c: '184,78,40',   w: 0.12 },
+        { c: '143,168,201', w: 0.10 },
+        { c: '122,94,166',  w: 0.09 },
+        { c: '78,138,131',  w: 0.07 }
+      ];
+      function starCol() {
+        var pick = Math.random(), acc = 0;
+        for (var i = 0; i < STAR_COLS.length; i++) {
+          acc += STAR_COLS[i].w;
+          if (pick <= acc) return STAR_COLS[i].c;
+        }
+        return STAR_COLS[0].c;
+      }
+
       function rnd(a, b) { return a + Math.random() * (b - a); }
 
       function size() {
@@ -752,36 +773,63 @@
       function draw(t) {
         cx.clearRect(0, 0, W, H);
 
-        // shooting debris — frequent, both directions, varied speeds,
-        // crossing the letters; each sails clear off the page and only
-        // dies once it is past the viewport
-        if (shots.length < 4 && t > nextShot) {
+        // shooting stars — frequent, both directions, varied speeds and
+        // sizes, crossing the letters. Each carries a glow intensity that
+        // sets its size, halo, wake, and how long its trail lingers; it
+        // sails clear off the page and dies only after its trail fades
+        if (shots.length < 5 && t > nextShot) {
           var fromRight = Math.random() < 0.5;
           var spd = Math.random() < 0.4 ? rnd(2.2, 3.8) : rnd(5, 9.5);
           var glide = rnd(0.1, 0.38);
+          var glow = rnd(0.25, 1);
           shots.push({
             x: fromRight ? W + 40 : -40,
             y: rnd(H * 0.04, H * 0.55),
             vx: (fromRight ? -1 : 1) * spd * Math.cos(glide),
             vy: spd * Math.sin(glide),
             sp: spd,
-            ox: Math.random() < 0.15
+            I: glow,
+            size: 0.9 + glow * 2.2,
+            col: starCol(),
+            tau: 450 + glow * 1800,
+            trail: []
           });
           nextShot = t + rnd(1600, 4200);
         }
+        cx.lineCap = 'round';
         for (var s = shots.length - 1; s >= 0; s--) {
           var sh = shots[s];
+          var on = sh.x > -80 && sh.x < W + 80 && sh.y < H + 80;
           sh.x += sh.vx; sh.y += sh.vy;
-          var tail = 14 + sh.sp * 5.5;
-          var ux = sh.vx / sh.sp, uy = sh.vy / sh.sp;
-          var col = sh.ox ? '184,78,40' : '20,20,19';
-          var sg = cx.createLinearGradient(sh.x, sh.y, sh.x - ux * tail, sh.y - uy * tail);
-          sg.addColorStop(0, 'rgba(' + col + ',.5)');
-          sg.addColorStop(1, 'rgba(' + col + ',0)');
-          cx.strokeStyle = sg; cx.lineWidth = 1.4;
-          cx.beginPath(); cx.moveTo(sh.x, sh.y);
-          cx.lineTo(sh.x - ux * tail, sh.y - uy * tail); cx.stroke();
-          if (sh.x < -tail - 60 || sh.x > W + tail + 60 || sh.y > H + tail + 60) shots.splice(s, 1);
+          if (on) {
+            var lastP = sh.trail[sh.trail.length - 1];
+            if (!lastP || Math.hypot(sh.x - lastP.x, sh.y - lastP.y) > 4) {
+              sh.trail.push({ x: sh.x, y: sh.y, t: t });
+            }
+          }
+          while (sh.trail.length && t - sh.trail[0].t > sh.tau * 3) sh.trail.shift();
+
+          // sleek trail — each segment fades with its age; brighter
+          // stars leave longer-lived, wider trails
+          for (var q = 1; q < sh.trail.length; q++) {
+            var tp1 = sh.trail[q - 1], tp2 = sh.trail[q];
+            var age = t - tp2.t;
+            var alq = sh.I * 0.5 * Math.exp(-age / sh.tau);
+            if (alq < 0.02) continue;
+            cx.strokeStyle = 'rgba(' + sh.col + ',' + alq + ')';
+            cx.lineWidth = Math.max(0.4, sh.size * 0.55 * Math.exp(-age / (sh.tau * 2)));
+            cx.beginPath(); cx.moveTo(tp1.x, tp1.y); cx.lineTo(tp2.x, tp2.y); cx.stroke();
+          }
+          // glowing head
+          if (on) {
+            cx.save();
+            cx.shadowColor = 'rgba(' + sh.col + ',' + (0.35 + sh.I * 0.5) + ')';
+            cx.shadowBlur = 6 + sh.I * 16;
+            cx.fillStyle = 'rgba(' + sh.col + ',' + (0.55 + sh.I * 0.4) + ')';
+            cx.beginPath(); cx.arc(sh.x, sh.y, sh.size, 0, 7); cx.fill();
+            cx.restore();
+          }
+          if (!on && !sh.trail.length) shots.splice(s, 1);
         }
 
         // debris grains
@@ -801,12 +849,14 @@
             var d = Math.sqrt(d2), f = (R - d) / R * 3.4;
             p.vx += (dx / d) * f; p.vy += (dy / d) * f;
           }
-          // shooting debris shoves the field just like the cursor
+          // shooting stars shove the field just like the cursor —
+          // brighter stars carry a wider, stronger wake
           for (var s2 = 0; s2 < shots.length; s2++) {
             var sh2 = shots[s2];
+            var wr = 58 + sh2.I * 34;
             var sdx = p.x - sh2.x, sdy = p.y - sh2.y, sd2 = sdx * sdx + sdy * sdy;
-            if (sd2 < 5625 && sd2 > 0.01) {   // 75px wake
-              var sd = Math.sqrt(sd2), sf = (75 - sd) / 75 * 4.6;
+            if (sd2 < wr * wr && sd2 > 0.01) {
+              var sd = Math.sqrt(sd2), sf = (wr - sd) / wr * (3.6 + sh2.I * 1.6);
               p.vx += (sdx / sd) * sf; p.vy += (sdy / sd) * sf;
             }
           }
