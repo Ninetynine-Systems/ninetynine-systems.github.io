@@ -3,27 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ninetynine.Systems — focused systems for frontier AI</title>
-  <meta name="description" content="Ninetynine.Systems builds focused software systems around frontier AI — agentic, autonomous, and accountable. Maker of Gatekeeper, the approval gateway for people, AI agents, and machines." />
+  <title>ninetynine.systems — focused systems for humans and AI</title>
+  <meta name="description" content="ninetynine.systems builds focused software for humans and AI — durable, legible, and accountable. Maker of Gatekeeper, the approval gateway for people, AI agents, and machines." />
 
   <link rel="stylesheet" href="./assets/fonts/inter/index.css" />
   <link rel="stylesheet" href="./assets/fonts/source-serif-4/index.css" />
   <link rel="stylesheet" href="./assets/fonts/jetbrains-mono/index.css" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Ninetynine.Systems" />
-  <meta property="og:title" content="Ninetynine.Systems — focused systems for frontier AI" />
-  <meta property="og:description" content="A studio building durable software around agentic AI. Maker of Gatekeeper." />
+  <meta property="og:site_name" content="ninetynine.systems" />
+  <meta property="og:title" content="ninetynine.systems — focused systems for humans and AI" />
+  <meta property="og:description" content="A software studio building durable systems for humans and AI. Maker of Gatekeeper." />
   <meta name="theme-color" content="#faf9f5" />
 
   <style>
     /* ============================================================
-       Ninetynine.Systems — landing page, "Ninety-Nine" direction
-       Type-as-image: a colossal outlined 99 anchors the hero, a
-       folio system (№ 01–05) paces the page, monumental serif
-       statements alternate with quiet precise blocks. Paper + ink,
-       ONE oxide accent moment per screen. Inter / Source Serif 4 /
-       JetBrains Mono — the three-font system, serif-led.
+       ninetynine.systems — landing page, "Ninety-Nine" direction
+       Type-as-image: a colossal 99 in ink particles anchors the hero;
+       monumental serif statements alternate with quiet precise blocks.
+       Paper + ink, ONE oxide accent moment per screen. Inter /
+       Source Serif 4 / JetBrains Mono — the three-font system, serif-led.
        ============================================================ */
 
     *, *::before, *::after {
@@ -123,7 +122,7 @@
     .wrap { max-width: var(--col); margin-inline: auto; padding-inline: var(--gutter); }
     section[id] { scroll-margin-top: 84px; }
 
-    /* ---- folio (the № system) ---- */
+    /* ---- folio (quiet mono metadata labels) ---- */
     .folio {
       font-family: var(--font-mono);
       font-size: 11px;
@@ -181,9 +180,8 @@
     .wordmark .sfx {
       font-family: var(--font-mono);
       font-weight: 500;
-      font-size: 0.57em;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
+      font-size: 0.62em;
+      letter-spacing: 0.08em;
       color: var(--ink-2);
     }
     .wordmark .dot { color: var(--oxide); }
@@ -225,7 +223,6 @@
       min-height: 92vh;
       min-height: 92svh;
       display: flex; align-items: flex-end;
-      border-bottom: 1px solid var(--rule-strong);
       overflow: hidden;
     }
     .monument {
@@ -251,16 +248,10 @@
     }
     .inkfield.on { opacity: 1; }
     .hero .wrap { position: relative; z-index: 1; padding-top: calc(var(--nav-h) + 40px); padding-bottom: 76px; width: 100%; }
-    .hero-folio {
-      display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
-      border-bottom: 1px solid var(--rule-strong);
-      padding-bottom: 14px; margin-bottom: 56px;
-    }
     .hero h1 {
       font-family: var(--font-serif); font-weight: 580;
       font-size: clamp(54px, 7.8vw, 116px);
       line-height: .97; letter-spacing: -0.032em;
-      max-width: 11ch;
     }
     .hero h1 .ox { color: var(--oxide); }
     .hero-foot { display: grid; grid-template-columns: 1.2fr .8fr; gap: 56px; align-items: end; margin-top: 52px; }
@@ -272,16 +263,10 @@
     .hero-actions { display: flex; gap: 14px; justify-content: flex-end; flex-wrap: wrap; }
 
     /* ============================================================
-       № 01 — statements (approach)
+       statements (approach)
        ============================================================ */
-    .statements { border-bottom: 1px solid var(--rule-strong); }
     .statements .wrap { padding-block: 110px; }
-    .stmt {
-      display: grid; grid-template-columns: 220px 1fr; gap: 56px;
-      padding-block: 44px; border-top: 1px solid var(--hair); align-items: start;
-    }
-    .stmt:first-of-type { border-top: 0; padding-top: 0; }
-    .stmt:last-of-type { padding-bottom: 0; }
+    .stmt + .stmt { margin-top: 56px; }
     .stmt h3 {
       font-family: var(--font-serif); font-weight: 570;
       font-size: clamp(30px, 3.2vw, 42px);
@@ -289,23 +274,16 @@
     }
     .stmt h3 .ox { color: var(--oxide); }
     .stmt p { font-size: 16.5px; color: var(--ink-2); max-width: 44ch; margin-top: 12px; line-height: 1.6; }
-    .stmt .folio { padding-top: 14px; }
 
     /* ============================================================
-       № 02 — ink chapter (Gatekeeper)
+       ink chapter (Gatekeeper)
        ============================================================ */
     .chapter { background: var(--night); color: var(--night-fg); }
     .chapter .wrap { padding-block: 120px; }
-    .chapter .folio { color: var(--night-dim); }
-    .chapter .folio b { color: var(--oxide-soft); }
-    .chapter-head {
-      display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
-      align-items: baseline; border-bottom: 1px solid var(--night-line); padding-bottom: 14px;
-    }
     .chapter h2 {
       font-family: var(--font-serif); font-weight: 600;
       font-size: clamp(52px, 9vw, 150px);
-      letter-spacing: -0.035em; line-height: 1; margin-top: 56px;
+      letter-spacing: -0.035em; line-height: 1;
     }
     .chapter h2 .dot { color: var(--oxide); }
     .chapter .thesis {
@@ -336,21 +314,16 @@
     .term .ok { color: var(--term-green); }
 
     /* ============================================================
-       № 03 — index of systems
+       index of systems
        ============================================================ */
-    .index { border-bottom: 1px solid var(--rule-strong); }
     .index .wrap { padding-block: 110px; }
-    .index-head {
-      display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
-      align-items: baseline; border-bottom: 1px solid var(--rule-strong);
-      padding-bottom: 14px; margin-bottom: 8px;
-    }
     .idx {
       display: grid; grid-template-columns: 120px 1fr auto; gap: 16px 40px;
       align-items: baseline; padding: 38px 0;
       border-bottom: 1px solid var(--hair);
       text-decoration: none;
     }
+    .idx:first-of-type { padding-top: 0; }
     .idx:last-child { border-bottom: 0; padding-bottom: 0; }
     .idx .folio { padding-top: 6px; }
     .idx-nm {
@@ -377,9 +350,9 @@
     .idx.dim .idx-nm { color: var(--ink-3); }
 
     /* ============================================================
-       № 04 — the studio
+       the studio
        ============================================================ */
-    .studio { background: var(--paper-2); border-bottom: 1px solid var(--rule-strong); }
+    .studio { background: var(--paper-2); }
     .studio .wrap { padding-block: 110px; display: grid; grid-template-columns: .9fr 1.1fr; gap: 72px; align-items: start; }
     .studio h2 {
       font-family: var(--font-serif); font-weight: 580;
@@ -391,16 +364,15 @@
     .studio-copy p + p { margin-top: 18px; }
     .studio-copy b { color: var(--ink); font-weight: 600; }
     .fronts {
-      display: grid; grid-template-columns: repeat(4, 1fr);
+      display: grid; grid-template-columns: repeat(5, 1fr);
       margin-top: 40px; border: 1px solid var(--rule-strong); background: var(--hair);
       gap: 1px;
     }
-    .front { background: var(--paper-2); padding: 20px 18px 22px; display: flex; flex-direction: column; gap: 8px; }
-    .front .no { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; color: var(--oxide); }
+    .front { background: var(--paper-2); padding: 18px; display: flex; align-items: center; }
     .front .fn { font-family: var(--font-ui); font-weight: 620; font-size: 15px; letter-spacing: -0.01em; }
 
     /* ============================================================
-       № 05 — contact
+       contact
        ============================================================ */
     .cta-sec { position: relative; overflow: hidden; }
     .cta-sec .wrap { padding-block: 130px 120px; position: relative; z-index: 1; }
@@ -419,7 +391,7 @@
     .cta-sec h2 {
       font-family: var(--font-serif); font-weight: 580;
       font-size: clamp(42px, 5.6vw, 84px);
-      letter-spacing: -0.03em; line-height: 1; max-width: 14ch; margin-top: 20px;
+      letter-spacing: -0.03em; line-height: 1; max-width: 14ch;
     }
     .cta-sec h2 .ox { color: var(--oxide); }
     .cta-sec p { font-family: var(--font-reading); font-size: 20px; color: var(--ink-2); margin-top: 24px; max-width: 44ch; }
@@ -459,8 +431,8 @@
     @media (max-width: 1000px) {
       .hero-foot, .chapter-grid, .studio .wrap { grid-template-columns: 1fr; gap: 44px; }
       .hero-actions { justify-content: flex-start; }
-      .stmt { grid-template-columns: 1fr; gap: 10px; }
-      .stmt .folio { padding-top: 0; }
+      .fronts { grid-template-columns: repeat(2, 1fr); }
+      .front:last-child { grid-column: 1 / -1; }
       .idx { grid-template-columns: 1fr auto; }
       .idx .folio { grid-column: 1 / -1; padding-top: 0; }
       .idx-body { grid-column: 1; }
@@ -471,11 +443,11 @@
       .hero { min-height: 0; }
       .hero .wrap { padding-top: calc(var(--nav-h) + 96px); padding-bottom: 56px; }
       .monument { font-size: 88vw; right: -14vw; top: -6vw; -webkit-text-stroke-color: rgba(20, 20, 19, .34); }
-      .hero-folio { margin-bottom: 40px; }
+      .hero h1 br { display: none; }
+      .hero h1 { max-width: 12ch; }
       .statements .wrap, .index .wrap, .studio .wrap { padding-block: 76px; }
       .chapter .wrap { padding-block: 84px; }
       .cta-sec .wrap { padding-block: 88px 80px; }
-      .fronts { grid-template-columns: 1fr 1fr; }
       .foot .wrap { flex-direction: column; align-items: flex-start; }
     }
     @media (max-width: 460px) {
@@ -501,7 +473,7 @@
   <!-- ===================== NAV ===================== -->
   <header class="nav" id="nav">
     <div class="wrap">
-      <a class="wordmark" href="#top" aria-label="Ninetynine.Systems home">Ninetynine<span class="sfx"><span class="dot">.</span>Systems</span></a>
+      <a class="wordmark" href="#top" aria-label="ninetynine.systems home">ninetynine<span class="sfx"><span class="dot">.</span>systems</span></a>
       <nav class="nav-links" aria-label="Primary">
         <a href="#approach">Approach</a>
         <a href="#gatekeeper">Systems</a>
@@ -517,13 +489,9 @@
       <canvas class="inkfield" id="inkfield" aria-hidden="true"></canvas>
       <div class="monument" id="monument" aria-hidden="true">99</div>
       <div class="wrap">
-        <div class="hero-folio anim">
-          <span class="folio"><b>&#8470; 99</b> &mdash; A studio for the agentic era</span>
-          <span class="folio">Est. 2026 &mdash; Dhaka, BD</span>
-        </div>
-        <h1 class="anim d1">Focused systems for frontier AI<span class="ox">.</span></h1>
+        <h1 class="anim d1">Focused systems<br />for humans and AI<span class="ox">.</span></h1>
         <div class="hero-foot">
-          <p class="hero-deck anim d2"><b>Ninetynine.Systems</b> is a software studio building durable systems around <b>agentic AI</b> &mdash; systems that operate autonomously, and the infrastructure that keeps them <b>accountable</b>. Our first is Gatekeeper.</p>
+          <p class="hero-deck anim d2"><b>ninetynine.systems</b> is a software studio building durable systems for <b>humans and AI</b> &mdash; software people can rely on, agents that act autonomously, and the infrastructure that keeps them <b>accountable</b>. Our first is Gatekeeper.</p>
           <div class="hero-actions anim d3">
             <a class="btn pri" href="#gatekeeper">What we build <span class="ar" aria-hidden="true">&darr;</span></a>
           </div>
@@ -531,40 +499,27 @@
       </div>
     </section>
 
-    <!-- ===================== № 01 — APPROACH ===================== -->
+    <!-- ========================== APPROACH ========================== -->
     <section class="statements" id="approach">
       <div class="wrap">
         <div class="stmt reveal">
-          <span class="folio"><b>&#8470; 01</b> &mdash; Approach</span>
-          <div>
-            <h3>Focused over broad<span class="ox">.</span></h3>
-            <p>A deliberate few, each built to last &mdash; and kept.</p>
-          </div>
+          <h3>Focused over broad<span class="ox">.</span></h3>
+          <p>A deliberate few, each built to last &mdash; and kept.</p>
         </div>
         <div class="stmt reveal">
-          <span class="folio" aria-hidden="true"></span>
-          <div>
-            <h3>Frontier, applied<span class="ox">.</span></h3>
-            <p>Agentic AI and autonomy, shaped into products people rely on.</p>
-          </div>
+          <h3>Frontier, applied<span class="ox">.</span></h3>
+          <p>Agentic AI and autonomy, shaped into products people rely on.</p>
         </div>
         <div class="stmt reveal">
-          <span class="folio" aria-hidden="true"></span>
-          <div>
-            <h3>Built to be trusted<span class="ox">.</span></h3>
-            <p>Verifiable, legible, and accountable by design &mdash; paper-and-ink restraint throughout.</p>
-          </div>
+          <h3>Built to be trusted<span class="ox">.</span></h3>
+          <p>Verifiable, legible, and accountable by design.</p>
         </div>
       </div>
     </section>
 
-    <!-- ===================== № 02 — GATEKEEPER ===================== -->
+    <!-- ========================== GATEKEEPER ========================== -->
     <section class="chapter" id="gatekeeper">
       <div class="wrap">
-        <div class="chapter-head reveal">
-          <span class="folio"><b>&#8470; 02</b> &mdash; Flagship</span>
-          <span class="folio">Live at gatekeeper.now</span>
-        </div>
         <h2 class="reveal">Gatekeeper<span class="dot">.</span></h2>
         <p class="thesis reveal">Nothing happens until someone says&nbsp;yes.</p>
         <div class="chapter-grid reveal">
@@ -589,14 +544,9 @@
       </div>
     </section>
 
-    <!-- ===================== № 03 — INDEX OF SYSTEMS ===================== -->
+    <!-- ========================== INDEX OF SYSTEMS ========================== -->
     <section class="index" id="systems">
       <div class="wrap">
-        <div class="index-head reveal">
-          <span class="folio"><b>&#8470; 03</b> &mdash; Index of systems</span>
-          <span class="folio">Few, kept for good</span>
-        </div>
-
         <a class="idx reveal" href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer">
           <span class="folio">SYS-01</span>
           <span class="idx-nm">Gatekeeper</span>
@@ -633,34 +583,33 @@
       </div>
     </section>
 
-    <!-- ===================== № 04 — THE STUDIO ===================== -->
+    <!-- ========================== THE STUDIO ========================== -->
     <section class="studio" id="studio">
       <div class="wrap">
         <div class="reveal">
-          <span class="folio"><b>&#8470; 04</b> &mdash; The studio</span>
           <h2>A studio for the agentic era.</h2>
         </div>
         <div class="reveal">
           <div class="studio-copy">
-            <p><b>Ninetynine.Systems</b> builds focused software systems around frontier AI. A major focus is agentic AI and systems that operate autonomously &mdash; alongside work across software, defense, and civilian tools.</p>
+            <p><b>ninetynine.systems</b> builds focused software for humans and AI. A major focus is agentic systems and the infrastructure that keeps them accountable &mdash; with work spanning software, defense, civilian tools, and beyond.</p>
             <p>We care about systems that are durable, legible, and accountable. That conviction is why our first product is built around a single idea &mdash; consequential actions should wait for a human yes, on the record.</p>
           </div>
           <div class="fronts" role="list" aria-label="Where we work">
-            <div class="front" role="listitem"><span class="no">01</span><span class="fn">Frontier AI</span></div>
-            <div class="front" role="listitem"><span class="no">02</span><span class="fn">Software</span></div>
-            <div class="front" role="listitem"><span class="no">03</span><span class="fn">Defense</span></div>
-            <div class="front" role="listitem"><span class="no">04</span><span class="fn">Civilian</span></div>
+            <div class="front" role="listitem"><span class="fn">Frontier AI</span></div>
+            <div class="front" role="listitem"><span class="fn">Software</span></div>
+            <div class="front" role="listitem"><span class="fn">Defense</span></div>
+            <div class="front" role="listitem"><span class="fn">Civilian</span></div>
+            <div class="front" role="listitem"><span class="fn">And beyond</span></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===================== № 05 — CONTACT ===================== -->
+    <!-- ========================== CONTACT ========================== -->
     <section class="cta-sec" id="contact">
       <div class="cta-monument" aria-hidden="true">99</div>
       <div class="wrap">
         <div class="reveal">
-          <span class="folio"><b>&#8470; 05</b> &mdash; Contact</span>
           <h2>Building something consequential<span class="ox">?</span></h2>
           <p>We partner on a small number of serious systems. If you&rsquo;re working on agentic AI, autonomy, or trust infrastructure, we&rsquo;d like to hear from you.</p>
           <div class="cta-actions">
@@ -674,7 +623,7 @@
   <!-- ===================== FOOTER ===================== -->
   <footer class="foot">
     <div class="wrap">
-      <a class="wordmark" style="font-size:19px" href="#top" aria-label="Ninetynine.Systems home">Ninetynine<span class="sfx"><span class="dot">.</span>Systems</span></a>
+      <a class="wordmark" style="font-size:19px" href="#top" aria-label="ninetynine.systems home">ninetynine<span class="sfx"><span class="dot">.</span>systems</span></a>
       <span class="folio">Est. 2026 &mdash; Dhaka, BD &middot; &copy; 2026</span>
       <nav class="foot-links folio" aria-label="Footer">
         <a href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer">Gatekeeper &#8599;</a>

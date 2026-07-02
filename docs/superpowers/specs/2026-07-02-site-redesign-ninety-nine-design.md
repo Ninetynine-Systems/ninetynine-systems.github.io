@@ -73,6 +73,17 @@ hedging qualifiers ("actually", "right now"). Gatekeeper gets exactly one
 button — inside its own chapter; everywhere else it appears as quiet index
 and footer links. The primary site-wide action is "Get in touch".
 
+## Revisions (2026-07-02, after first ship)
+
+- Brand is always lowercase: **ninetynine.systems** — wordmark, meta, and prose.
+- Audience framing is **humans and AI**, never AI alone (H1, deck, studio copy, meta).
+- Industries are open-ended: the four fronts strip gained a fifth cell, "And beyond,"
+  and lost its numbering; copy says "and beyond."
+- The № folio headers and their horizontal rules were removed everywhere (hero folio
+  bar, chapter head, index head, studio/contact labels) to keep the design clean.
+  The `.folio` style survives only as quiet mono metadata (index row IDs, footer).
+- Cut from copy: "paper-and-ink restraint throughout", "Few, kept for good".
+
 ## Out of scope
 
 - No changes to `logo.svg`, `generate_logo.swift`, fonts, or deploy workflow.
