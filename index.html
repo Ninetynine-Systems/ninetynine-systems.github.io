@@ -196,6 +196,17 @@
       border-bottom: 1px solid transparent;
       transition: background .2s ease, border-color .2s ease;
     }
+    /* paper scrim so nav links stay legible over the ink field */
+    .nav::before {
+      content: ""; position: absolute; inset: 0 0 -36px; z-index: -1;
+      background: linear-gradient(to bottom,
+        color-mix(in srgb, var(--paper) 97%, transparent) 0%,
+        color-mix(in srgb, var(--paper) 84%, transparent) 55%,
+        transparent 100%);
+      pointer-events: none;
+      transition: opacity .2s ease;
+    }
+    .nav.scrolled::before { opacity: 0; }
     .nav.scrolled {
       background: color-mix(in srgb, var(--paper) 90%, transparent);
       -webkit-backdrop-filter: saturate(140%) blur(8px);
@@ -664,9 +675,11 @@
       els.forEach(function (el) { io.observe(el); });
     })();
 
-    // ink-field 99 — the monument as a few thousand grains of ink.
-    // The cursor scatters them; they find their shape again. Reduced
-    // motion (or no JS / no canvas) keeps the static outlined 99.
+    // ink-field 99 — the monument as a drifting field of space debris.
+    // Shooting debris sails across the page from both sides at varied
+    // speeds and plows through the field exactly like the cursor does,
+    // knocking grains off their trajectory; the field heals behind it.
+    // Reduced motion (or no JS / no canvas) keeps the static outlined 99.
     (function () {
       var cv = document.getElementById('inkfield');
       var hero = document.getElementById('hero');
@@ -680,6 +693,8 @@
       var mx = -9999, my = -9999;
       var R = 110, R2 = R * R;
       var running = false, raf = 0, seeded = false, resizeT = 0;
+      var NCX = 0, NCY = 0;
+      var shots = [], nextShot = 1800;
 
       function rnd(a, b) { return a + Math.random() * (b - a); }
 
@@ -705,16 +720,28 @@
         var step = Math.max(mobile ? 6 : 5, Math.round(FS / 110));
         var ox = W - oc.width * (mobile ? 0.80 : 0.96);
         var oy = -FS * 0.07;
+        NCX = ox + oc.width * 0.5;
+        NCY = oy + oc.height * 0.50;
         for (var y = 0; y < oc.height; y += step) {
           for (var x = 0; x < oc.width; x += step) {
             if (img[(y * oc.width + x) * 4 + 3] > 128) {
               var hx = ox + x + rnd(-1.5, 1.5), hy = oy + y + rnd(-1.5, 1.5);
+              // each grain drifts along its own line through the field;
+              // phase follows angle+radius from the numeral's center so
+              // slow waves of motion travel across the debris
+              var ang = Math.atan2(hy - NCY, hx - NCX);
+              var rad = Math.max(Math.hypot(hx - NCX, hy - NCY), 40);
               pts.push({
                 hx: hx, hy: hy, x: hx, y: hy, vx: 0, vy: 0,
+                tx2: -Math.sin(ang), ty2: Math.cos(ang),
+                rx2: Math.cos(ang), ry2: Math.sin(ang),
                 r: rnd(0.7, 1.9),
                 a: rnd(0.45, 0.9) * (mobile ? 0.7 : 1),
                 ox: Math.random() < 0.028,
-                ph: rnd(0, 7), sp: rnd(0.0006, 0.0014), amp: rnd(0.8, 2.2)
+                ph: ang * 3 + rad * 0.012,
+                sp: rnd(0.0005, 0.0009) * Math.pow(220 / rad, 0.55),
+                amp: rnd(1.2, 2.6),
+                tw: Math.random() < 0.07, ts: rnd(0.001, 0.0022), tp: rnd(0, 7)
               });
             }
           }
@@ -724,19 +751,75 @@
 
       function draw(t) {
         cx.clearRect(0, 0, W, H);
+
+        // shooting debris — frequent, both directions, varied speeds,
+        // crossing the letters; each sails clear off the page and only
+        // dies once it is past the viewport
+        if (shots.length < 4 && t > nextShot) {
+          var fromRight = Math.random() < 0.5;
+          var spd = Math.random() < 0.4 ? rnd(2.2, 3.8) : rnd(5, 9.5);
+          var glide = rnd(0.1, 0.38);
+          shots.push({
+            x: fromRight ? W + 40 : -40,
+            y: rnd(H * 0.04, H * 0.55),
+            vx: (fromRight ? -1 : 1) * spd * Math.cos(glide),
+            vy: spd * Math.sin(glide),
+            sp: spd,
+            ox: Math.random() < 0.15
+          });
+          nextShot = t + rnd(1600, 4200);
+        }
+        for (var s = shots.length - 1; s >= 0; s--) {
+          var sh = shots[s];
+          sh.x += sh.vx; sh.y += sh.vy;
+          var tail = 14 + sh.sp * 5.5;
+          var ux = sh.vx / sh.sp, uy = sh.vy / sh.sp;
+          var col = sh.ox ? '184,78,40' : '20,20,19';
+          var sg = cx.createLinearGradient(sh.x, sh.y, sh.x - ux * tail, sh.y - uy * tail);
+          sg.addColorStop(0, 'rgba(' + col + ',.5)');
+          sg.addColorStop(1, 'rgba(' + col + ',0)');
+          cx.strokeStyle = sg; cx.lineWidth = 1.4;
+          cx.beginPath(); cx.moveTo(sh.x, sh.y);
+          cx.lineTo(sh.x - ux * tail, sh.y - uy * tail); cx.stroke();
+          if (sh.x < -tail - 60 || sh.x > W + tail + 60 || sh.y > H + tail + 60) shots.splice(s, 1);
+        }
+
+        // debris grains
         for (var i = 0; i < pts.length; i++) {
           var p = pts[i];
-          var homeX = p.hx + Math.sin(t * p.sp + p.ph) * p.amp;
-          var homeY = p.hy + Math.cos(t * p.sp * 0.9 + p.ph) * p.amp;
+
+          // idle motion sloshes along each grain's drift line with a
+          // smaller cross-breath — slow weather over the whole field
+          var sw = Math.sin(t * p.sp + p.ph) * p.amp;
+          var br = Math.cos(t * p.sp * 0.9 + p.ph) * p.amp * 0.45;
+          var homeX = p.hx + p.tx2 * sw + p.rx2 * br;
+          var homeY = p.hy + p.ty2 * sw + p.ry2 * br;
+
+          // cursor shove
           var dx = p.x - mx, dy = p.y - my, d2 = dx * dx + dy * dy;
           if (d2 < R2 && d2 > 0.01) {
             var d = Math.sqrt(d2), f = (R - d) / R * 3.4;
             p.vx += (dx / d) * f; p.vy += (dy / d) * f;
           }
+          // shooting debris shoves the field just like the cursor
+          for (var s2 = 0; s2 < shots.length; s2++) {
+            var sh2 = shots[s2];
+            var sdx = p.x - sh2.x, sdy = p.y - sh2.y, sd2 = sdx * sdx + sdy * sdy;
+            if (sd2 < 5625 && sd2 > 0.01) {   // 75px wake
+              var sd = Math.sqrt(sd2), sf = (75 - sd) / 75 * 4.6;
+              p.vx += (sdx / sd) * sf; p.vy += (sdy / sd) * sf;
+            }
+          }
+
           p.vx += (homeX - p.x) * 0.055; p.vy += (homeY - p.y) * 0.055;
           p.vx *= 0.84; p.vy *= 0.84;
           p.x += p.vx; p.y += p.vy;
-          cx.globalAlpha = p.a;
+
+          // fade grains in the nav band so the menu stays readable
+          var al = p.a * (p.y < 150 ? Math.max(0.16, (p.y - 56) / 94) : 1);
+          if (p.tw) al *= 0.55 + 0.45 * Math.sin(t * p.ts + p.tp);
+          if (p.ox) al *= 0.72 + 0.28 * Math.sin(t * 0.0012 + p.tp);
+          cx.globalAlpha = Math.max(al, 0);
           cx.fillStyle = p.ox ? '#b84e28' : '#141413';
           cx.fillRect(p.x - p.r, p.y - p.r, p.r * 2, p.r * 2);
         }
