@@ -26,9 +26,14 @@ card-heavy layouts to serif-led poster scale.
 ## Structure (folio-numbered)
 
 1. Absolute nav over hero → sticky paper bar after scroll.
-2. **Hero** — outlined 99 monument (top-right, cropped by viewport, `-webkit-text-stroke`),
-   folio rule line, serif H1 "Focused systems for frontier AI." with oxide period,
-   serif deck, one internal button ("What we build").
+2. **Hero** — the 99 monument as an **ink field**: ~3,500 canvas particles sampled
+   from the glyphs (a few oxide grains among the ink) that breathe idly, scatter
+   around the cursor/touch, and spring back into shape. Chosen from four animated
+   backdrop variations (Orbital Atlas / Constellation 99 / Mission Grid / Ink Field).
+   Reduced motion, no-JS, and failed-canvas paths all fall back to the static
+   outlined `-webkit-text-stroke` monument. Folio rule line, serif H1 "Focused
+   systems for frontier AI." with oxide period, serif deck, one internal button
+   ("What we build").
 3. **№ 01 Approach** — three serif statements with hairline rules.
 4. **№ 02 Flagship** — full-bleed ink chapter: giant "Gatekeeper.", thesis line
    "Nothing happens until someone says yes.", description, fact list, a single
@@ -42,11 +47,14 @@ card-heavy layouts to serif-led poster scale.
 
 ## Motion
 
-- Hero load sequence: folio bar, headline, deck/actions stagger in; monument fades/settles.
-- Gentle scroll parallax on the monument (rAF-throttled, desktop only).
+- Hero load sequence: folio bar, headline, deck/actions stagger in; the ink field
+  fades in once seeded (after `document.fonts.ready`).
+- Ink-field engine: DPR-aware canvas, mouse + touch repulsion with spring return,
+  paused via IntersectionObserver when the hero leaves the viewport; particle
+  density and alpha reduced on small screens.
 - Section reveal on scroll (IntersectionObserver), gated behind an `html.js` class so
   content is fully visible without JavaScript.
-- All motion disabled under `prefers-reduced-motion`.
+- All motion disabled under `prefers-reduced-motion` (hero keeps the static outline).
 
 ## Quality floor
 

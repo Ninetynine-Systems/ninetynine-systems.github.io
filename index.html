@@ -241,6 +241,15 @@
     @supports not (-webkit-text-stroke: 2px black) {
       .monument { color: rgba(20, 20, 19, .07); }
     }
+    /* ink-field canvas — replaces the outlined monument when JS runs
+       (reduced motion keeps the static outline instead) */
+    .inkfield {
+      position: absolute; inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1.4s ease .1s;
+    }
+    .inkfield.on { opacity: 1; }
     .hero .wrap { position: relative; z-index: 1; padding-top: calc(var(--nav-h) + 40px); padding-bottom: 76px; width: 100%; }
     .hero-folio {
       display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
@@ -434,12 +443,10 @@
     html.js .reveal.in { opacity: 1; transform: none; transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
 
     @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
-    @keyframes settle { from { opacity: 0; } to { opacity: 1; } }
     html.js .hero .anim { animation: rise .8s cubic-bezier(.16,1,.3,1) both; }
     html.js .hero .anim.d1 { animation-delay: .08s; }
     html.js .hero .anim.d2 { animation-delay: .18s; }
     html.js .hero .anim.d3 { animation-delay: .28s; }
-    html.js .monument { animation: settle 1.2s ease-out both .15s; }
 
     @media (prefers-reduced-motion: reduce) {
       * { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
@@ -506,8 +513,9 @@
 
   <main id="main">
     <!-- ===================== HERO ===================== -->
-    <section class="hero">
-      <div class="monument" aria-hidden="true">99</div>
+    <section class="hero" id="hero">
+      <canvas class="inkfield" id="inkfield" aria-hidden="true"></canvas>
+      <div class="monument" id="monument" aria-hidden="true">99</div>
       <div class="wrap">
         <div class="hero-folio anim">
           <span class="folio"><b>&#8470; 99</b> &mdash; A studio for the agentic era</span>
@@ -707,21 +715,117 @@
       els.forEach(function (el) { io.observe(el); });
     })();
 
-    // monument parallax — desktop pointers only, honors reduced motion
+    // ink-field 99 — the monument as a few thousand grains of ink.
+    // The cursor scatters them; they find their shape again. Reduced
+    // motion (or no JS / no canvas) keeps the static outlined 99.
     (function () {
-      var m = document.querySelector('.monument');
-      if (!m) return;
-      var fine = window.matchMedia('(pointer: fine) and (min-width: 721px)');
-      var calm = window.matchMedia('(prefers-reduced-motion: reduce)');
-      if (!fine.matches || calm.matches) return;
-      var ticking = false;
-      var update = function () {
-        m.style.transform = 'translateY(' + (window.scrollY * 0.12) + 'px)';
-        ticking = false;
-      };
-      window.addEventListener('scroll', function () {
-        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      var cv = document.getElementById('inkfield');
+      var hero = document.getElementById('hero');
+      var mon = document.getElementById('monument');
+      if (!cv || !hero || !cv.getContext) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var cx = cv.getContext('2d');
+      if (!cx) return;
+
+      var W, H, DPR, pts = [];
+      var mx = -9999, my = -9999;
+      var R = 110, R2 = R * R;
+      var running = false, raf = 0, seeded = false, resizeT = 0;
+
+      function rnd(a, b) { return a + Math.random() * (b - a); }
+
+      function size() {
+        DPR = Math.min(window.devicePixelRatio || 1, 2);
+        W = hero.clientWidth; H = hero.clientHeight;
+        cv.width = W * DPR; cv.height = H * DPR;
+        cv.style.width = W + 'px'; cv.style.height = H + 'px';
+        cx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      }
+
+      function seed() {
+        pts = [];
+        var mobile = W <= 720;
+        var FS = mobile ? W * 0.88 : Math.min(W * 0.46, 820);
+        var oc = document.createElement('canvas');
+        var og = oc.getContext('2d');
+        oc.width = Math.round(FS * 1.28); oc.height = Math.round(FS * 1.04);
+        og.font = '620 ' + FS + 'px "Source Serif 4 Variable", "Source Serif 4", Georgia, serif';
+        og.textBaseline = 'top';
+        og.fillText('99', FS * 0.03, FS * 0.01);
+        var img = og.getImageData(0, 0, oc.width, oc.height).data;
+        var step = Math.max(mobile ? 6 : 5, Math.round(FS / 110));
+        var ox = W - oc.width * (mobile ? 0.80 : 0.96);
+        var oy = -FS * 0.07;
+        for (var y = 0; y < oc.height; y += step) {
+          for (var x = 0; x < oc.width; x += step) {
+            if (img[(y * oc.width + x) * 4 + 3] > 128) {
+              var hx = ox + x + rnd(-1.5, 1.5), hy = oy + y + rnd(-1.5, 1.5);
+              pts.push({
+                hx: hx, hy: hy, x: hx, y: hy, vx: 0, vy: 0,
+                r: rnd(0.7, 1.9),
+                a: rnd(0.45, 0.9) * (mobile ? 0.7 : 1),
+                ox: Math.random() < 0.028,
+                ph: rnd(0, 7), sp: rnd(0.0006, 0.0014), amp: rnd(0.8, 2.2)
+              });
+            }
+          }
+        }
+        seeded = pts.length > 0;
+      }
+
+      function draw(t) {
+        cx.clearRect(0, 0, W, H);
+        for (var i = 0; i < pts.length; i++) {
+          var p = pts[i];
+          var homeX = p.hx + Math.sin(t * p.sp + p.ph) * p.amp;
+          var homeY = p.hy + Math.cos(t * p.sp * 0.9 + p.ph) * p.amp;
+          var dx = p.x - mx, dy = p.y - my, d2 = dx * dx + dy * dy;
+          if (d2 < R2 && d2 > 0.01) {
+            var d = Math.sqrt(d2), f = (R - d) / R * 3.4;
+            p.vx += (dx / d) * f; p.vy += (dy / d) * f;
+          }
+          p.vx += (homeX - p.x) * 0.055; p.vy += (homeY - p.y) * 0.055;
+          p.vx *= 0.84; p.vy *= 0.84;
+          p.x += p.vx; p.y += p.vy;
+          cx.globalAlpha = p.a;
+          cx.fillStyle = p.ox ? '#b84e28' : '#141413';
+          cx.fillRect(p.x - p.r, p.y - p.r, p.r * 2, p.r * 2);
+        }
+        cx.globalAlpha = 1;
+      }
+
+      function loop(t) { raf = 0; draw(t); if (running) raf = requestAnimationFrame(loop); }
+      function start() { if (!running && seeded) { running = true; raf = requestAnimationFrame(loop); } }
+      function stop() { running = false; if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+
+      window.addEventListener('mousemove', function (e) {
+        var r = hero.getBoundingClientRect();
+        mx = e.clientX - r.left; my = e.clientY - r.top;
       }, { passive: true });
+      window.addEventListener('touchmove', function (e) {
+        if (!e.touches.length) return;
+        var r = hero.getBoundingClientRect();
+        mx = e.touches[0].clientX - r.left; my = e.touches[0].clientY - r.top;
+      }, { passive: true });
+      window.addEventListener('touchend', function () { mx = my = -9999; }, { passive: true });
+      document.addEventListener('mouseleave', function () { mx = my = -9999; });
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeT);
+        resizeT = setTimeout(function () { size(); seed(); }, 150);
+      });
+
+      var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+      fontsReady.then(function () {
+        size(); seed();
+        if (!seeded) return;                     // sampling failed — keep the outline
+        if (mon) mon.style.display = 'none';
+        cv.classList.add('on');
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver(function (en) {
+            en[0].isIntersecting ? start() : stop();
+          }).observe(hero);
+        } else { start(); }
+      });
     })();
   </script>
 </body>
