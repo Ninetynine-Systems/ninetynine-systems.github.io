@@ -3,11 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ninetynine.Systems</title>
+  <title>Ninetynine.Systems — focused systems for frontier AI</title>
+  <meta name="description" content="Ninetynine.Systems builds focused software systems around frontier AI — agentic, autonomous, and accountable. Maker of Gatekeeper, the approval gateway for people, AI agents, and machines." />
+
   <link rel="stylesheet" href="./assets/fonts/inter/index.css" />
   <link rel="stylesheet" href="./assets/fonts/source-serif-4/index.css" />
   <link rel="stylesheet" href="./assets/fonts/jetbrains-mono/index.css" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Ninetynine.Systems" />
+  <meta property="og:title" content="Ninetynine.Systems — focused systems for frontier AI" />
+  <meta property="og:description" content="A studio building durable software around agentic AI. Maker of Gatekeeper." />
+  <meta name="theme-color" content="#faf9f5" />
+
   <style>
+    /* ============================================================
+       Ninetynine.Systems — landing page, "Ninety-Nine" direction
+       Type-as-image: a colossal outlined 99 anchors the hero, a
+       folio system (№ 01–05) paces the page, monumental serif
+       statements alternate with quiet precise blocks. Paper + ink,
+       ONE oxide accent moment per screen. Inter / Source Serif 4 /
+       JetBrains Mono — the three-font system, serif-led.
+       ============================================================ */
+
     *, *::before, *::after {
       margin: 0;
       padding: 0;
@@ -15,15 +33,7 @@
     }
 
     :root {
-      --ink:       #0f0f0e;
-      --ink-mid:   #3a3a36;
-      --ink-faint: #a8a89e;
-      --paper:     #f5f4f0;
-      --rule:      #d6d4cc;
-      --accent:    #c0392b;
-      --accent2:   #1a3a5c;
-
-      /* ninetynine.systems typography system */
+      /* ---- type families (ninetynine.systems 3-font system) ---- */
       --font-sans: "Inter Variable", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --font-serif: "Source Serif 4 Variable", "Source Serif 4", Georgia, serif;
       --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -32,594 +42,691 @@
       --font-reading: var(--font-serif);
       --font-code: var(--font-mono);
 
-      --font-user-message: var(--font-ui);
-      --font-ai-response: var(--font-reading);
-      --font-dashboard: var(--font-ui);
-      --font-diagram: var(--font-ui);
+      /* ---- surfaces ---- */
+      --paper:   #faf9f5;
+      --paper-2: #f3f0e7;
 
-      --text-xs: 12px;
-      --text-sm: 14px;
-      --text-md: 16px;
-      --text-lg: 18px;
-      --text-xl: 24px;
-      --text-2xl: 32px;
-      --text-3xl: 48px;
-      --text-4xl: 64px;
+      /* ---- ink ---- */
+      --ink:   #141413;
+      --ink-2: #565247;
+      --ink-3: #7a7466;
+
+      /* ---- lines ---- */
+      --hair:        #e3decd;
+      --hair-mid:    #c9c0a8;
+      --rule-strong: var(--ink);
+
+      /* ---- accent (oxide red — one moment per screen) ---- */
+      --oxide:      #b84e28;
+      --oxide-deep: #93391a;
+      --oxide-soft: #e6906f;
+
+      /* ---- status ---- */
+      --live: #41700f;
+      --soon: #854f0b;
+
+      /* ---- ink chapter / terminal ---- */
+      --night:      #141413;
+      --night-fg:   #ece7d9;
+      --night-mut:  #a49e8e;
+      --night-dim:  #7d7869;
+      --night-line: #2e2c26;
+      --term-bg:    #100f0d;
+      --term-green: #9ccb6b;
+
+      /* ---- layout ---- */
+      --col: 1320px;
+      --gutter: 64px;
+      --nav-h: 84px;
     }
 
-    html, body {
-      height: 100%;
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
       background: var(--paper);
       color: var(--ink);
       font-family: var(--font-ui);
-      font-size: var(--text-md);
+      font-size: 16px;
       font-weight: 400;
-      line-height: 1.5;
+      line-height: 1.6;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
-      overflow: hidden;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
     }
 
-    code, pre, kbd, samp {
-      font-family: var(--font-code);
-    }
+    img, svg { display: block; max-width: 100%; }
+    code, pre, kbd, samp { font-family: var(--font-code); }
 
-    .reading-surface,
-    .ai-response {
-      font-family: var(--font-reading);
-    }
+    ::selection { background: #f6e7df; color: var(--ink); }
 
-    .technical-label {
-      font-family: var(--font-code);
+    a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: var(--oxide);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
     }
+    a:hover { color: var(--oxide); }
+    button { font: inherit; }
 
-    /* Subtle grid texture */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(var(--rule) 1px, transparent 1px),
-        linear-gradient(90deg, var(--rule) 1px, transparent 1px);
-      background-size: 60px 60px;
-      opacity: 0.35;
-      pointer-events: none;
-      z-index: 0;
+    :focus-visible { outline: 2px solid var(--oxide); outline-offset: 3px; border-radius: 2px; }
+    *:focus:not(:focus-visible) { outline: none; }
+
+    .skip-link {
+      position: absolute; left: 16px; top: -48px; z-index: 100;
+      background: var(--ink); color: var(--paper);
+      font-family: var(--font-ui); font-size: 13px;
+      padding: 10px 16px; border-radius: 0 0 8px 8px; text-decoration: none;
     }
+    .skip-link:focus { top: 0; color: var(--paper); }
 
-    /* Corner rule marks — blueprint feel */
-    .corner {
-      position: fixed;
-      width: 24px;
-      height: 24px;
-      z-index: 10;
-    }
-    .corner--tl { top: 32px; left: 32px; border-top: 1.5px solid var(--ink-mid); border-left: 1.5px solid var(--ink-mid); }
-    .corner--tr { top: 32px; right: 32px; border-top: 1.5px solid var(--ink-mid); border-right: 1.5px solid var(--ink-mid); }
-    .corner--bl { bottom: 32px; left: 32px; border-bottom: 1.5px solid var(--ink-mid); border-left: 1.5px solid var(--ink-mid); }
-    .corner--br { bottom: 32px; right: 32px; border-bottom: 1.5px solid var(--ink-mid); border-right: 1.5px solid var(--ink-mid); }
+    .wrap { max-width: var(--col); margin-inline: auto; padding-inline: var(--gutter); }
+    section[id] { scroll-margin-top: 84px; }
 
-    /* Thin horizontal rule across full width */
-    .h-rule {
-      position: fixed;
-      left: 0; right: 0;
-      height: 1px;
-      background: var(--rule);
-      z-index: 5;
-    }
-    .h-rule--top    { top: 80px; }
-    .h-rule--bottom { bottom: 80px; }
-
-    /* Main layout */
-    main {
-      position: relative;
-      z-index: 1;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Logo block */
-    .logo {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: flex-end;
-      opacity: 0;
-      transform: translateY(16px);
-      animation: reveal 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-    }
-
-    .logo__primary {
-      font-family: var(--font-reading);
-      font-weight: 300;
-      font-size: clamp(var(--text-3xl), 8vw, 7rem);
-      letter-spacing: -0.045em;
-      line-height: 1;
-      color: var(--ink);
-      white-space: nowrap;
-    }
-
-    /* The constraint: .Systems right-aligns with Ninetynine */
-    .logo__secondary {
-      font-family: var(--font-ui);
-      font-weight: 400;
-      font-size: clamp(var(--text-md), 2.2vw, var(--text-2xl));
-      letter-spacing: 0.14em;
-      line-height: 1;
-      color: var(--accent);
-      margin-top: 0.18em;
-      white-space: nowrap;
-    }
-
-    /* Accent dot on .Systems */
-    .logo__secondary .dot {
-      color: var(--accent);
-      font-weight: 400;
-    }
-
-    /* Tagline */
-    .tagline {
-      position: fixed;
-      bottom: 96px;
-      right: 64px;
-      font-family: var(--font-ui);
-      font-size: var(--text-xs);
-      letter-spacing: 0.18em;
+    /* ---- folio (the № system) ---- */
+    .folio {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: var(--ink-faint);
-      text-align: right;
-      line-height: 1.9;
-      opacity: 0;
-      animation: reveal 1s ease 0.9s forwards;
+      color: var(--ink-3);
     }
+    .folio b { color: var(--oxide); font-weight: 500; }
 
-    /* Small identifier top-left */
-    .ident {
-      position: fixed;
-      top: 96px;
-      left: 64px;
-      font-family: var(--font-code);
-      font-size: var(--text-xs);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--ink-faint);
-      line-height: 2;
-      opacity: 0;
-      animation: reveal 1s ease 0.7s forwards;
+    /* ---- buttons ---- */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      font-family: var(--font-ui); font-weight: 550; font-size: 15px; line-height: 1.2;
+      text-decoration: none; padding: 13px 22px; border-radius: 7px;
+      border: 1px solid transparent; white-space: nowrap; cursor: pointer;
+      transition: background .14s ease, border-color .14s ease, color .14s ease, transform .14s ease;
     }
+    .btn:active { transform: translateY(1px); }
+    .btn .ar { transition: transform .16s ease; }
+    .btn:hover .ar { transform: translate(2px, -1px); }
 
-    .about-toggle {
-      position: fixed;
-      top: 96px;
-      right: 64px;
-      font-family: var(--font-ui);
-      font-size: var(--text-xs);
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      color: var(--accent);
-      text-align: right;
-      text-transform: uppercase;
-      text-decoration: none;
-      opacity: 0;
-      z-index: 6;
-      animation: reveal 1s ease 0.7s forwards;
-    }
+    .btn.pri { background: var(--ink); color: var(--paper); }
+    .btn.pri:hover { background: #312f29; color: var(--paper); }
+    .btn.pri .ar { color: var(--oxide-soft); }
 
-    .about-toggle::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -0.22rem;
-      width: 100%;
-      height: 1px;
-      background: currentColor;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 180ms ease, color 180ms ease;
-    }
+    .btn.gho { border-color: var(--hair-mid); color: var(--ink); }
+    .btn.gho:hover { border-color: var(--ink); color: var(--ink); }
+    .btn.gho .ar { color: var(--oxide); }
 
-    .about-toggle:hover,
-    .about-toggle:focus-visible {
-      color: var(--accent);
-    }
+    .btn.oxide { background: var(--oxide); color: #fff; }
+    .btn.oxide:hover { background: var(--oxide-deep); color: #fff; }
+    .btn.oxide .ar { color: #f3d4c6; }
 
-    .about-toggle:hover::after,
-    .about-toggle:focus-visible::after {
-      transform: scaleX(1);
-    }
+    .btn.ondark { background: var(--paper); color: var(--ink); }
+    .btn.ondark:hover { background: #e8e4d8; color: var(--ink); }
+    .btn.ondark .ar { color: var(--oxide); }
 
-    .about-toggle:focus-visible {
-      outline: none;
-    }
+    .btn.ghodark { border-color: #45423a; color: var(--night-fg); }
+    .btn.ghodark:hover { border-color: var(--night-fg); color: var(--night-fg); }
+    .btn.ghodark .ar { color: var(--oxide-soft); }
 
-    .logo-wrap {
-      position: relative;
-    }
-
-    .overlay-panel {
-      position: fixed;
-      inset: 0;
-      z-index: 30;
-      display: grid;
-      place-items: center;
-      padding: 112px 64px;
-      background: var(--paper);
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transition: opacity 180ms ease, visibility 0s linear 180ms;
-    }
-
-    .overlay-panel:target {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-      transition-delay: 0s;
-    }
-
-    .overlay-panel__card {
-      width: min(100%, 34rem);
-      padding-top: 1rem;
-      border-top: 1px solid var(--ink-mid);
-      transform: translateY(12px);
-      transition: transform 220ms ease;
-    }
-
-    .overlay-panel:target .overlay-panel__card {
-      transform: translateY(0);
-    }
-
-    .overlay-panel__meta {
-      font-family: var(--font-ui);
-      font-weight: 500;
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 0.9rem;
-      font-size: var(--text-xs);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-faint);
-    }
-
-    .overlay-panel__close {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .overlay-panel__body {
-      font-family: var(--font-reading);
-      font-size: clamp(var(--text-xl), 2vw, var(--text-2xl));
-      font-weight: 400;
-      line-height: 1.28;
-      color: var(--ink);
-    }
-
-    .overlay-panel__body p + p {
-      margin-top: 0.8rem;
-    }
-
-    .app-nav {
-      position: fixed;
-      bottom: 96px;
-      left: 64px;
-      z-index: 6;
-      font-family: var(--font-ui);
-      font-weight: 500;
-      font-size: var(--text-xs);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      line-height: 1.9;
-      opacity: 0;
-      animation: reveal 1s ease 0.9s forwards;
-    }
-
-    .app-nav__label {
-      display: block;
-      color: var(--ink-faint);
-    }
-
-    .app-nav__link {
-      display: inline-block;
-      color: var(--accent);
-      font-weight: 500;
-      text-decoration: none;
-      position: relative;
-      transition: color 180ms ease;
-    }
-
-    .app-nav__link::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -0.22rem;
-      width: 100%;
-      height: 1px;
-      background: currentColor;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 180ms ease;
-    }
-
-    .app-nav__link:hover,
-    .app-nav__link:focus-visible {
-      color: var(--accent);
-    }
-
-    .app-nav__link:hover::after,
-    .app-nav__link:focus-visible::after {
-      transform: scaleX(1);
-    }
-
-    .app-nav__link:focus-visible {
-      outline: none;
-    }
-
-    .app-panel__card {
-      width: min(100%, 38rem);
-    }
-
-    .app-panel__brand {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.15rem;
-    }
-
-    .app-panel__mark {
-      width: 3rem;
-      height: 3rem;
-      flex: none;
-      display: block;
-    }
-
-    .app-panel__title {
-      font-family: var(--font-ui);
-      font-size: var(--text-lg);
-      font-weight: 700;
+    /* ============================================================
+       Wordmark (logo lockup — the ONLY exception to the 3-font rules)
+       ============================================================ */
+    .wordmark {
+      font-family: var(--font-serif);
+      font-weight: 450;
+      font-size: 22px;
       letter-spacing: -0.02em;
-      text-transform: none;
-      color: var(--accent);
+      line-height: 1;
+      text-decoration: none;
+      white-space: nowrap;
+      color: var(--ink);
     }
-
-    .app-panel__links {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.75rem 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .app-panel__platform {
-      font-family: var(--font-code);
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 0.75rem;
-      padding-top: 0.45rem;
-      border-top: 1px solid var(--rule);
-      font-size: var(--text-xs);
+    .wordmark .sfx {
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 0.57em;
       letter-spacing: 0.16em;
       text-transform: uppercase;
+      color: var(--ink-2);
     }
+    .wordmark .dot { color: var(--oxide); }
+    a.wordmark:hover { opacity: .74; color: var(--ink); }
 
-    .app-panel__platform-name {
-      color: var(--ink-faint);
+    /* ============================================================
+       Nav — transparent over the hero, paper bar once scrolled
+       ============================================================ */
+    .nav {
+      position: fixed; inset-inline: 0; top: 0; z-index: 40;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: background .2s ease, border-color .2s ease;
     }
+    .nav.scrolled {
+      background: color-mix(in srgb, var(--paper) 90%, transparent);
+      -webkit-backdrop-filter: saturate(140%) blur(8px);
+      backdrop-filter: saturate(140%) blur(8px);
+      border-bottom-color: var(--hair);
+    }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 24px; }
+    .nav-links { display: flex; gap: 34px; font-size: 14.5px; font-weight: 480; }
+    .nav-links a { text-decoration: none; color: var(--ink-2); transition: color .14s ease; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      font-size: 13.5px; font-weight: 560;
+      background: var(--ink); color: var(--paper);
+      text-decoration: none; padding: 10px 18px; border-radius: 6px;
+      transition: background .14s ease;
+    }
+    .nav-cta:hover { background: #312f29; color: var(--paper); }
+    .nav-cta .ar { color: var(--oxide-soft); }
 
-    .app-panel__platform-link,
-    .app-panel__platform-status {
+    /* ============================================================
+       Hero — the monument
+       ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      min-height: 92svh;
+      display: flex; align-items: flex-end;
+      border-bottom: 1px solid var(--rule-strong);
+      overflow: hidden;
+    }
+    .monument {
+      position: absolute; right: -7vw; top: -4vw; z-index: 0;
+      font-family: var(--font-serif); font-weight: 620;
+      font-size: clamp(340px, 46vw, 780px);
+      line-height: .86; letter-spacing: -0.055em;
+      color: transparent;
+      -webkit-text-stroke: 2px rgba(20, 20, 19, .5);
+      user-select: none; pointer-events: none;
+      will-change: transform;
+    }
+    @supports not (-webkit-text-stroke: 2px black) {
+      .monument { color: rgba(20, 20, 19, .07); }
+    }
+    .hero .wrap { position: relative; z-index: 1; padding-top: calc(var(--nav-h) + 40px); padding-bottom: 76px; width: 100%; }
+    .hero-folio {
+      display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+      border-bottom: 1px solid var(--rule-strong);
+      padding-bottom: 14px; margin-bottom: 56px;
+    }
+    .hero h1 {
+      font-family: var(--font-serif); font-weight: 580;
+      font-size: clamp(54px, 7.8vw, 116px);
+      line-height: .97; letter-spacing: -0.032em;
+      max-width: 11ch;
+    }
+    .hero h1 .ox { color: var(--oxide); }
+    .hero-foot { display: grid; grid-template-columns: 1.2fr .8fr; gap: 56px; align-items: end; margin-top: 52px; }
+    .hero-deck {
+      font-family: var(--font-reading); font-size: 21px; line-height: 1.55;
+      color: var(--ink-2); max-width: 50ch;
+    }
+    .hero-deck b { color: var(--ink); font-weight: 600; }
+    .hero-actions { display: flex; gap: 14px; justify-content: flex-end; flex-wrap: wrap; }
+
+    /* ============================================================
+       № 01 — statements (approach)
+       ============================================================ */
+    .statements { border-bottom: 1px solid var(--rule-strong); }
+    .statements .wrap { padding-block: 110px; }
+    .stmt {
+      display: grid; grid-template-columns: 220px 1fr; gap: 56px;
+      padding-block: 44px; border-top: 1px solid var(--hair); align-items: start;
+    }
+    .stmt:first-of-type { border-top: 0; padding-top: 0; }
+    .stmt:last-of-type { padding-bottom: 0; }
+    .stmt h3 {
+      font-family: var(--font-serif); font-weight: 570;
+      font-size: clamp(30px, 3.2vw, 42px);
+      letter-spacing: -0.024em; line-height: 1.08;
+    }
+    .stmt h3 .ox { color: var(--oxide); }
+    .stmt p { font-size: 16.5px; color: var(--ink-2); max-width: 44ch; margin-top: 12px; line-height: 1.6; }
+    .stmt .folio { padding-top: 14px; }
+
+    /* ============================================================
+       № 02 — ink chapter (Gatekeeper)
+       ============================================================ */
+    .chapter { background: var(--night); color: var(--night-fg); }
+    .chapter .wrap { padding-block: 120px; }
+    .chapter .folio { color: var(--night-dim); }
+    .chapter .folio b { color: var(--oxide-soft); }
+    .chapter-head {
+      display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+      align-items: baseline; border-bottom: 1px solid var(--night-line); padding-bottom: 14px;
+    }
+    .chapter h2 {
+      font-family: var(--font-serif); font-weight: 600;
+      font-size: clamp(52px, 9vw, 150px);
+      letter-spacing: -0.035em; line-height: 1; margin-top: 56px;
+    }
+    .chapter h2 .dot { color: var(--oxide); }
+    .chapter .thesis {
+      font-family: var(--font-reading);
+      font-size: clamp(24px, 2.6vw, 34px); line-height: 1.3;
+      color: #d8d2c2; max-width: 24ch; margin-top: 34px;
+    }
+    .chapter-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 64px; margin-top: 64px; align-items: center; }
+    .chapter .desc { font-size: 16px; line-height: 1.7; color: var(--night-mut); max-width: 52ch; }
+    .chapter .facts {
+      list-style: none; display: flex; gap: 12px 24px; margin-top: 28px; flex-wrap: wrap;
+      font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #8f8a7a;
+    }
+    .chapter .facts li::before { content: "— "; color: var(--oxide); }
+    .chapter .cta { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
+
+    .term {
+      margin: 0;
+      background: var(--term-bg);
+      border: 1px solid #2b2923; border-radius: 10px;
+      padding: 26px 28px;
+      font-family: var(--font-code); font-size: 13.5px; line-height: 1.9;
+      color: #d9d3c2; white-space: pre-wrap; overflow-x: auto;
+    }
+    .term .p  { color: #7c776a; }
+    .term .c  { color: #fff; }
+    .term .ok { color: var(--term-green); }
+
+    /* ============================================================
+       № 03 — index of systems
+       ============================================================ */
+    .index { border-bottom: 1px solid var(--rule-strong); }
+    .index .wrap { padding-block: 110px; }
+    .index-head {
+      display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+      align-items: baseline; border-bottom: 1px solid var(--rule-strong);
+      padding-bottom: 14px; margin-bottom: 8px;
+    }
+    .idx {
+      display: grid; grid-template-columns: 120px 1fr auto; gap: 16px 40px;
+      align-items: baseline; padding: 38px 0;
+      border-bottom: 1px solid var(--hair);
       text-decoration: none;
-      white-space: nowrap;
+    }
+    .idx:last-child { border-bottom: 0; padding-bottom: 0; }
+    .idx .folio { padding-top: 6px; }
+    .idx-nm {
+      font-family: var(--font-serif); font-weight: 590;
+      font-size: clamp(32px, 3.8vw, 52px);
+      letter-spacing: -0.028em; line-height: 1.05;
+      transition: color .15s ease;
+    }
+    a.idx:hover .idx-nm { color: var(--oxide); }
+    .idx-st {
+      font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--live); white-space: nowrap; padding-top: 8px;
+    }
+    .idx-st.soon { color: var(--soon); }
+    .idx-body { grid-column: 2; max-width: 62ch; }
+    .idx-ds { font-size: 15.5px; color: var(--ink-2); line-height: 1.55; }
+    .idx-links {
+      display: flex; gap: 8px 22px; flex-wrap: wrap; margin-top: 12px;
+      font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .idx-links a { color: var(--oxide); text-decoration: none; }
+    .idx-links a:hover { text-decoration: underline; }
+    .idx-links .off { color: var(--ink-3); }
+    .idx.dim .idx-nm { color: var(--ink-3); }
+
+    /* ============================================================
+       № 04 — the studio
+       ============================================================ */
+    .studio { background: var(--paper-2); border-bottom: 1px solid var(--rule-strong); }
+    .studio .wrap { padding-block: 110px; display: grid; grid-template-columns: .9fr 1.1fr; gap: 72px; align-items: start; }
+    .studio h2 {
+      font-family: var(--font-serif); font-weight: 580;
+      font-size: clamp(34px, 3.8vw, 50px);
+      letter-spacing: -0.026em; line-height: 1.05;
+      margin-top: 18px; max-width: 14ch;
+    }
+    .studio-copy { font-family: var(--font-reading); font-size: 18.5px; line-height: 1.7; color: var(--ink-2); }
+    .studio-copy p + p { margin-top: 18px; }
+    .studio-copy b { color: var(--ink); font-weight: 600; }
+    .fronts {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      margin-top: 40px; border: 1px solid var(--rule-strong); background: var(--hair);
+      gap: 1px;
+    }
+    .front { background: var(--paper-2); padding: 20px 18px 22px; display: flex; flex-direction: column; gap: 8px; }
+    .front .no { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; color: var(--oxide); }
+    .front .fn { font-family: var(--font-ui); font-weight: 620; font-size: 15px; letter-spacing: -0.01em; }
+
+    /* ============================================================
+       № 05 — contact
+       ============================================================ */
+    .cta-sec { position: relative; overflow: hidden; }
+    .cta-sec .wrap { padding-block: 130px 120px; position: relative; z-index: 1; }
+    .cta-monument {
+      position: absolute; left: -6vw; bottom: -18vw;
+      font-family: var(--font-serif); font-weight: 620;
+      font-size: clamp(280px, 40vw, 640px);
+      line-height: .86; letter-spacing: -0.055em;
+      color: transparent;
+      -webkit-text-stroke: 1.6px rgba(184, 78, 40, .28);
+      pointer-events: none; user-select: none;
+    }
+    @supports not (-webkit-text-stroke: 2px black) {
+      .cta-monument { color: rgba(184, 78, 40, .06); }
+    }
+    .cta-sec h2 {
+      font-family: var(--font-serif); font-weight: 580;
+      font-size: clamp(42px, 5.6vw, 84px);
+      letter-spacing: -0.03em; line-height: 1; max-width: 14ch; margin-top: 20px;
+    }
+    .cta-sec h2 .ox { color: var(--oxide); }
+    .cta-sec p { font-family: var(--font-reading); font-size: 20px; color: var(--ink-2); margin-top: 24px; max-width: 44ch; }
+    .cta-actions { display: flex; gap: 14px; margin-top: 44px; flex-wrap: wrap; }
+
+    /* ============================================================
+       Footer
+       ============================================================ */
+    .foot { border-top: 1px solid var(--rule-strong); background: var(--paper); }
+    .foot .wrap { padding-block: 40px; display: flex; justify-content: space-between; align-items: center; gap: 20px 32px; flex-wrap: wrap; }
+    .foot .folio { letter-spacing: 0.14em; }
+    .foot .folio a { color: var(--ink-3); text-decoration: none; }
+    .foot .folio a:hover { color: var(--oxide); }
+    .foot-links { display: flex; gap: 22px; flex-wrap: wrap; }
+
+    /* ============================================================
+       Motion — everything gated behind html.js, killed by
+       prefers-reduced-motion
+       ============================================================ */
+    html.js .reveal { opacity: 0; transform: translateY(16px); }
+    html.js .reveal.in { opacity: 1; transform: none; transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+    @keyframes settle { from { opacity: 0; } to { opacity: 1; } }
+    html.js .hero .anim { animation: rise .8s cubic-bezier(.16,1,.3,1) both; }
+    html.js .hero .anim.d1 { animation-delay: .08s; }
+    html.js .hero .anim.d2 { animation-delay: .18s; }
+    html.js .hero .anim.d3 { animation-delay: .28s; }
+    html.js .monument { animation: settle 1.2s ease-out both .15s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+      html.js .reveal { opacity: 1; transform: none; }
     }
 
-    .app-panel__platform-link {
-      color: var(--accent);
-      font-weight: 500;
+    /* ============================================================
+       Responsive
+       ============================================================ */
+    @media (max-width: 1000px) {
+      .hero-foot, .chapter-grid, .studio .wrap { grid-template-columns: 1fr; gap: 44px; }
+      .hero-actions { justify-content: flex-start; }
+      .stmt { grid-template-columns: 1fr; gap: 10px; }
+      .stmt .folio { padding-top: 0; }
+      .idx { grid-template-columns: 1fr auto; }
+      .idx .folio { grid-column: 1 / -1; padding-top: 0; }
+      .idx-body { grid-column: 1; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 720px) {
+      :root { --gutter: 22px; --nav-h: 72px; }
+      .hero { min-height: 0; }
+      .hero .wrap { padding-top: calc(var(--nav-h) + 96px); padding-bottom: 56px; }
+      .monument { font-size: 88vw; right: -14vw; top: -6vw; -webkit-text-stroke-color: rgba(20, 20, 19, .34); }
+      .hero-folio { margin-bottom: 40px; }
+      .statements .wrap, .index .wrap, .studio .wrap { padding-block: 76px; }
+      .chapter .wrap { padding-block: 84px; }
+      .cta-sec .wrap { padding-block: 88px 80px; }
+      .fronts { grid-template-columns: 1fr 1fr; }
+      .foot .wrap { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 460px) {
+      .hero-actions .btn, .chapter .cta .btn, .cta-actions .btn { width: 100%; }
+      .chapter h2 { font-size: clamp(44px, 13.5vw, 64px); }
     }
 
-    .app-panel__platform-status {
-      color: var(--ink-faint);
-    }
-
-    @keyframes reveal {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Subtle noise grain overlay */
+    /* subtle paper grain */
     body::after {
       content: '';
       position: fixed;
       inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-      opacity: 0.025;
+      opacity: 0.02;
       pointer-events: none;
-      z-index: 20;
-    }
-
-    @media (max-width: 640px) {
-      .ident {
-        top: 96px;
-        left: 32px;
-        max-width: calc(100vw - 150px);
-        font-size: var(--text-xs);
-        letter-spacing: 0.18em;
-        line-height: 1.75;
-      }
-
-      .about-toggle {
-        top: 96px;
-        right: 32px;
-        font-size: var(--text-xs);
-      }
-
-      .tagline {
-        left: 32px;
-        right: 32px;
-        bottom: 132px;
-        text-align: left;
-        font-size: var(--text-xs);
-        letter-spacing: 0.14em;
-        line-height: 1.7;
-        max-width: 15rem;
-      }
-
-      .app-nav {
-        left: 32px;
-        bottom: 84px;
-        font-size: var(--text-xs);
-        letter-spacing: 0.14em;
-        line-height: 1.7;
-      }
-
-      .overlay-panel {
-        padding: 112px 32px;
-      }
-
-      .overlay-panel__meta {
-        font-size: var(--text-xs);
-        letter-spacing: 0.14em;
-      }
-
-      .overlay-panel__body {
-        font-size: var(--text-lg);
-        line-height: 1.36;
-      }
-
-      .app-panel__brand {
-        gap: 0.8rem;
-        margin-bottom: 1rem;
-      }
-
-      .app-panel__mark {
-        width: 2.5rem;
-        height: 2.5rem;
-      }
-
-      .app-panel__title {
-        font-size: var(--text-md);
-        letter-spacing: -0.02em;
-      }
-
-      .app-panel__links {
-        grid-template-columns: 1fr;
-        gap: 0.65rem;
-        margin-top: 1.2rem;
-      }
-
-      .app-panel__platform {
-        font-size: var(--text-xs);
-        letter-spacing: 0.14em;
-      }
+      z-index: 100;
     }
   </style>
 </head>
-<body>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Blueprint corners -->
-  <div class="corner corner--tl"></div>
-  <div class="corner corner--tr"></div>
-  <div class="corner corner--bl"></div>
-  <div class="corner corner--br"></div>
-
-  <!-- Horizontal rules -->
-  <div class="h-rule h-rule--top"></div>
-  <div class="h-rule h-rule--bottom"></div>
-
-  <!-- Top-left identifier -->
-  <div class="ident">
-    Ninetynine.Systems<br />
-    Est. 2026 — Dhaka, BD<br />
-  </div>
-
-  <a class="about-toggle" href="#about">About</a>
-
-  <!-- Bottom-right tagline -->
-  <div class="tagline">
-    Frontier AI · Software · Defense · Civilian<br />
-    Building what comes next
-  </div>
-
-  <section class="overlay-panel" id="about" aria-labelledby="about-title">
-    <div class="overlay-panel__card">
-      <div class="overlay-panel__meta">
-        <span id="about-title">About</span>
-        <a class="overlay-panel__close" href="#">Close</a>
-      </div>
-      <div class="overlay-panel__body">
-        <p>Ninetynine.Systems builds focused software systems around frontier AI.</p>
-        <p>A major focus right now is Agentic AI and systems that operate autonomously, alongside work across software, defense, and civilian tools.</p>
-      </div>
+  <!-- ===================== NAV ===================== -->
+  <header class="nav" id="nav">
+    <div class="wrap">
+      <a class="wordmark" href="#top" aria-label="Ninetynine.Systems home">Ninetynine<span class="sfx"><span class="dot">.</span>Systems</span></a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#approach">Approach</a>
+        <a href="#gatekeeper">Systems</a>
+        <a href="#studio">Studio</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="nav-cta" href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer">Gatekeeper <span class="ar" aria-hidden="true">&#8599;</span></a>
     </div>
-  </section>
+  </header>
 
-  <div class="app-nav">
-    <span class="app-nav__label">Launch</span>
-    <a class="app-nav__link" href="#islamic-reflections">Islamic Reflections</a>
-  </div>
+  <main id="main">
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="monument" aria-hidden="true">99</div>
+      <div class="wrap">
+        <div class="hero-folio anim">
+          <span class="folio"><b>&#8470; 99</b> &mdash; A studio for the agentic era</span>
+          <span class="folio">Est. 2026 &mdash; Dhaka, BD</span>
+        </div>
+        <h1 class="anim d1">Focused systems for frontier AI<span class="ox">.</span></h1>
+        <div class="hero-foot">
+          <p class="hero-deck anim d2">We&rsquo;re a small studio building durable software around <b>agentic AI</b> &mdash; systems that operate autonomously, and the infrastructure that keeps them <b>accountable</b>. Our first is Gatekeeper.</p>
+          <div class="hero-actions anim d3">
+            <a class="btn pri" href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer">Explore Gatekeeper <span class="ar" aria-hidden="true">&#8599;</span></a>
+            <a class="btn gho" href="#gatekeeper">What we build <span class="ar" aria-hidden="true">&darr;</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section class="overlay-panel app-panel" id="islamic-reflections" aria-labelledby="ir-title">
-    <div class="overlay-panel__card app-panel__card">
-      <div class="overlay-panel__meta">
-        <span id="ir-title">Islamic Reflections</span>
-        <a class="overlay-panel__close" href="#">Close</a>
-      </div>
-      <div class="app-panel__brand" aria-hidden="true">
-        <svg class="app-panel__mark" viewBox="0 0 1024 1024" focusable="false">
-          <g>
-            <rect x="474" y="86" width="76" height="236" rx="38" fill="#214739"></rect>
-            <rect x="474" y="86" width="76" height="236" rx="38" fill="#B4842A" transform="rotate(72 512 512)"></rect>
-            <rect x="474" y="86" width="76" height="236" rx="38" fill="#A26644" transform="rotate(144 512 512)"></rect>
-            <rect x="474" y="86" width="76" height="236" rx="38" fill="#596AA5" transform="rotate(216 512 512)"></rect>
-            <rect x="474" y="86" width="76" height="236" rx="38" fill="#7C7A57" transform="rotate(288 512 512)"></rect>
-          </g>
-          <g fill="#214739">
-            <path d="M512 416L528 456L568 472L528 488L512 528L496 488L456 472L496 456L512 416Z"></path>
-            <path d="M640 546L650 571L675 581L650 591L640 616L630 591L605 581L630 571L640 546Z"></path>
-            <path d="M390 570L398 590L418 598L398 606L390 626L382 606L362 598L382 590L390 570Z"></path>
-            <path d="M448 670L454 685L469 691L454 697L448 712L442 697L427 691L442 685L448 670Z"></path>
-            <path d="M586 362L592 377L607 383L592 389L586 404L580 389L565 383L580 377L586 362Z"></path>
-          </g>
-        </svg>
-        <div class="app-panel__title">Islamic Reflections</div>
-      </div>
-      <div class="overlay-panel__body">
-        <p>Daily Islamic reflections, reminders, and adhkar for spiritual growth.</p>
-        <p>Built across mobile, web, and terminal, with Quran verses, Hadith, commentary, and multilingual support.</p>
-      </div>
-      <div class="app-panel__links">
-        <div class="app-panel__platform">
-          <span class="app-panel__platform-name">Web</span>
-          <a class="app-panel__platform-link" href="https://ir.ninetynine.systems" target="_blank" rel="noreferrer">Open</a>
+    <!-- ===================== № 01 — APPROACH ===================== -->
+    <section class="statements" id="approach">
+      <div class="wrap">
+        <div class="stmt reveal">
+          <span class="folio"><b>&#8470; 01</b> &mdash; Approach</span>
+          <div>
+            <h3>Focused over broad<span class="ox">.</span></h3>
+            <p>A few systems, each built to last &mdash; not a portfolio of demos that never ship.</p>
+          </div>
         </div>
-        <div class="app-panel__platform">
-          <span class="app-panel__platform-name">Android</span>
-          <a class="app-panel__platform-link" href="https://play.google.com/store/apps/details?id=systems.ninetynine.ir" target="_blank" rel="noreferrer">Open</a>
+        <div class="stmt reveal">
+          <span class="folio" aria-hidden="true"></span>
+          <div>
+            <h3>Frontier, applied<span class="ox">.</span></h3>
+            <p>Agentic AI and autonomy, turned into real products people can actually rely on.</p>
+          </div>
         </div>
-        <div class="app-panel__platform">
-          <span class="app-panel__platform-name">iOS</span>
-          <span class="app-panel__platform-status" aria-disabled="true">Coming Soon</span>
-        </div>
-        <div class="app-panel__platform">
-          <span class="app-panel__platform-name">CLI</span>
-          <span class="app-panel__platform-status" aria-disabled="true">Coming Soon</span>
+        <div class="stmt reveal">
+          <span class="folio" aria-hidden="true"></span>
+          <div>
+            <h3>Built to be trusted<span class="ox">.</span></h3>
+            <p>Verifiable, legible, accountable by design &mdash; paper-and-ink restraint, not glossy magic.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <main>
-    <div class="logo-wrap">
-      <div class="logo">
-        <span class="logo__primary">Ninetynine</span>
-        <span class="logo__secondary"><span class="dot">.</span>Systems</span>
+    <!-- ===================== № 02 — GATEKEEPER ===================== -->
+    <section class="chapter" id="gatekeeper">
+      <div class="wrap">
+        <div class="chapter-head reveal">
+          <span class="folio"><b>&#8470; 02</b> &mdash; Flagship</span>
+          <span class="folio">Live at gatekeeper.now</span>
+        </div>
+        <h2 class="reveal">Gatekeeper<span class="dot">.</span></h2>
+        <p class="thesis reveal">Nothing happens until someone says&nbsp;yes.</p>
+        <div class="chapter-grid reveal">
+          <div>
+            <p class="desc">Universal approval infrastructure for people, AI agents, and machines. It holds risky actions &mdash; deploys, payments, database changes, an agent&rsquo;s next move &mdash; until the right person approves, then keeps a signed, verifiable record of who said yes, when, and why.</p>
+            <ul class="facts">
+              <li>Tamper-evident ledger</li>
+              <li>Self-hostable</li>
+              <li>People, agents &amp; machines</li>
+            </ul>
+            <div class="cta">
+              <a class="btn ondark" href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer">Visit gatekeeper.now <span class="ar" aria-hidden="true">&#8599;</span></a>
+              <a class="btn ghodark" href="https://gatekeeper.now/waitlist" target="_blank" rel="noopener noreferrer">Join the waitlist <span class="ar" aria-hidden="true">&#8599;</span></a>
+            </div>
+          </div>
+          <pre class="term" aria-label="Example: verifying the Gatekeeper ledger"><span class="p">$</span> <span class="c">gatekeeper ledger verify</span>
+  checking 4,471 events &hellip;
+  hash chain &hellip; <span class="ok">intact</span>
+  signatures &hellip; <span class="ok">valid (Ed25519)</span>
+  business rows &hellip; <span class="ok">reconciled</span>
+<span class="ok">&#10003; ledger verified &mdash; nothing was altered</span></pre>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <!-- ===================== № 03 — INDEX OF SYSTEMS ===================== -->
+    <section class="index" id="systems">
+      <div class="wrap">
+        <div class="index-head reveal">
+          <span class="folio"><b>&#8470; 03</b> &mdash; Index of systems</span>
+          <span class="folio">Few, kept for good</span>
+        </div>
+
+        <a class="idx reveal" href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer">
+          <span class="folio">SYS-01</span>
+          <span class="idx-nm">Gatekeeper</span>
+          <span class="idx-st">&#9679; Live</span>
+          <span class="idx-body">
+            <span class="idx-ds">Approval infrastructure for people, agents &amp; machines &mdash; nothing happens until someone says yes.</span>
+            <span class="idx-links"><span>gatekeeper.now &#8599;</span></span>
+          </span>
+        </a>
+
+        <div class="idx reveal">
+          <span class="folio">SYS-02</span>
+          <span class="idx-nm">Islamic Reflections</span>
+          <span class="idx-st">&#9679; Live</span>
+          <span class="idx-body">
+            <span class="idx-ds">Daily Islamic reflections, reminders, and adhkar &mdash; Quran verses, Hadith, and commentary, with multilingual support.</span>
+            <span class="idx-links">
+              <a href="https://ir.ninetynine.systems" target="_blank" rel="noopener noreferrer">Web &#8599;</a>
+              <a href="https://play.google.com/store/apps/details?id=systems.ninetynine.ir" target="_blank" rel="noopener noreferrer">Android &#8599;</a>
+              <span class="off">iOS &mdash; soon</span>
+              <span class="off">CLI &mdash; soon</span>
+            </span>
+          </span>
+        </div>
+
+        <div class="idx dim reveal">
+          <span class="folio">SYS-&middot;&middot;</span>
+          <span class="idx-nm">New systems</span>
+          <span class="idx-st soon">&#9675; Soon</span>
+          <span class="idx-body">
+            <span class="idx-ds">In the workshop.</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== № 04 — THE STUDIO ===================== -->
+    <section class="studio" id="studio">
+      <div class="wrap">
+        <div class="reveal">
+          <span class="folio"><b>&#8470; 04</b> &mdash; The studio</span>
+          <h2>A studio for the agentic era.</h2>
+        </div>
+        <div class="reveal">
+          <div class="studio-copy">
+            <p><b>Ninetynine.Systems</b> builds focused software systems around frontier AI. A major focus right now is agentic AI and systems that operate autonomously &mdash; alongside work across software, defense, and civilian tools.</p>
+            <p>We care about systems that are durable, legible, and accountable: the opposite of throwaway demos. That conviction is why our first product is built around a single idea &mdash; consequential actions should wait for a human yes, on the record.</p>
+          </div>
+          <div class="fronts" role="list" aria-label="Where we work">
+            <div class="front" role="listitem"><span class="no">01</span><span class="fn">Frontier AI</span></div>
+            <div class="front" role="listitem"><span class="no">02</span><span class="fn">Software</span></div>
+            <div class="front" role="listitem"><span class="no">03</span><span class="fn">Defense</span></div>
+            <div class="front" role="listitem"><span class="no">04</span><span class="fn">Civilian</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== № 05 — CONTACT ===================== -->
+    <section class="cta-sec" id="contact">
+      <div class="cta-monument" aria-hidden="true">99</div>
+      <div class="wrap">
+        <div class="reveal">
+          <span class="folio"><b>&#8470; 05</b> &mdash; Contact</span>
+          <h2>Building something consequential<span class="ox">?</span></h2>
+          <p>We partner on a small number of serious systems. If you&rsquo;re working on agentic AI, autonomy, or trust infrastructure, we&rsquo;d like to hear from you.</p>
+          <div class="cta-actions">
+            <a class="btn oxide" href="mailto:hello@ninetynine.systems">Get in touch <span class="ar" aria-hidden="true">&rarr;</span></a>
+            <a class="btn gho" href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer">See Gatekeeper <span class="ar" aria-hidden="true">&#8599;</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="foot">
+    <div class="wrap">
+      <a class="wordmark" style="font-size:19px" href="#top" aria-label="Ninetynine.Systems home">Ninetynine<span class="sfx"><span class="dot">.</span>Systems</span></a>
+      <span class="folio">Est. 2026 &mdash; Dhaka, BD &middot; &copy; 2026</span>
+      <nav class="foot-links folio" aria-label="Footer">
+        <a href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer">Gatekeeper &#8599;</a>
+        <a href="https://ir.ninetynine.systems" target="_blank" rel="noopener noreferrer">Islamic Reflections &#8599;</a>
+        <a href="mailto:hello@ninetynine.systems">hello@ninetynine.systems</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // js gate — motion styles only apply when scripting is available
+    document.documentElement.classList.add('js');
+
+    // nav: transparent over hero, paper bar once scrolled
+    (function () {
+      var nav = document.getElementById('nav');
+      if (!nav) return;
+      var onScroll = function () {
+        if (window.scrollY > 8) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+
+    // gentle reveal-on-scroll (reduced-motion handled in CSS)
+    (function () {
+      var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+      if (!('IntersectionObserver' in window) || !els.length) {
+        els.forEach(function (el) { el.classList.add('in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+
+    // monument parallax — desktop pointers only, honors reduced motion
+    (function () {
+      var m = document.querySelector('.monument');
+      if (!m) return;
+      var fine = window.matchMedia('(pointer: fine) and (min-width: 721px)');
+      var calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (!fine.matches || calm.matches) return;
+      var ticking = false;
+      var update = function () {
+        m.style.transform = 'translateY(' + (window.scrollY * 0.12) + 'px)';
+        ticking = false;
+      };
+      window.addEventListener('scroll', function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }, { passive: true });
+    })();
+  </script>
 </body>
 </html>
