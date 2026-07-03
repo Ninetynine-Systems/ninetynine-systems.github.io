@@ -231,10 +231,26 @@
        ============================================================ */
     .hero {
       position: relative;
-      min-height: 92vh;
-      min-height: 92svh;
+      min-height: 100vh;
+      min-height: 100svh;
       display: flex; align-items: flex-end;
       overflow: hidden;
+      /* atmosphere: bright at the top, dusk at the bottom, landing exactly on
+         the night ink of the chapter below so the two sections read as one.
+         The fade band is anchored in px from the bottom edge and eased
+         (smoothstep-spaced stops) so it never shows a hard cutoff */
+      background: linear-gradient(180deg,
+        #fffefb 0%,
+        var(--paper) 40%,
+        #f2edde calc(100% - 300px),
+        #e3dcc6 calc(100% - 200px),
+        #d7d0bc calc(100% - 172px),
+        #b9b2a0 calc(100% - 144px),
+        #8e897b calc(100% - 116px),
+        #5f5b50 calc(100% - 88px),
+        #35332e calc(100% - 58px),
+        #1b1a18 calc(100% - 28px),
+        var(--night) 100%);
     }
     .monument {
       position: absolute; right: -7vw; top: -4vw; z-index: 0;
@@ -258,7 +274,7 @@
       transition: opacity 1.4s ease .1s;
     }
     .inkfield.on { opacity: 1; }
-    .hero .wrap { position: relative; z-index: 1; padding-top: calc(var(--nav-h) + 40px); padding-bottom: 76px; width: 100%; }
+    .hero .wrap { position: relative; z-index: 1; padding-top: calc(var(--nav-h) + 40px); padding-bottom: 148px; width: 100%; }
     .hero h1 {
       font-family: var(--font-serif); font-weight: 580;
       font-size: clamp(54px, 7.8vw, 116px);
@@ -276,7 +292,16 @@
     /* ============================================================
        ink chapter (Gatekeeper)
        ============================================================ */
-    .chapter { background: var(--night); color: var(--night-fg); }
+    .chapter {
+      /* the oxide glow radiates from the period after "Gatekeeper." (~55% 24%);
+         both glows fade out before the top edge so the hero's dusk gradient
+         blends into flat night without a seam */
+      background:
+        radial-gradient(40% 28% at 55% 24%, rgba(184, 78, 40, .14) 0%, rgba(184, 78, 40, 0) 62%),
+        radial-gradient(100% 75% at 88% 108%, #2c2922 0%, rgba(44, 41, 34, 0) 55%),
+        var(--night);
+      color: var(--night-fg);
+    }
     .chapter .wrap { padding-block: 120px; }
     .chapter h2 {
       font-family: var(--font-serif); font-weight: 600;
@@ -372,7 +397,10 @@
     /* ============================================================
        contact
        ============================================================ */
-    .cta-sec { position: relative; overflow: hidden; }
+    .cta-sec {
+      position: relative; overflow: hidden;
+      background: linear-gradient(180deg, var(--paper-2) 0%, var(--paper) 55%);
+    }
     .cta-sec .wrap { padding-block: 130px 120px; position: relative; z-index: 1; }
     .cta-monument {
       position: absolute; left: -6vw; bottom: -18vw;
@@ -439,7 +467,7 @@
     @media (max-width: 720px) {
       :root { --gutter: 22px; --nav-h: 72px; }
       .hero { min-height: 0; }
-      .hero .wrap { padding-top: calc(var(--nav-h) + 96px); padding-bottom: 56px; }
+      .hero .wrap { padding-top: calc(var(--nav-h) + 96px); padding-bottom: 176px; }
       .monument { font-size: 88vw; right: -14vw; top: -6vw; -webkit-text-stroke-color: rgba(20, 20, 19, .34); }
       .hero h1 br { display: none; }
       .hero h1 { max-width: 12ch; }
@@ -486,7 +514,7 @@
       <canvas class="inkfield" id="inkfield" aria-hidden="true"></canvas>
       <div class="monument" id="monument" aria-hidden="true">99</div>
       <div class="wrap">
-        <h1 class="anim d1">Focused systems<br />for humans and AI<span class="ox">.</span></h1>
+        <h1 class="anim d1">Focused systems<br /> for humans and AI<span class="ox">.</span></h1>
         <div class="hero-foot">
           <p class="hero-deck anim d2"><b>ninetynine.systems</b> is a solutions studio building durable systems for <b>humans and AI</b> &mdash; solutions people can rely on, agents that act autonomously, and the infrastructure that keeps them <b>accountable</b>. Our first is Gatekeeper.</p>
           <div class="hero-actions anim d3">
