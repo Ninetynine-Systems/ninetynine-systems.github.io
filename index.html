@@ -252,6 +252,31 @@
         #1b1a18 calc(100% - 28px),
         var(--night) 100%);
     }
+    /* breathing dusk — two soft night plumes rise and sink over the fade band
+       at co-prime periods (13s / 19s), so the combined motion never visibly
+       repeats: the darkness reads like slow, living breath */
+    .hero::before, .hero::after {
+      content: ""; position: absolute; left: -10%; right: -10%; bottom: 0;
+      height: 340px; pointer-events: none; z-index: 0;
+    }
+    .hero::before {
+      background: radial-gradient(55% 105% at 24% 100%, rgba(20, 20, 19, .55) 0%, rgba(20, 20, 19, 0) 68%);
+      animation: plume-a 13s ease-in-out infinite alternate;
+    }
+    .hero::after {
+      background: radial-gradient(48% 95% at 72% 100%, rgba(20, 20, 19, .45) 0%, rgba(20, 20, 19, 0) 66%);
+      animation: plume-b 19s ease-in-out infinite alternate;
+    }
+    @keyframes plume-a {
+      0%   { opacity: .10; transform: translate3d(-3%, 6px, 0); }
+      45%  { opacity: .38; }
+      100% { opacity: .16; transform: translate3d(4%, -6px, 0); }
+    }
+    @keyframes plume-b {
+      0%   { opacity: .30; transform: translate3d(3%, -4px, 0); }
+      55%  { opacity: .08; }
+      100% { opacity: .26; transform: translate3d(-4%, 8px, 0); }
+    }
     .monument {
       position: absolute; right: -7vw; top: -4vw; z-index: 0;
       font-family: var(--font-serif); font-weight: 620;
@@ -293,11 +318,9 @@
        ink chapter (Gatekeeper)
        ============================================================ */
     .chapter {
-      /* the oxide glow radiates from the period after "Gatekeeper." (~55% 24%);
-         both glows fade out before the top edge so the hero's dusk gradient
-         blends into flat night without a seam */
+      /* the corner lift sits low so the top edge stays flat night and the
+         hero's dusk gradient blends into it without a seam */
       background:
-        radial-gradient(40% 28% at 55% 24%, rgba(184, 78, 40, .14) 0%, rgba(184, 78, 40, 0) 62%),
         radial-gradient(100% 75% at 88% 108%, #2c2922 0%, rgba(44, 41, 34, 0) 55%),
         var(--night);
       color: var(--night-fg);
@@ -446,9 +469,40 @@
     html.js .hero .anim.d2 { animation-delay: .18s; }
     html.js .hero .anim.d3 { animation-delay: .28s; }
 
+    /* the oxide dots blink "99" in morse — dash dash dash dash dot, twice */
+    .nav .wordmark .dot, .chapter h2 .dot {
+      animation: morse99 7.04s linear infinite;
+    }
+    @keyframes morse99 {
+      0.0%, 6.67% { opacity: 1; color: #d96a3d; text-shadow: 0 0 .55em rgba(217, 106, 61, .95), 0 0 .18em rgba(184, 78, 40, .85); }
+      6.83%, 8.94% { opacity: .4; color: var(--oxide); text-shadow: 0 0 .55em rgba(217, 106, 61, 0), 0 0 .18em rgba(184, 78, 40, 0); }
+      9.1%, 15.76% { opacity: 1; color: #d96a3d; text-shadow: 0 0 .55em rgba(217, 106, 61, .95), 0 0 .18em rgba(184, 78, 40, .85); }
+      15.92%, 18.03% { opacity: .4; color: var(--oxide); text-shadow: 0 0 .55em rgba(217, 106, 61, 0), 0 0 .18em rgba(184, 78, 40, 0); }
+      18.19%, 24.85% { opacity: 1; color: #d96a3d; text-shadow: 0 0 .55em rgba(217, 106, 61, .95), 0 0 .18em rgba(184, 78, 40, .85); }
+      25.01%, 27.12% { opacity: .4; color: var(--oxide); text-shadow: 0 0 .55em rgba(217, 106, 61, 0), 0 0 .18em rgba(184, 78, 40, 0); }
+      27.28%, 33.94% { opacity: 1; color: #d96a3d; text-shadow: 0 0 .55em rgba(217, 106, 61, .95), 0 0 .18em rgba(184, 78, 40, .85); }
+      34.1%, 36.21% { opacity: .4; color: var(--oxide); text-shadow: 0 0 .55em rgba(217, 106, 61, 0), 0 0 .18em rgba(184, 78, 40, 0); }
+      36.37%, 38.49% { opacity: 1; color: #d96a3d; text-shadow: 0 0 .55em rgba(217, 106, 61, .95), 0 0 .18em rgba(184, 78, 40, .85); }
+      38.65%, 45.3% { opacity: .4; color: var(--oxide); text-shadow: 0 0 .55em rgba(217, 106, 61, 0), 0 0 .18em rgba(184, 78, 40, 0); }
+      45.46%, 52.12% { opacity: 1; color: #d96a3d; text-shadow: 0 0 .55em rgba(217, 106, 61, .95), 0 0 .18em rgba(184, 78, 40, .85); }
+      52.28%, 54.4% { opacity: .4; color: var(--oxide); text-shadow: 0 0 .55em rgba(217, 106, 61, 0), 0 0 .18em rgba(184, 78, 40, 0); }
+      54.56%, 61.21% { opacity: 1; color: #d96a3d; text-shadow: 0 0 .55em rgba(217, 106, 61, .95), 0 0 .18em rgba(184, 78, 40, .85); }
+      61.37%, 63.49% { opacity: .4; color: var(--oxide); text-shadow: 0 0 .55em rgba(217, 106, 61, 0), 0 0 .18em rgba(184, 78, 40, 0); }
+      63.65%, 70.3% { opacity: 1; color: #d96a3d; text-shadow: 0 0 .55em rgba(217, 106, 61, .95), 0 0 .18em rgba(184, 78, 40, .85); }
+      70.46%, 72.58% { opacity: .4; color: var(--oxide); text-shadow: 0 0 .55em rgba(217, 106, 61, 0), 0 0 .18em rgba(184, 78, 40, 0); }
+      72.74%, 79.4% { opacity: 1; color: #d96a3d; text-shadow: 0 0 .55em rgba(217, 106, 61, .95), 0 0 .18em rgba(184, 78, 40, .85); }
+      79.56%, 81.67% { opacity: .4; color: var(--oxide); text-shadow: 0 0 .55em rgba(217, 106, 61, 0), 0 0 .18em rgba(184, 78, 40, 0); }
+      81.83%, 83.94% { opacity: 1; color: #d96a3d; text-shadow: 0 0 .55em rgba(217, 106, 61, .95), 0 0 .18em rgba(184, 78, 40, .85); }
+      84.1%, 99.85% { opacity: .4; color: var(--oxide); text-shadow: 0 0 .55em rgba(217, 106, 61, 0), 0 0 .18em rgba(184, 78, 40, 0); }
+      100% { opacity: .4; color: var(--oxide); text-shadow: 0 0 .55em rgba(217, 106, 61, 0), 0 0 .18em rgba(184, 78, 40, 0); }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       * { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
       html.js .reveal { opacity: 1; transform: none; }
+      .nav .wordmark .dot, .chapter h2 .dot { animation: none; }
+      .hero::before { animation: none; opacity: .16; }
+      .hero::after { animation: none; opacity: .22; }
     }
 
     /* ============================================================
@@ -631,7 +685,7 @@
   <footer class="foot">
     <div class="wrap">
       <a class="wordmark" style="font-size:19px" href="#top" aria-label="ninetynine.systems home">ninetynine<span class="sfx"><span class="dot">.</span>systems</span></a>
-      <span class="folio">Est. 2026 &mdash; Dhaka, BD &middot; &copy; 2026</span>
+      <span class="folio">&copy; 2026</span>
       <nav class="foot-links folio" aria-label="Footer">
         <a href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer">Gatekeeper &#8599;</a>
         <a href="https://ir.ninetynine.systems" target="_blank" rel="noopener noreferrer">Islamic Reflections &#8599;</a>
