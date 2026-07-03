@@ -339,25 +339,113 @@
     }
     .chapter-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 64px; margin-top: 64px; align-items: center; }
     .chapter .desc { font-size: 16px; line-height: 1.7; color: var(--night-mut); max-width: 52ch; }
-    .chapter .facts {
-      list-style: none; display: flex; gap: 12px 24px; margin-top: 28px; flex-wrap: wrap;
-      font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em;
-      text-transform: uppercase; color: #8f8a7a;
-    }
-    .chapter .facts li::before { content: "— "; color: var(--oxide); }
     .chapter .cta { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
 
-    .term {
-      margin: 0;
-      background: var(--term-bg);
-      border: 1px solid #2b2923; border-radius: 10px;
-      padding: 26px 28px;
-      font-family: var(--font-code); font-size: 13.5px; line-height: 1.9;
-      color: #d9d3c2; white-space: pre-wrap; overflow-x: auto;
+    /* ---- two overlapping live examples: an agent requests on the CLI, a
+       person approves on the web — one shared 11s clock drives both cards so
+       the request clears the instant someone says yes ---- */
+    .demo { position: relative; width: 100%; min-height: 336px; }
+    .demo-card { position: absolute; border-radius: 12px; }
+    .demo-cli {
+      top: 0; left: 0; width: min(82%, 380px);
+      background: var(--term-bg); border: 1px solid #2b2923;
+      box-shadow: 0 22px 50px -30px rgba(0,0,0,.85);
     }
-    .term .p  { color: #7c776a; }
-    .term .c  { color: #fff; }
-    .term .ok { color: var(--term-green); }
+    .dcli-bar { display: flex; gap: 7px; padding: 12px 14px; border-bottom: 1px solid #23211c; }
+    .dcli-bar i { width: 10px; height: 10px; border-radius: 50%; background: #322f28; }
+    .dcli-body {
+      padding: 16px 18px 20px; font-family: var(--font-code);
+      font-size: 12.5px; line-height: 1.85; color: #cfc9b8;
+    }
+    .dcli-body .ln { white-space: pre; }
+    .dcli-body .p { color: #6f6a5d; }
+    .dcli-body .c { color: #fff; }
+    .dcli-body .s { color: #c79b6d; }
+    .dcli-body .mut { color: #8a8576; }
+    .dcli-swap { position: relative; min-height: 3.7em; margin-top: .35em; }
+    .cli-pending, .cli-approved { position: absolute; left: 0; top: 0; }
+    .cli-pending .clock { color: var(--oxide); animation: clockPulse 1.1s ease-in-out infinite; }
+    .cli-approved .ok { color: var(--term-green); }
+    .cli-approved .arr { color: #8a8576; }
+
+    .demo-web {
+      right: 0; bottom: 0; width: min(70%, 300px);
+      background: #f6f2e9; color: #201f1b;
+      border: 1px solid rgba(0,0,0,.10);
+      border-radius: 14px; padding: 17px 18px 16px;
+      font-family: var(--font-sans);
+      box-shadow: 0 34px 60px -26px rgba(0,0,0,.8);
+      animation: webConfirm 11s ease-in-out infinite;
+    }
+    .dw-head { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 650; color: #1a1916; }
+    .dw-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--oxide); box-shadow: 0 0 0 3px rgba(184,78,40,.16); }
+    .dw-sub {
+      color: #8a8577; font-weight: 500; font-family: var(--font-mono);
+      font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    }
+    .dw-title { font-family: var(--font-code); font-size: 14.5px; color: #1a1916; margin-top: 13px; }
+    .dw-meta { font-size: 11.5px; color: #8a8577; margin-top: 4px; }
+    .dw-swap { position: relative; min-height: 42px; margin-top: 15px; }
+    .dw-pending { position: absolute; inset: 0; display: flex; align-items: center; justify-content: flex-end; gap: 9px; }
+    .dw-btn {
+      font: inherit; font-size: 13px; font-weight: 600; letter-spacing: -0.01em;
+      padding: 9px 17px; border-radius: 9px; border: 1px solid transparent; cursor: default;
+    }
+    .dw-btn.deny { background: transparent; border-color: rgba(0,0,0,.16); color: #57534b; }
+    .dw-btn.approve {
+      background: var(--oxide); color: #fff;
+      animation: approveHit 11s ease-in-out infinite;
+    }
+    .dw-approved {
+      position: absolute; inset: 0; display: flex; align-items: center; gap: 8px;
+      font-size: 14.5px; font-weight: 650; color: #2f7d46;
+    }
+    .dw-approved .ok {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 20px; height: 20px; border-radius: 50%;
+      background: #2f7d46; color: #fff; font-size: 12px;
+    }
+    .dw-pointer {
+      position: absolute; right: 26px; bottom: 14px; width: 22px; height: 22px;
+      pointer-events: none; opacity: 0;
+      background: no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 2.5 5 20l4.2-4.2 2.6 5.7 3-1.4-2.6-5.6H18z' fill='%23fff' stroke='%23201f1b' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E");
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,.4));
+      animation: tapPointer 11s ease-in-out infinite;
+    }
+
+    /* pending elements: visible until the click, then crossfade back at reset */
+    .cli-pending, .dw-pending { animation: swapPending 11s linear infinite; }
+    /* approved elements: revealed at the click, held, then reset */
+    .cli-approved, .dw-approved { animation: swapApproved 11s linear infinite; }
+
+    @keyframes swapPending {
+      0%, 38% { opacity: 1; } 41%, 95% { opacity: 0; } 98%, 100% { opacity: 1; }
+    }
+    @keyframes swapApproved {
+      0%, 38% { opacity: 0; } 41%, 95% { opacity: 1; } 98%, 100% { opacity: 0; }
+    }
+    @keyframes clockPulse { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
+    @keyframes approveHit {
+      0%, 37% { transform: none; filter: none; }
+      39%     { transform: scale(.93); filter: brightness(1.14); }
+      42%     { transform: scale(1); filter: none; }
+      100%    { transform: none; }
+    }
+    @keyframes webConfirm {
+      0%, 39%  { box-shadow: 0 34px 60px -26px rgba(0,0,0,.8); }
+      43%      { box-shadow: 0 34px 60px -26px rgba(0,0,0,.8), 0 0 0 3px rgba(47,125,70,.55); }
+      62%, 100% { box-shadow: 0 34px 60px -26px rgba(0,0,0,.8); }
+    }
+    @keyframes tapPointer {
+      0%, 18%  { opacity: 0; transform: translate(44px, 34px) scale(1); }
+      25%      { opacity: 1; transform: translate(30px, 22px) scale(1); }
+      36%      { opacity: 1; transform: translate(0, 0) scale(1); }
+      39%      { transform: translate(0, 0) scale(.8); }
+      42%      { transform: translate(0, 0) scale(1); }
+      53%      { opacity: 1; transform: translate(0, 0) scale(1); }
+      62%      { opacity: 0; transform: translate(40px, 30px) scale(1); }
+      100%     { opacity: 0; transform: translate(44px, 34px) scale(1); }
+    }
 
     /* ============================================================
        index of systems
@@ -503,6 +591,11 @@
       .nav .wordmark .dot, .chapter h2 .dot { animation: none; }
       .hero::before { animation: none; opacity: .16; }
       .hero::after { animation: none; opacity: .22; }
+      /* freeze the approval demo on its pending state */
+      .cli-pending, .dw-pending { animation: none; opacity: 1; }
+      .cli-approved, .dw-approved { animation: none; opacity: 0; }
+      .dw-pointer, .cli-pending .clock, .dw-btn.approve, .demo-web { animation: none; }
+      .dw-pointer { opacity: 0; }
     }
 
     /* ============================================================
@@ -586,21 +679,36 @@
         <div class="chapter-grid reveal">
           <div>
             <p class="desc">Universal approval infrastructure for people, AI agents, and machines. It holds risky actions &mdash; deploys, payments, database changes, an agent&rsquo;s next move &mdash; until the right person approves, then keeps a signed, verifiable record of who said yes, when, and why.</p>
-            <ul class="facts">
-              <li>Tamper-evident ledger</li>
-              <li>Self-hostable</li>
-              <li>People, agents &amp; machines</li>
-            </ul>
             <div class="cta">
               <a class="btn ondark" href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer">Visit gatekeeper.now <span class="ar" aria-hidden="true">&#8599;</span></a>
             </div>
           </div>
-          <pre class="term" aria-label="Example: verifying the Gatekeeper ledger"><span class="p">$</span> <span class="c">gatekeeper ledger verify</span>
-  checking 4,471 events &hellip;
-  hash chain &hellip; <span class="ok">intact</span>
-  signatures &hellip; <span class="ok">valid (Ed25519)</span>
-  business rows &hellip; <span class="ok">reconciled</span>
-<span class="ok">&#10003; ledger verified &mdash; nothing was altered</span></pre>
+          <div class="demo" role="img" aria-label="An agent requests a production deploy on the command line; a person approves it on the web, and the request clears.">
+            <div class="demo-card demo-cli">
+              <div class="dcli-bar"><i></i><i></i><i></i></div>
+              <div class="dcli-body">
+                <div class="ln"><span class="p">$</span> <span class="c">gk request</span> <span class="s">"deploy api &rarr; prod"</span></div>
+                <div class="ln mut">created req_8f21c9</div>
+                <div class="dcli-swap">
+                  <div class="cli-pending"><span class="clock">&#9203;</span> waiting for approval&hellip;</div>
+                  <div class="cli-approved"><span class="ok">&#10003; approved by sazid</span><br /><span class="arr">&#8618; deploying &rarr; prod</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="demo-card demo-web">
+              <div class="dw-head"><span class="dw-dot"></span> Gatekeeper <span class="dw-sub">Approval</span></div>
+              <div class="dw-title">deploy api &rarr; prod</div>
+              <div class="dw-meta">requested by agent-01 &middot; just now</div>
+              <div class="dw-swap">
+                <div class="dw-pending">
+                  <button class="dw-btn deny" type="button" tabindex="-1" aria-hidden="true">Deny</button>
+                  <button class="dw-btn approve" type="button" tabindex="-1" aria-hidden="true">Approve</button>
+                </div>
+                <div class="dw-approved"><span class="ok">&#10003;</span> Approved by sazid</div>
+              </div>
+              <span class="dw-pointer" aria-hidden="true"></span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
