@@ -2,7 +2,7 @@
 
 **Date:** 2026-07-02
 **Scope:** `index.html` (single-page landing for ninetynine.systems)
-**Status:** Direction approved from three mockups (The Record / Ninety-Nine / Night Ops). User chose **Ninety-Nine**.
+**Status:** Superseded on 2026-07-16 by the [Hybrid Reliability direction](./2026-07-16-site-redesign-hybrid-reliability.md). This document remains as historical context for the original particle-99 concept.
 
 ## Concept
 

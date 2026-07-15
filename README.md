@@ -7,7 +7,7 @@ Static GitHub Pages site for `ninetynine.systems`.
 This site uses the mandatory ninetynine.systems 3-font typography system:
 
 - **Inter** — default UI/body/navigation/forms/cards/general interface text.
-- **Source Serif 4** — reading surfaces such as about/product description panels.
+- **Source Serif 4** — the editorial voice: hero and section statements plus reading surfaces.
 - **JetBrains Mono** — semantic technical metadata, platform rows, code-like identifiers.
 
 No display fonts are used. **Syne is explicitly removed** and must not return.
@@ -22,6 +22,12 @@ The primary logo lockup is the only exception to the broader typography rules:
 This exception applies only to the logo. Do not generalize it to headings, UI, dashboards, docs, or product surfaces.
 
 Fonts are packaged locally under `assets/fonts/` so the site renders consistently without runtime Google Fonts requests.
+
+The site remains zero-build and GitHub Pages-native, with responsibilities split across:
+
+- `index.html` — semantic content and metadata.
+- `styles.css` — the visual system and responsive layout.
+- `app.js` — progressive motion, navigation state, and the particle 99.
 
 Required scale: `12 / 14 / 16 / 18 / 24 / 32 / 48 / 64` with `16px` as the body default.
 

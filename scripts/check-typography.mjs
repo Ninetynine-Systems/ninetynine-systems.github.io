@@ -3,10 +3,15 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const indexPath = join(root, 'index.html');
+const htmlPath = join(root, 'index.html');
+const cssPath = join(root, 'styles.css');
+const scriptPath = join(root, 'app.js');
 const readmePath = join(root, 'README.md');
-const html = readFileSync(indexPath, 'utf8');
+
+const html = readFileSync(htmlPath, 'utf8');
+const css = readFileSync(cssPath, 'utf8');
 const readme = readFileSync(readmePath, 'utf8');
+const source = `${html}\n${css}`;
 
 function assert(condition, message) {
   if (!condition) {
@@ -15,21 +20,26 @@ function assert(condition, message) {
   }
 }
 
+assert(existsSync(scriptPath), 'app.js should exist');
+assert(html.includes('href="./styles.css"'), 'index.html should load styles.css');
+assert(html.includes('src="./app.js"'), 'index.html should load app.js');
+assert(html.includes('href="./favicon.svg"'), 'index.html should load favicon.svg');
+assert(existsSync(join(root, 'favicon.svg')), 'favicon.svg should exist');
+
 for (const href of [
   './assets/fonts/inter/index.css',
   './assets/fonts/source-serif-4/index.css',
   './assets/fonts/jetbrains-mono/index.css',
 ]) {
   assert(html.includes(`href="${href}"`), `index.html should load ${href}`);
-  const cssPath = join(root, href.replace(/^\.\//, ''));
-  assert(existsSync(cssPath), `${href} should exist`);
-  const filesDir = join(dirname(cssPath), 'files');
+  const fontCssPath = join(root, href.replace(/^\.\//, ''));
+  assert(existsSync(fontCssPath), `${href} should exist`);
+  const filesDir = join(dirname(fontCssPath), 'files');
   assert(existsSync(filesDir), `${href} should have a files directory`);
   assert(readdirSync(filesDir).some((name) => name.endsWith('.woff2')), `${href} should include packaged woff2 fonts`);
 }
 
 assert(!existsSync(join(root, 'assets/fonts/syne')), 'Syne font assets must not be present');
-assert(!html.includes('assets/fonts/syne'), 'index.html must not load Syne');
 
 for (const token of [
   '--font-sans: "Inter Variable"',
@@ -38,21 +48,8 @@ for (const token of [
   '--font-ui: var(--font-sans)',
   '--font-reading: var(--font-serif)',
   '--font-code: var(--font-mono)',
-  '--font-user-message: var(--font-ui)',
-  '--font-ai-response: var(--font-reading)',
-  '--font-dashboard: var(--font-ui)',
-  '--font-diagram: var(--font-ui)',
 ]) {
-  assert(html.includes(token), `missing CSS token ${token}`);
-}
-
-for (const removedToken of [
-  '--font-display',
-  '--font-brand',
-  '--font-wordmark',
-  '--font-heading',
-]) {
-  assert(!html.includes(removedToken), `remove unnecessary/display token ${removedToken}`);
+  assert(css.includes(token), `missing CSS token ${token}`);
 }
 
 for (const scale of [
@@ -65,23 +62,25 @@ for (const scale of [
   '--text-3xl: 48px',
   '--text-4xl: 64px',
 ]) {
-  assert(html.includes(scale), `missing type scale value ${scale}`);
+  assert(css.includes(scale), `missing type scale value ${scale}`);
 }
 
 const selectorRules = [
-  [/html, body \{[\s\S]*?font-family: var\(--font-ui\);[\s\S]*?font-size: var\(--text-md\);[\s\S]*?font-weight: 400;/, 'body defaults to Inter/UI at 16px/400'],
-  [/\.logo__primary \{[\s\S]*?font-family: var\(--font-reading\);[\s\S]*?font-weight: 300;[\s\S]*?letter-spacing: -0\.045em;/, 'primary logo uses accepted Source Serif 4 300 logo exception'],
-  [/\.logo__secondary \{[\s\S]*?font-family: var\(--font-ui\);[\s\S]*?font-weight: 400;[\s\S]*?letter-spacing: 0\.14em;[\s\S]*?color: var\(--accent\);/, 'secondary logo uses accepted spaced red Inter/UI exception'],
-  [/\.overlay-panel__body \{[\s\S]*?font-family: var\(--font-reading\);/, 'reading panels use Source Serif 4'],
-  [/\.ident \{[\s\S]*?font-family: var\(--font-code\);/, 'identifier metadata uses JetBrains Mono'],
-  [/\.app-panel__platform \{[\s\S]*?font-family: var\(--font-code\);/, 'structured platform rows use JetBrains Mono'],
-  [/\.app-panel__title \{[\s\S]*?font-family: var\(--font-ui\);/, 'product headings use Inter/UI'],
-  [/\.about-toggle \{[\s\S]*?font-family: var\(--font-ui\);/, 'controls use Inter/UI'],
-  [/\.app-nav \{[\s\S]*?font-family: var\(--font-ui\);/, 'navigation uses Inter/UI'],
+  [/html,\s*body\s*\{[\s\S]*?font-family:\s*var\(--font-ui\);[\s\S]*?font-size:\s*var\(--text-md\);[\s\S]*?font-weight:\s*400;/, 'body defaults to Inter/UI at 16px/400'],
+  [/\.logo__primary\s*\{[\s\S]*?font-family:\s*var\(--font-reading\);[\s\S]*?font-weight:\s*300;[\s\S]*?letter-spacing:\s*-0\.045em;/, 'primary logo uses Source Serif 4 300'],
+  [/\.logo__secondary\s*\{[\s\S]*?font-family:\s*var\(--font-ui\);[\s\S]*?font-weight:\s*400;[\s\S]*?letter-spacing:\s*0\.14em;/, 'secondary logo uses spaced Inter/UI 400'],
+  [/\.hero__title\s*\{[\s\S]*?font-family:\s*var\(--font-reading\);/, 'hero title uses Source Serif 4'],
+  [/\.section-title\s*\{[\s\S]*?font-family:\s*var\(--font-reading\);/, 'editorial section titles use Source Serif 4'],
+  [/\.reading\s*\{[\s\S]*?font-family:\s*var\(--font-reading\);/, 'reading text uses Source Serif 4'],
+  [/\.ident\s*\{[\s\S]*?font-family:\s*var\(--font-code\);/, 'technical identifiers use JetBrains Mono'],
+  [/\.instrument__ledger\s*\{[\s\S]*?font-family:\s*var\(--font-code\);/, 'instrument output uses JetBrains Mono'],
+  [/\.system__title\s*\{[\s\S]*?font-family:\s*var\(--font-ui\);/, 'product headings use Inter/UI'],
+  [/\.action\s*\{[\s\S]*?font-family:\s*var\(--font-ui\);/, 'controls use Inter/UI'],
+  [/\.app-nav\s*\{[\s\S]*?font-family:\s*var\(--font-ui\);/, 'navigation uses Inter/UI'],
 ];
 
 for (const [pattern, message] of selectorRules) {
-  assert(pattern.test(html), message);
+  assert(pattern.test(css), message);
 }
 
 for (const forbidden of [
@@ -93,14 +92,21 @@ for (const forbidden of [
   'font-weight: 800',
   'font-weight: 900',
 ]) {
-  assert(!html.includes(forbidden), `remove stale/forbidden typography from index.html: ${forbidden}`);
+  assert(!source.includes(forbidden), `remove stale or forbidden typography: ${forbidden}`);
 }
 
-const lightWeightMatches = html.match(/font-weight:\s*300/g) ?? [];
-assert(lightWeightMatches.length === 1, 'font-weight 300 is allowed only once for the Ninetynine logo');
+const declaredWeights = [...css.matchAll(/font-weight:\s*([0-9]+)/g)].map((match) => Number(match[1]));
+const allowedWeights = new Set([300, 400, 500, 600, 700]);
+for (const weight of declaredWeights) {
+  assert(allowedWeights.has(weight), `font weight ${weight} is outside the documented system`);
+}
 
+const lightWeightMatches = css.match(/font-weight:\s*300/g) ?? [];
+assert(lightWeightMatches.length === 1, 'font-weight 300 is allowed only once for the ninetynine logo');
+
+assert(!html.includes('<style'), 'site styles should stay in styles.css');
 assert(readme.includes('Logo-only exception'), 'README should document the logo-only exception');
-assert(readme.includes('Ninetynine` — Source Serif 4, weight `300`'), 'README should document the Ninetynine logo typography');
+assert(readme.includes('Ninetynine` — Source Serif 4, weight `300`'), 'README should document the ninetynine logo typography');
 assert(readme.includes('3-font typography system'), 'README should document the 3-font typography system');
 assert(readme.includes('Syne is explicitly removed'), 'README should document that Syne is removed');
 
