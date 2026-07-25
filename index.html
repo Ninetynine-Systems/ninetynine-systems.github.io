@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ninetynine.systems — ambitious systems, made dependable</title>
-  <meta name="description" content="ninetynine.systems builds dependable software for people, autonomous agents, and machines. Maker of Gatekeeper, approval infrastructure for consequential actions.">
-  <meta name="theme-color" content="#0d1011">
+  <title>ninetynine.systems — software that has to keep working</title>
+  <meta name="description" content="ninetynine.systems is an independent software studio. We make Gatekeeper, approval infrastructure that holds an action until a person signs off.">
+  <meta name="theme-color" content="#080b0c">
 
   <link rel="canonical" href="https://ninetynine.systems/">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
@@ -18,8 +18,8 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ninetynine.systems">
   <meta property="og:url" content="https://ninetynine.systems/">
-  <meta property="og:title" content="ninetynine.systems — ambitious systems, made dependable">
-  <meta property="og:description" content="Dependable software for people, autonomous agents, and machines. Maker of Gatekeeper.">
+  <meta property="og:title" content="ninetynine.systems — software that has to keep working">
+  <meta property="og:description" content="An independent software studio. We make Gatekeeper, approval infrastructure that holds an action until a person signs off.">
   <meta name="twitter:card" content="summary">
 
   <script type="application/ld+json">
@@ -35,6 +35,28 @@
 <body id="top">
   <a class="skip-link" href="#main">Skip to content</a>
 
+  <!-- Pixelation for the 99. Each filter floods a small dot, crops it to one
+       cell, tiles that cell into a grid, samples the glyphs through the grid,
+       then dilates every sample back out to fill its cell. The result is the
+       glyphs redrawn as square blocks. Two sizes: coarse cells on wide
+       screens, finer cells on phones where the 99 itself is much smaller. -->
+  <svg class="pixel-filters" aria-hidden="true" focusable="false">
+    <filter id="pixel-99" color-interpolation-filters="sRGB">
+      <feFlood x="5" y="5" width="2" height="2" flood-color="#ffffff"/>
+      <feComposite width="12" height="12"/>
+      <feTile result="grid"/>
+      <feComposite in="SourceGraphic" in2="grid" operator="in"/>
+      <feMorphology operator="dilate" radius="6"/>
+    </filter>
+    <filter id="pixel-99-fine" color-interpolation-filters="sRGB">
+      <feFlood x="2" y="2" width="2" height="2" flood-color="#ffffff"/>
+      <feComposite width="6" height="6"/>
+      <feTile result="grid"/>
+      <feComposite in="SourceGraphic" in2="grid" operator="in"/>
+      <feMorphology operator="dilate" radius="3"/>
+    </filter>
+  </svg>
+
   <header class="site-nav" id="site-nav">
     <div class="shell site-nav__inner">
       <a class="logo" href="#top" aria-label="ninetynine.systems home">
@@ -42,230 +64,158 @@
       </a>
 
       <nav class="app-nav" aria-label="Primary navigation">
-        <a href="#standard">Standard</a>
+        <a href="#gatekeeper">Gatekeeper</a>
+        <a href="#standard">How we build</a>
         <a href="#systems">Systems</a>
         <a href="#studio">Studio</a>
       </nav>
 
       <a class="nav-contact" href="mailto:s@ninetynine.systems">
-        Contact <span aria-hidden="true">↗</span>
+        Get in touch <span aria-hidden="true">↗</span>
       </a>
     </div>
   </header>
 
   <main id="main">
     <section class="hero" id="home" aria-labelledby="hero-title">
-      <canvas class="hero__canvas" id="particle-99" aria-hidden="true"></canvas>
-      <div class="hero__monument" id="static-99" aria-hidden="true">99</div>
+      <div class="hero__mark" id="static-99" aria-hidden="true">
+        <div class="hero__mark__signal">
+          <span class="hero__mark__base">99</span>
+          <span class="hero__mark__split hero__mark__split--r">99</span>
+          <span class="hero__mark__split hero__mark__split--g">99</span>
+          <span class="hero__mark__split hero__mark__split--b">99</span>
+          <span class="hero__mark__band hero__mark__band--r">99</span>
+          <span class="hero__mark__band hero__mark__band--g">99</span>
+          <span class="hero__mark__band hero__mark__band--b">99</span>
+          <span class="hero__mark__sweep">99</span>
+        </div>
+      </div>
 
       <div class="shell hero__inner">
         <div class="hero__copy">
-          <p class="eyebrow eyebrow--light hero__eyebrow hero-animate">
-            <span class="ident">Independent systems studio</span>
-          </p>
-          <h1 class="hero__title hero-animate" id="hero-title">
-            We make ambitious systems dependable<span class="accent">.</span>
+          <h1 class="hero__title" id="hero-title">
+            We build software that has to keep working<span class="accent">.</span>
           </h1>
-          <p class="hero__deck hero-animate">
-            ninetynine.systems builds software for people, autonomous agents, and machines. We turn new capability into systems that stay clear, controllable, and reliable in operation.
+          <p class="hero__deck">
+            We are an independent software studio. Most of what we make sits in front of decisions that are expensive to get wrong. Deployments, access grants, payments, and actions an agent takes on its own.
           </p>
-          <div class="hero__actions hero-animate">
-            <a class="action action--light" href="#gatekeeper">
-              Explore Gatekeeper <span aria-hidden="true">↓</span>
+          <div class="hero__actions">
+            <a class="action" href="#mission">
+              Why we work this way <span aria-hidden="true">↓</span>
             </a>
           </div>
-        </div>
-
-        <div class="hero__rail hero-animate">
-          <p class="ident hero__rail-label">Systems in operation</p>
-          <ul class="hero__rail-points" aria-label="Live systems">
-            <li><span>SYS-01</span> Gatekeeper <b>Live</b></li>
-            <li><span>SYS-02</span> Islamic Reflections <b>Live</b></li>
-          </ul>
         </div>
       </div>
     </section>
 
-    <section class="standard section" id="standard" aria-labelledby="standard-title">
-      <div class="shell">
-        <div class="section-lead reveal">
-          <div class="section-lead__title">
-            <p class="eyebrow"><span class="ident">01 / Operating standard</span></p>
-            <h2 class="section-title" id="standard-title">Reliability is part of the invention.</h2>
-          </div>
-          <p class="section-copy reading">
-            New capability matters when it works under real operating conditions. We define authority, failure behavior, and evidence alongside the capability itself.
+    <section class="chapter" id="mission" aria-labelledby="mission-title">
+      <div class="shell chapter__inner">
+        <div class="chapter__content">
+          <h2 class="cinematic-title" id="mission-title">Someone has to stay accountable.</h2>
+          <p class="chapter__copy">
+            More software now acts without a person watching it. That works until something goes wrong and nobody can say who approved it, what it did, or how to undo it. That gap is what we build for.
           </p>
         </div>
+      </div>
+    </section>
 
-        <ol class="principles reveal">
+    <section class="chapter" id="gatekeeper" aria-labelledby="gatekeeper-title">
+      <div class="shell chapter__inner chapter__inner--split">
+        <div class="chapter__content">
+          <h2 class="cinematic-title" id="gatekeeper-title">Gatekeeper holds an action until a person approves it.</h2>
+          <p class="chapter__copy">
+            A service or an agent asks for permission. The request goes to whoever is responsible for it. Nothing runs until they answer, and the answer is kept as a signed record.
+          </p>
+          <a class="action" href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer" aria-label="Visit gatekeeper.now (opens in a new tab)">
+            gatekeeper.now <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <figure class="gatekeeper-visual" aria-labelledby="gatekeeper-visual-caption">
+          <img src="./assets/images/gatekeeper-model-promotion.png" alt="A Gatekeeper workspace showing a model promotion waiting for someone to approve it." loading="lazy" decoding="async" width="1600" height="1000">
+          <figcaption class="ident" id="gatekeeper-visual-caption">A model promotion waiting on approval</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="standard" id="standard" aria-labelledby="standard-title">
+      <div class="shell standard__inner">
+        <header class="standard__header">
+          <h2 class="section-title" id="standard-title">Three questions before anything ships.</h2>
+          <p class="standard__intro reading">We ask them of our own products, and of the work we do for other people.</p>
+        </header>
+
+        <ol class="principles">
           <li class="principle">
             <span class="ident principle__number">01</span>
-            <h3>Explicit authority</h3>
-            <p>Ownership and decision rights stay unambiguous across people, agents, and machines.</p>
+            <h3>Who decides?</h3>
+            <p>Every action has a named owner, whether that owner is a person or a service.</p>
           </li>
           <li class="principle">
             <span class="ident principle__number">02</span>
-            <h3>Defined failure behavior</h3>
-            <p>Failures, recovery paths, and refusal modes are defined as primary system behavior.</p>
+            <h3>What if it fails?</h3>
+            <p>We design the refusal and the way back before we design the path that works.</p>
           </li>
           <li class="principle">
             <span class="ident principle__number">03</span>
-            <h3>Verifiable evidence</h3>
-            <p>Important actions leave records that can be inspected, understood, and verified.</p>
+            <h3>What proves it?</h3>
+            <p>Anything that matters leaves a record you can read months later and check.</p>
           </li>
         </ol>
       </div>
     </section>
 
-    <section class="flagship section" id="gatekeeper" aria-labelledby="gatekeeper-title">
-      <div class="shell">
-        <div class="flagship__heading reveal">
-          <p class="eyebrow"><span class="ident">02 / Flagship system</span></p>
-          <div class="flagship__heading-row">
+    <section class="chapter" id="systems" aria-labelledby="systems-title">
+      <div class="shell chapter__inner">
+        <div class="chapter__content">
+          <h2 class="cinematic-title" id="systems-title">What we run.</h2>
+          <p class="chapter__copy">
+            Gatekeeper is out in the world. Two more are in the workshop, and there is nothing to show for them yet.
+          </p>
+        </div>
+
+        <div class="system-ledger">
+          <article class="system-row">
+            <p class="ident system-row__id">SYS-01</p>
             <div>
-              <h2 class="section-title" id="gatekeeper-title">Gatekeeper<span class="accent">.</span></h2>
-              <p class="flagship__thesis reading">Nothing happens until someone says yes.</p>
+              <h3>Gatekeeper</h3>
+              <p>Approval infrastructure for actions that are hard to undo.</p>
             </div>
-            <p class="status"><span aria-hidden="true"></span> Live</p>
-          </div>
-        </div>
-
-        <div class="flagship__layout reveal">
-          <div class="flagship__copy">
-            <p class="reading">
-              Gatekeeper is approval infrastructure for consequential actions. It pauses a deploy, payment, database change, or agent operation until the right person approves it—then keeps a signed, verifiable record of the decision.
-            </p>
-
-            <dl class="flagship__facts">
-              <div>
-                <dt class="ident">Authority</dt>
-                <dd>Human approval before execution</dd>
-              </div>
-              <div>
-                <dt class="ident">Record</dt>
-                <dd>Signed and independently verifiable</dd>
-              </div>
-              <div>
-                <dt class="ident">Reach</dt>
-                <dd>People, agents, and machines</dd>
-              </div>
-            </dl>
-
-            <a class="action action--dark" href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer" aria-label="Visit gatekeeper.now (opens in a new tab)">
-              Visit gatekeeper.now <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-
-          <div class="instrument" role="img" aria-label="An example Gatekeeper production deployment request approved by a human, followed by a verified ledger record.">
-            <div class="instrument__bar" aria-hidden="true">
-              <span class="ident">GK / EXAMPLE APPROVAL FLOW</span>
-              <span class="instrument__signal"><i></i> decision recorded</span>
-            </div>
-
-            <div class="instrument__body" aria-hidden="true">
-              <div class="instrument__request">
-                <p class="ident">Request / req_8f21c9</p>
-                <h3>Deploy api <span>→</span> production</h3>
-                <dl>
-                  <div><dt>Requested by</dt><dd>agent-01</dd></div>
-                  <div><dt>Policy</dt><dd>prod-deploy</dd></div>
-                  <div><dt>Risk</dt><dd>high</dd></div>
-                </dl>
-              </div>
-
-              <div class="instrument__decision">
-                <p class="ident">Decision state</p>
-                <p class="instrument__approved"><span>✓</span> Approved</p>
-                <p>by operator-07</p>
-                <time datetime="14:32:08Z">14:32:08 UTC</time>
-              </div>
-            </div>
-
-            <div class="instrument__ledger" aria-hidden="true">
-              <code><span>$</span> gk ledger verify req_8f21c9</code>
-              <strong>✓ signature valid · decision chain intact</strong>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="systems section" id="systems" aria-labelledby="systems-title">
-      <div class="shell">
-        <div class="systems__heading reveal">
-          <p class="eyebrow"><span class="ident">03 / Current work</span></p>
-          <h2 class="section-title" id="systems-title">Systems in operation.</h2>
-        </div>
-
-        <div class="system-list reveal">
-          <article class="system">
-            <p class="ident system__id">SYS-01</p>
-            <h3 class="system__title">Gatekeeper</h3>
-            <p class="system__description">Approval infrastructure for actions that require explicit human authority and a verifiable record.</p>
-            <p class="status system__status"><span aria-hidden="true"></span> Live</p>
-            <p class="system__links ident">
-              <a href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer" aria-label="Open Gatekeeper (opens in a new tab)">Open <span aria-hidden="true">↗</span></a>
-            </p>
+            <a href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer" aria-label="Open Gatekeeper (opens in a new tab)">Open <span aria-hidden="true">↗</span></a>
           </article>
 
-          <article class="system">
-            <p class="ident system__id">SYS-02</p>
-            <h3 class="system__title">Islamic Reflections</h3>
-            <p class="system__description">Daily Quran verses, Hadith, adhkar, and commentary with multilingual support.</p>
-            <p class="status system__status"><span aria-hidden="true"></span> Live</p>
-            <p class="system__links ident">
-              <a href="https://ir.ninetynine.systems" target="_blank" rel="noopener noreferrer" aria-label="Open Islamic Reflections on the web (opens in a new tab)">Web <span aria-hidden="true">↗</span></a>
-              <a href="https://play.google.com/store/apps/details?id=systems.ninetynine.ir" target="_blank" rel="noopener noreferrer" aria-label="Open Islamic Reflections on Google Play (opens in a new tab)">Android <span aria-hidden="true">↗</span></a>
-            </p>
+          <article class="system-row system-row--quiet">
+            <p class="ident system-row__id">SYS-02</p>
+            <div>
+              <h3>Orvia</h3>
+              <p>In the workshop.</p>
+            </div>
+            <span></span>
+          </article>
+
+          <article class="system-row system-row--quiet">
+            <p class="ident system-row__id">SYS-03</p>
+            <div>
+              <h3>Planner</h3>
+              <p>In the workshop.</p>
+            </div>
+            <span></span>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="studio section" id="studio" aria-labelledby="studio-title">
-      <div class="shell">
-        <div class="studio__lead reveal">
-          <p class="eyebrow"><span class="ident">04 / The studio</span></p>
-          <h2 class="section-title" id="studio-title">The domain changes. The standard does not.</h2>
-          <p class="section-copy reading">
-            We originate and operate products of our own, and take on a small number of partnerships with demanding operating constraints.
+    <section class="chapter" id="studio" aria-labelledby="studio-title">
+      <div class="shell chapter__inner">
+        <div class="chapter__content">
+          <h2 class="cinematic-title" id="studio-title">How we work with other people.</h2>
+          <p class="chapter__copy">
+            We build and run our own products. We also take on client work, in any line of work that touches software.
           </p>
-        </div>
-
-        <dl class="studio__scope reveal">
-          <div>
-            <dt class="ident">Products</dt>
-            <dd>End-to-end responsibility, from first principles through operation.</dd>
-          </div>
-          <div>
-            <dt class="ident">Partnerships</dt>
-            <dd>Close technical work where reliability changes the outcome.</dd>
-          </div>
-          <div>
-            <dt class="ident">Domains</dt>
-            <dd>Autonomy · Infrastructure · Defense · Civilian software</dd>
-          </div>
-        </dl>
-      </div>
-    </section>
-
-    <section class="contact section" id="contact" aria-labelledby="contact-title">
-      <div class="shell contact__grid reveal">
-        <p class="eyebrow eyebrow--light"><span class="ident">05 / Contact</span></p>
-        <div class="contact__body">
-          <h2 class="section-title" id="contact-title">Tell us what must hold<span class="accent">.</span></h2>
-          <p class="reading">
-            We work with a small number of teams on technically demanding systems. Share the problem, the operating environment, and the constraints that matter.
-          </p>
-          <a class="action action--accent" href="mailto:s@ninetynine.systems">
-            Get in touch <span aria-hidden="true">→</span>
+          <a class="action action--solid" href="mailto:s@ninetynine.systems">
+            Get in touch <span aria-hidden="true">↗</span>
           </a>
         </div>
-        <address class="contact__channel">
-          <span class="ident">Direct channel</span>
-          <a href="mailto:s@ninetynine.systems">s@ninetynine.systems</a>
-        </address>
       </div>
     </section>
   </main>
@@ -277,7 +227,6 @@
       </a>
       <p class="ident">© 2026 ninetynine.systems</p>
       <nav class="footer__links ident" aria-label="Footer navigation">
-        <a href="#standard">Standard</a>
         <a href="#systems">Systems</a>
         <a href="mailto:s@ninetynine.systems">Contact</a>
       </nav>

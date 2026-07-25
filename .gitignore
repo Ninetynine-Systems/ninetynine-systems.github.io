@@ -18,3 +18,7 @@ _site/
 Gemfile.lock
 
 codedb.snapshot
+
+# Superpowers tool scratch (brainstorm servers, session state)
+.superpowers/
+.playwright-mcp/

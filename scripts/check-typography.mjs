@@ -26,6 +26,13 @@ assert(html.includes('src="./app.js"'), 'index.html should load app.js');
 assert(html.includes('href="./favicon.svg"'), 'index.html should load favicon.svg');
 assert(existsSync(join(root, 'favicon.svg')), 'favicon.svg should exist');
 
+for (const asset of [
+  './assets/images/gatekeeper-model-promotion.png',
+]) {
+  assert(html.includes(asset), `index.html should reference ${asset}`);
+  assert(existsSync(join(root, asset.replace(/^\.\//, ''))), `${asset} should exist`);
+}
+
 for (const href of [
   './assets/fonts/inter/index.css',
   './assets/fonts/source-serif-4/index.css',
@@ -67,14 +74,14 @@ for (const scale of [
 
 const selectorRules = [
   [/html,\s*body\s*\{[\s\S]*?font-family:\s*var\(--font-ui\);[\s\S]*?font-size:\s*var\(--text-md\);[\s\S]*?font-weight:\s*400;/, 'body defaults to Inter/UI at 16px/400'],
-  [/\.logo__primary\s*\{[\s\S]*?font-family:\s*var\(--font-reading\);[\s\S]*?font-weight:\s*300;[\s\S]*?letter-spacing:\s*-0\.045em;/, 'primary logo uses Source Serif 4 300'],
-  [/\.logo__secondary\s*\{[\s\S]*?font-family:\s*var\(--font-ui\);[\s\S]*?font-weight:\s*400;[\s\S]*?letter-spacing:\s*0\.14em;/, 'secondary logo uses spaced Inter/UI 400'],
+  [/\.logo\s*\{[\s\S]*?font-family:\s*var\(--font-reading\);[\s\S]*?font-size:\s*23px;[\s\S]*?font-weight:\s*300;[\s\S]*?letter-spacing:\s*-0\.045em;/, 'the whole wordmark uses Source Serif 4 300 at one size'],
+  [/\.logo__secondary\s*\{\s*color:\s*var\(--accent\);\s*\}/, 'the .systems half only sets the accent colour, never its own font or size'],
   [/\.hero__title\s*\{[\s\S]*?font-family:\s*var\(--font-reading\);/, 'hero title uses Source Serif 4'],
   [/\.section-title\s*\{[\s\S]*?font-family:\s*var\(--font-reading\);/, 'editorial section titles use Source Serif 4'],
+  [/\.cinematic-title\s*\{[\s\S]*?font-family:\s*var\(--font-reading\);/, 'cinematic chapter titles use Source Serif 4'],
   [/\.reading\s*\{[\s\S]*?font-family:\s*var\(--font-reading\);/, 'reading text uses Source Serif 4'],
   [/\.ident\s*\{[\s\S]*?font-family:\s*var\(--font-code\);/, 'technical identifiers use JetBrains Mono'],
-  [/\.instrument__ledger\s*\{[\s\S]*?font-family:\s*var\(--font-code\);/, 'instrument output uses JetBrains Mono'],
-  [/\.system__title\s*\{[\s\S]*?font-family:\s*var\(--font-ui\);/, 'product headings use Inter/UI'],
+  [/\.system-row h3\s*\{[\s\S]*?font-family:\s*var\(--font-ui\);/, 'product headings use Inter/UI'],
   [/\.action\s*\{[\s\S]*?font-family:\s*var\(--font-ui\);/, 'controls use Inter/UI'],
   [/\.app-nav\s*\{[\s\S]*?font-family:\s*var\(--font-ui\);/, 'navigation uses Inter/UI'],
 ];

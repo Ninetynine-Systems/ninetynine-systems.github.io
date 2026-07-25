@@ -3,7 +3,7 @@
 **Date:** 2026-07-16
 
 **Scope:** ninetynine.systems landing page
-**Status:** Implemented
+**Status:** Checkpointed at `c7385af`; superseded by the Cinematic Frontier direction
 
 ## Brand position
 
