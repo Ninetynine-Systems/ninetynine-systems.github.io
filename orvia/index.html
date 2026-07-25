@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Orvia — grows with you and helps you with your everyday tasks</title>
+<meta name="description" content="Orvia grows with you and helps you with your everyday tasks. Coming soon from Ninetynine Systems.">
+<meta name="theme-color" content="#EDF0F6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/archivo-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<main>
+  <canvas id="orb" role="img" aria-label="The Orvia mark: a ribbon of dots, composing."></canvas>
+
+  <h1>Orvia</h1>
+  <p class="tagline">Orvia grows with you and helps you with your everyday tasks</p>
+  <p class="soon">Coming soon</p>
+</main>
+
+<footer>
+  <a class="ninetynine" href="https://ninetynine.systems">ninetynine<span>.systems</span></a>
+</footer>
+
+<script src="orb.js" defer></script>
+<script defer>
+  addEventListener("DOMContentLoaded", function () {
+    mountOrb(document.getElementById("orb"));
+  });
+</script>
+</body>
+</html>

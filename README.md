@@ -33,6 +33,19 @@ The site remains zero-build and GitHub Pages-native, with responsibilities split
 - `styles.css` — the section layout, the type scale, and the 99 glitch.
 - `app.js` — the header hairline on scroll and the active nav link. Nothing else.
 - `assets/images/` — local, owned screenshots used on the page.
+- `orvia/` — the Orvia product page, served at `/orvia/`. See below.
+
+## The Orvia page
+
+`orvia/` is a self-contained one-screen page for Orvia, copied from the product repo (`firstlight/site`). It is served at `/orvia/` and linked from the `SYS-02` row on the landing page.
+
+**It does not follow this site's typography or palette, and that is deliberate.** Orvia has its own identity: Archivo (the face the app itself ships, self-hosted in `orvia/fonts/`), a blue brand colour, and its own light and dark themes driven by `prefers-color-scheme`. The typography guardrail only reads the root `index.html` and `styles.css`, so nothing in `orvia/` is checked against the 3-font system. Do not "fix" it to match the landing page.
+
+Every path inside it is relative, so the whole directory can be moved or re-copied from the product repo without rewriting anything.
+
+The orb is [Thinking Orbs](https://github.com/Jakubantalik/thinking-orbs) by Jakub Antalik, MIT licensed, ported from React to plain browser JavaScript in `orvia/orb.js`. The licence is kept beside it in `orvia/LICENSE-thinking-orbs.txt` and must stay there. Archivo's licence is in `orvia/fonts/OFL.txt`.
+
+## The landing page
 
 The page is deliberately plain: pure white (`#ffffff`, not an off-white) with dark text, sections separated only by hairlines, no background gradients, no glows, no small label text above headings, and no scroll animations.
 
