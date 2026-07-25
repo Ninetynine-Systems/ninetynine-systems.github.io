@@ -27,6 +27,12 @@
   --hairline: rgba(17, 21, 22, 0.14);
   --accent: #b85332;
 
+  /* Two radii, so nothing has to invent its own. Controls take the smaller one,
+     anything card- or media-sized takes the larger. */
+
+  --radius-control: 10px;
+  --radius-card: 16px;
+
   --shell: 1320px;
   --gutter: clamp(20px, 5vw, 64px);
   --nav-height: 76px;
@@ -125,6 +131,7 @@ ul {
   padding: 12px 16px;
   color: var(--page);
   background: var(--ink);
+  border-radius: var(--radius-control);
   transform: translateY(-160%);
 }
 
@@ -187,6 +194,7 @@ ul {
   line-height: 1;
   color: var(--ink);
   border: 1px solid var(--edge);
+  border-radius: var(--radius-control);
 }
 
 .action:hover,
@@ -266,6 +274,7 @@ ul {
   font-size: 13px;
   font-weight: 400;
   border: 1px solid var(--edge);
+  border-radius: var(--radius-control);
 }
 
 .nav-contact:hover {
@@ -783,7 +792,9 @@ ul {
 /* Gatekeeper */
 
 .gatekeeper-visual {
+  overflow: hidden;
   border: 1px solid var(--line);
+  border-radius: var(--radius-card);
 }
 
 .gatekeeper-visual img {
@@ -865,42 +876,62 @@ ul {
   color: rgba(17, 21, 22, 0.66);
 }
 
-/* Systems */
+/* Systems — one card per system. The whole card is the click target, but there
+   is still only one link in the markup: `.system-card__link::after` is stretched
+   over the card. That keeps a single tab stop and a single accessible name.
+   Planner has no link, so its card is deliberately not clickable. */
 
 .system-ledger {
+  display: grid;
+  gap: 12px;
   margin-top: clamp(44px, 5vw, 72px);
-  border-top: 1px solid var(--line);
 }
 
-.system-row {
+.system-card {
+  position: relative;
   display: grid;
-  grid-template-columns: 92px minmax(0, 1fr) 96px;
+  grid-template-columns: 92px minmax(0, 1fr) auto;
   align-items: baseline;
   gap: 24px;
-  padding-block: 26px;
-  border-bottom: 1px solid var(--line);
+  padding: 26px 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  transition: border-color 160ms ease, background-color 160ms ease;
 }
 
-.system-row__id {
+.system-card__link::after {
+  position: absolute;
+  content: "";
+  inset: 0;
+  border-radius: inherit;
+}
+
+.system-card:has(.system-card__link:hover),
+.system-card:has(.system-card__link:focus-visible) {
+  background: rgba(17, 21, 22, 0.025);
+  border-color: var(--edge);
+}
+
+.system-card__id {
   color: var(--accent);
 }
 
-.system-row--quiet .system-row__id {
+.system-card--quiet .system-card__id {
   color: var(--muted);
 }
 
-.system-row h3 {
+.system-card h3 {
   font-family: var(--font-ui);
   font-size: 20px;
   font-weight: 500;
   letter-spacing: -0.02em;
 }
 
-.system-row--quiet h3 {
+.system-card--quiet h3 {
   color: rgba(17, 21, 22, 0.66);
 }
 
-.system-row div p {
+.system-card div p {
   max-width: 480px;
   margin-top: 6px;
   font-family: var(--font-reading);
@@ -909,7 +940,7 @@ ul {
   color: rgba(17, 21, 22, 0.6);
 }
 
-.system-row > a {
+.system-card__link {
   display: inline-flex;
   min-height: 44px;
   align-items: center;
@@ -917,9 +948,10 @@ ul {
   gap: 8px;
   font-size: 13px;
   font-weight: 500;
+  white-space: nowrap;
 }
 
-.system-row > a:hover {
+.system-card:has(.system-card__link:hover) .system-card__link {
   color: var(--accent);
 }
 
@@ -1082,24 +1114,21 @@ ul {
     border-bottom: 0;
   }
 
-  .system-row {
+  .system-card {
     grid-template-columns: 68px minmax(0, 1fr);
     grid-template-rows: auto auto;
     gap: 8px 16px;
+    padding: 22px 20px;
   }
 
-  .system-row > div {
+  .system-card > div {
     grid-column: 2;
   }
 
-  .system-row > a {
+  .system-card__link {
     grid-column: 2;
     min-height: 36px;
     justify-content: flex-start;
-  }
-
-  .system-row > span {
-    display: none;
   }
 
   /* "© 2026" plus two links still fit on one row at 320px, so the footer keeps
@@ -1125,7 +1154,7 @@ ul {
     justify-content: space-between;
   }
 
-  .system-row {
+  .system-card {
     grid-template-columns: 68px minmax(0, 1fr);
   }
 }
@@ -1152,8 +1181,8 @@ ul {
   .chapter__copy,
   .standard__intro,
   .principle p,
-  .system-row div p,
-  .system-row--quiet h3 {
+  .system-card div p,
+  .system-card--quiet h3 {
     color: var(--ink);
   }
 

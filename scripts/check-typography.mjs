@@ -81,7 +81,7 @@ const selectorRules = [
   [/\.cinematic-title\s*\{[\s\S]*?font-family:\s*var\(--font-reading\);/, 'cinematic chapter titles use Source Serif 4'],
   [/\.reading\s*\{[\s\S]*?font-family:\s*var\(--font-reading\);/, 'reading text uses Source Serif 4'],
   [/\.ident\s*\{[\s\S]*?font-family:\s*var\(--font-code\);/, 'technical identifiers use JetBrains Mono'],
-  [/\.system-row h3\s*\{[\s\S]*?font-family:\s*var\(--font-ui\);/, 'product headings use Inter/UI'],
+  [/\.system-card h3\s*\{[\s\S]*?font-family:\s*var\(--font-ui\);/, 'product headings use Inter/UI'],
   [/\.action\s*\{[\s\S]*?font-family:\s*var\(--font-ui\);/, 'controls use Inter/UI'],
   [/\.app-nav\s*\{[\s\S]*?font-family:\s*var\(--font-ui\);/, 'navigation uses Inter/UI'],
 ];

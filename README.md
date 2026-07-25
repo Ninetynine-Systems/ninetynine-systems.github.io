@@ -51,6 +51,10 @@ The page is deliberately plain: pure white (`#ffffff`, not an off-white) with da
 
 The palette is six tokens — `--page`, `--ink`, `--muted`, `--edge`, `--line`, `--hairline` — plus `--accent`. Nothing else should introduce a colour.
 
+Corners come from two tokens: `--radius-control` for buttons and chips, `--radius-card` for cards and media. Nothing should hard-code a radius.
+
+The three systems are cards, and the whole card is the click target. There is still only one link per card in the markup — `.system-card__link::after` is stretched over the card with `inset: 0`. That keeps one tab stop and one accessible name, rather than wrapping block content in an anchor. The card-wide hover and focus styling hangs off `:has()`; without support for it the link still works, it just loses the card highlight. Planner has no link, so its card is deliberately not clickable.
+
 ## Accessibility
 
 The colour tokens are chosen to hit WCAG 2.2 AA, and the split between them exists for that reason:
