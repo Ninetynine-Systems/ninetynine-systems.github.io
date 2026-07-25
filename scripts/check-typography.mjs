@@ -74,7 +74,7 @@ for (const scale of [
 
 const selectorRules = [
   [/html,\s*body\s*\{[\s\S]*?font-family:\s*var\(--font-ui\);[\s\S]*?font-size:\s*var\(--text-md\);[\s\S]*?font-weight:\s*400;/, 'body defaults to Inter/UI at 16px/400'],
-  [/\.logo\s*\{[\s\S]*?font-family:\s*var\(--font-reading\);[\s\S]*?font-size:\s*23px;[\s\S]*?font-weight:\s*300;[\s\S]*?letter-spacing:\s*-0\.045em;/, 'the whole wordmark uses Source Serif 4 300 at one size'],
+  [/\.logo\s*\{[\s\S]*?font-family:\s*var\(--font-reading\);[\s\S]*?font-size:\s*23px;[\s\S]*?font-weight:\s*600;/, 'the whole wordmark uses Source Serif 4 600 at one size'],
   [/\.logo__secondary\s*\{\s*color:\s*var\(--accent\);\s*\}/, 'the .systems half only sets the accent colour, never its own font or size'],
   [/\.hero__title\s*\{[\s\S]*?font-family:\s*var\(--font-reading\);/, 'hero title uses Source Serif 4'],
   [/\.section-title\s*\{[\s\S]*?font-family:\s*var\(--font-reading\);/, 'editorial section titles use Source Serif 4'],
@@ -103,17 +103,19 @@ for (const forbidden of [
 }
 
 const declaredWeights = [...css.matchAll(/font-weight:\s*([0-9]+)/g)].map((match) => Number(match[1]));
-const allowedWeights = new Set([300, 400, 500, 600, 700]);
+const allowedWeights = new Set([400, 500, 600, 700]);
 for (const weight of declaredWeights) {
   assert(allowedWeights.has(weight), `font weight ${weight} is outside the documented system`);
 }
 
+// The wordmark used to be the one place weight 300 was allowed. It is bold now,
+// so nothing on the site should be that light.
 const lightWeightMatches = css.match(/font-weight:\s*300/g) ?? [];
-assert(lightWeightMatches.length === 1, 'font-weight 300 is allowed only once for the ninetynine logo');
+assert(lightWeightMatches.length === 0, 'font-weight 300 is no longer used anywhere; the wordmark is 600');
 
 assert(!html.includes('<style'), 'site styles should stay in styles.css');
 assert(readme.includes('Logo-only exception'), 'README should document the logo-only exception');
-assert(readme.includes('Ninetynine` — Source Serif 4, weight `300`'), 'README should document the ninetynine logo typography');
+assert(readme.includes('Ninetynine` — Source Serif 4, weight `600`'), 'README should document the ninetynine logo typography');
 assert(readme.includes('3-font typography system'), 'README should document the 3-font typography system');
 assert(readme.includes('Syne is explicitly removed'), 'README should document that Syne is removed');
 

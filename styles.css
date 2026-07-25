@@ -163,9 +163,9 @@ ul {
   margin-block: -11px;
   font-family: var(--font-reading);
   font-size: 23px;
-  font-weight: 300;
+  font-weight: 600;
   line-height: 1;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.03em;
   white-space: nowrap;
 }
 
@@ -931,21 +931,19 @@ ul {
   border-top: 1px solid var(--hairline);
 }
 
-.footer__inner {
-  display: grid;
-  min-height: 104px;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 28px;
-}
+/* Two items only. The wordmark is not repeated here — the header is fixed, so
+   it is already on screen. */
 
-.logo--footer {
-  color: var(--ink);
+.footer__inner {
+  display: flex;
+  min-height: 88px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
 }
 
 .footer__links {
   display: flex;
-  justify-self: end;
   gap: 24px;
 }
 
@@ -1104,23 +1102,16 @@ ul {
     display: none;
   }
 
+  /* "© 2026" plus two links still fit on one row at 320px, so the footer keeps
+     its shape all the way down. */
+
   .footer__inner {
     min-height: 0;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
-    padding-block: 28px;
-  }
-
-  .footer__inner > p {
-    grid-column: 1;
-    grid-row: 2;
+    padding-block: 20px;
   }
 
   .footer__links {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-    flex-direction: column;
-    gap: 0;
+    gap: 20px;
   }
 }
 

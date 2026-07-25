@@ -16,10 +16,12 @@ No display fonts are used. **Syne is explicitly removed** and must not return.
 
 The wordmark is the only exception to the broader typography rules. It is set in one typeface, at one size, in one weight:
 
-- `Ninetynine` — Source Serif 4, weight `300`, at `23px`, slight negative tracking.
+- `Ninetynine` — Source Serif 4, weight `600`, at `23px`, slight negative tracking.
 - `.systems` — the same font, size, weight and tracking. It differs only in colour, which is the red accent.
 
 The two spans exist so that `.systems` can take the accent colour. Neither one sets its own font family, size or weight, and they must not start to.
+
+The exception is now only the `23px` size, which is off the type scale. Weight `300` used to be permitted here and nowhere else; the wordmark is bold now, so that weight is gone from the site entirely and the allowed set is `400` / `500` / `600` / `700`.
 
 This exception applies only to the wordmark. Do not generalize it to headings, UI, dashboards, docs, or product surfaces.
 
@@ -63,7 +65,7 @@ Layer cycles are short and share no common factor, so blocks tear roughly every 
 
 Required scale: `12 / 14 / 16 / 18 / 24 / 32 / 48 / 64` with `16px` as the body default.
 
-Allowed weights: `400` body, `500` labels, `600` emphasis, `700` headings. Avoid `800`/`900`; the logo-only `300` weight is intentionally scoped to `Ninetynine`.
+Allowed weights: `400` body, `500` labels, `600` emphasis and the wordmark, `700` headings. Avoid `300`, `800` and `900`.
 
 ## Validation
 
