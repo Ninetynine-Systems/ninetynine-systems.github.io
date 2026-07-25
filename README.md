@@ -32,11 +32,28 @@ The site remains zero-build and GitHub Pages-native, with responsibilities split
 - `app.js` — the header hairline on scroll and the active nav link. Nothing else.
 - `assets/images/` — local, owned screenshots used on the page.
 
-The page is deliberately plain: flat dark bands separated by hairlines, one light band for the three build questions, no background gradients, no glows, no small label text above headings, and no scroll animations.
+The page is deliberately plain: pure white (`#ffffff`, not an off-white) with dark text, sections separated only by hairlines, no background gradients, no glows, no small label text above headings, and no scroll animations.
+
+The palette is six tokens — `--page`, `--ink`, `--muted`, `--edge`, `--line`, `--hairline` — plus `--accent`. Nothing else should introduce a colour.
+
+## Accessibility
+
+The colour tokens are chosen to hit WCAG 2.2 AA, and the split between them exists for that reason:
+
+- `--ink` and `--muted` are the only colours allowed on text. Both clear 4.5:1 against `--page`; the weakest is `--muted` at 5.5:1. Do not invent a third, lighter text colour — anything below about `rgba(17, 21, 22, 0.585)` fails.
+- `--accent` is `#b85332`, darkened from the original `#c85a36`. The old value was 4.22:1, which failed for the small mono numerals and for white text on the accent fill. The new one is 4.86:1 both ways.
+- `--edge` encloses controls (`.action`, `.nav-contact`) and clears the 3:1 required of UI component boundaries. `--line` and `--hairline` only ever divide content, so they are allowed to stay faint.
+- `.logo` carries `padding-block` with a matching negative margin, purely so the wordmark link clears the 24px minimum target size without moving in the layout.
+
+Below 1000px the hero stacks and the `99` moves above the copy. It must never sit behind text: body copy over a pixel grid is unreadable. Above 1000px, `.hero__copy` is capped at `min(720px, 55vw)` so the text cannot grow across into it.
+
+`prefers-reduced-motion: reduce` stops the glitch and the smooth scrolling. `prefers-contrast: more` pushes every secondary text to full `--ink`, darkens the accent to `#8f3d21` (7.35:1), solidifies the control borders, and hides the `99` along with the space reserved for it.
 
 The single piece of motion is the `99` in the header, and it behaves like a worn VHS tape.
 
-Inside `.hero__mark` are eight stacked copies of the same glyphs: a faint grey base, three full copies tinted pure red, green and blue, three more clipped to one thin horizontal row each, and one bright copy that sweeps slowly down the mark like a tape head losing alignment. When it fires, the coloured copies pull apart sideways; `mix-blend-mode: screen` adds them back towards white where they still line up and leaves coloured fringes where they do not.
+Inside `.hero__mark` are eight stacked copies of the same glyphs: a faint grey base, three full copies tinted pure red, green and blue, three more clipped to one thin horizontal row each, and one darker copy that sweeps slowly down the mark like a tape head losing alignment. When it fires, the coloured copies pull apart sideways; `mix-blend-mode: multiply` subtracts them from each other, so they go almost black where they still line up and leave coloured fringes where they do not, the way misregistered colour plates do on white paper.
+
+Because the blending is subtractive, the coloured layers need a high opacity to register on white. Halve those values and the glitch fades to pastel.
 
 The whole group is then pixelated by the `#pixel-99` SVG filter in `index.html` and masked by a row grid and a column grid, so the glyphs are drawn as separate square blocks with scanline gutters between the rows. Both the filter and the masks apply to the group after its children are composited, which means every displacement is snapped to the block grid and the scanline gaps are cut out of the glyphs themselves — there is no overlay rectangle to give the trick away.
 

@@ -15,13 +15,17 @@
   --text-3xl: 48px;
   --text-4xl: 64px;
 
-  --night: #080b0c;
-  --paper: #eeeae1;
+  /* Every text colour here clears 4.5:1 against --page, and every border on a
+     control clears 3:1. --line and --hairline only ever divide things, never
+     enclose a control, so they are allowed to stay quiet. */
+
+  --page: #ffffff;
   --ink: #111516;
-  --white: #f4f1ea;
-  --line-dark: rgba(235, 240, 238, 0.14);
-  --line-light: rgba(17, 21, 22, 0.16);
-  --accent: #c85a36;
+  --muted: rgba(17, 21, 22, 0.64);
+  --edge: rgba(17, 21, 22, 0.5);
+  --line: rgba(17, 21, 22, 0.22);
+  --hairline: rgba(17, 21, 22, 0.14);
+  --accent: #b85332;
 
   --shell: 1320px;
   --gutter: clamp(20px, 5vw, 64px);
@@ -38,7 +42,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--nav-height);
-  background: var(--night);
+  background: var(--page);
 }
 
 html,
@@ -48,8 +52,8 @@ body {
   font-family: var(--font-ui);
   font-size: var(--text-md);
   font-weight: 400;
-  color: var(--white);
-  background: var(--night);
+  color: var(--ink);
+  background: var(--page);
 }
 
 body {
@@ -94,7 +98,7 @@ ul {
 }
 
 ::selection {
-  color: var(--white);
+  color: var(--page);
   background: var(--accent);
 }
 
@@ -119,8 +123,8 @@ ul {
   top: 12px;
   left: 12px;
   padding: 12px 16px;
-  color: var(--night);
-  background: var(--white);
+  color: var(--page);
+  background: var(--ink);
   transform: translateY(-160%);
 }
 
@@ -132,7 +136,7 @@ ul {
 
 .ident {
   font-family: var(--font-code);
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   font-weight: 500;
   line-height: 1.4;
   letter-spacing: 0.13em;
@@ -155,6 +159,8 @@ ul {
 .logo {
   display: inline-flex;
   align-items: baseline;
+  padding-block: 11px;
+  margin-block: -11px;
   font-family: var(--font-reading);
   font-size: 23px;
   font-weight: 300;
@@ -179,26 +185,26 @@ ul {
   font-size: 13px;
   font-weight: 500;
   line-height: 1;
-  color: var(--white);
-  border: 1px solid rgba(244, 241, 234, 0.34);
+  color: var(--ink);
+  border: 1px solid var(--edge);
 }
 
 .action:hover,
 .action:focus-visible {
-  color: var(--night);
-  background: var(--white);
-  border-color: var(--white);
+  color: var(--page);
+  background: var(--ink);
+  border-color: var(--ink);
 }
 
 .action--solid {
-  color: var(--night);
-  background: var(--white);
-  border-color: var(--white);
+  color: var(--page);
+  background: var(--ink);
+  border-color: var(--ink);
 }
 
 .action--solid:hover,
 .action--solid:focus-visible {
-  color: var(--white);
+  color: var(--page);
   background: var(--accent);
   border-color: var(--accent);
 }
@@ -211,13 +217,13 @@ ul {
   top: 0;
   right: 0;
   left: 0;
-  color: var(--white);
-  background: var(--night);
+  color: var(--ink);
+  background: var(--page);
   border-bottom: 1px solid transparent;
 }
 
 .site-nav.is-scrolled {
-  border-bottom-color: var(--line-dark);
+  border-bottom-color: var(--line);
 }
 
 .site-nav__inner {
@@ -242,12 +248,12 @@ ul {
   display: inline-flex;
   min-height: 44px;
   align-items: center;
-  color: rgba(244, 241, 234, 0.66);
+  color: var(--muted);
 }
 
 .app-nav a:hover,
 .app-nav a.is-active {
-  color: var(--white);
+  color: var(--ink);
 }
 
 .nav-contact {
@@ -259,13 +265,13 @@ ul {
   padding-inline: 16px;
   font-size: 13px;
   font-weight: 400;
-  border: 1px solid var(--line-dark);
+  border: 1px solid var(--edge);
 }
 
 .nav-contact:hover {
-  color: var(--night);
-  background: var(--white);
-  border-color: var(--white);
+  color: var(--page);
+  background: var(--ink);
+  border-color: var(--ink);
 }
 
 /* Hero */
@@ -287,8 +293,11 @@ ul {
   padding-bottom: 96px;
 }
 
+/* Capped against the viewport, not just in pixels, so the copy can never grow
+   across into the 99. Body text over a pixel grid is unreadable. */
+
 .hero__copy {
-  max-width: 720px;
+  max-width: min(720px, 55vw);
 }
 
 .hero__title {
@@ -306,7 +315,7 @@ ul {
   font-family: var(--font-reading);
   font-size: clamp(18px, 1.4vw, 21px);
   line-height: 1.5;
-  color: rgba(244, 241, 234, 0.72);
+  color: rgba(17, 21, 22, 0.68);
 }
 
 .hero__actions {
@@ -318,11 +327,11 @@ ul {
 
    `.hero__mark__signal` stacks eight copies of the same glyphs: a faint grey
    base, three full copies tinted pure red, green and blue, three more clipped
-   to one thin horizontal row each, and one bright copy that sweeps slowly down
-   the mark like a tape head losing alignment. `screen` blending adds the
-   coloured copies back towards white where they still line up and leaves
-   coloured fringes where they do not, which is what a separated colour signal
-   looks like.
+   to one thin horizontal row each, and one darker copy that sweeps slowly down
+   the mark like a tape head losing alignment. `multiply` blending subtracts the
+   coloured copies from each other, so they go almost black where they still
+   line up and leave coloured fringes where they do not, the way misregistered
+   colour plates do on white paper.
 
    The group is then pixelated by an SVG filter and masked twice, by a row
    grid and a column grid, so each block is a separate square rather than a
@@ -377,7 +386,7 @@ ul {
 }
 
 .hero__mark__base {
-  color: rgba(244, 241, 234, 0.22);
+  color: rgba(17, 21, 22, 0.2);
 }
 
 .hero__mark__split,
@@ -386,7 +395,7 @@ ul {
   position: absolute;
   top: 0;
   left: 0;
-  mix-blend-mode: screen;
+  mix-blend-mode: multiply;
 }
 
 .hero__mark__split,
@@ -414,7 +423,7 @@ ul {
 }
 
 .hero__mark__sweep {
-  color: rgba(244, 241, 234, 0.3);
+  color: rgba(17, 21, 22, 0.3);
   clip-path: inset(0 0 100% 0);
 }
 
@@ -482,22 +491,22 @@ ul {
   0%,
   6.5%,
   100% {
-    color: rgba(244, 241, 234, 0.22);
+    color: rgba(17, 21, 22, 0.2);
     transform: none;
   }
 
   0.9% {
-    color: rgba(244, 241, 234, 0.08);
+    color: rgba(17, 21, 22, 0.06);
     transform: translate(calc(var(--px) * -1), calc(var(--px) * 1));
   }
 
   2.6% {
-    color: rgba(244, 241, 234, 0.32);
+    color: rgba(17, 21, 22, 0.32);
     transform: translate(calc(var(--px) * 1), calc(var(--px) * -1));
   }
 
   4.3% {
-    color: rgba(244, 241, 234, 0.13);
+    color: rgba(17, 21, 22, 0.1);
     transform: translateX(calc(var(--px) * -1));
   }
 }
@@ -511,22 +520,22 @@ ul {
   }
 
   0.5% {
-    opacity: 0.32;
+    opacity: 0.61;
     transform: translateX(calc(var(--px) * -2));
   }
 
   1.9% {
-    opacity: 0.24;
+    opacity: 0.46;
     transform: translate(calc(var(--px) * -4), calc(var(--px) * 1));
   }
 
   3.3% {
-    opacity: 0.32;
+    opacity: 0.61;
     transform: translateX(calc(var(--px) * -1));
   }
 
   4.7% {
-    opacity: 0.2;
+    opacity: 0.38;
     transform: translate(calc(var(--px) * -3), calc(var(--px) * -1));
   }
 }
@@ -540,22 +549,22 @@ ul {
   }
 
   0.5% {
-    opacity: 0.28;
+    opacity: 0.53;
     transform: translateX(calc(var(--px) * 1));
   }
 
   1.9% {
-    opacity: 0.22;
+    opacity: 0.42;
     transform: translateY(calc(var(--px) * -1));
   }
 
   3.3% {
-    opacity: 0.28;
+    opacity: 0.53;
     transform: translateX(calc(var(--px) * -1));
   }
 
   4.7% {
-    opacity: 0.18;
+    opacity: 0.34;
     transform: translateY(calc(var(--px) * 1));
   }
 }
@@ -569,22 +578,22 @@ ul {
   }
 
   0.5% {
-    opacity: 0.32;
+    opacity: 0.61;
     transform: translateX(calc(var(--px) * 2));
   }
 
   1.9% {
-    opacity: 0.24;
+    opacity: 0.46;
     transform: translate(calc(var(--px) * 4), calc(var(--px) * -1));
   }
 
   3.3% {
-    opacity: 0.32;
+    opacity: 0.61;
     transform: translateX(calc(var(--px) * 3));
   }
 
   4.7% {
-    opacity: 0.2;
+    opacity: 0.38;
     transform: translate(calc(var(--px) * 1), calc(var(--px) * 1));
   }
 }
@@ -599,31 +608,31 @@ ul {
   }
 
   0.6% {
-    opacity: 0.68;
+    opacity: 0.88;
     clip-path: inset(13% 0 82% 0);
     transform: translateX(calc(var(--px) * -3));
   }
 
   2% {
-    opacity: 0.54;
+    opacity: 0.7;
     clip-path: inset(38% 0 58% 0);
     transform: translateX(calc(var(--px) * 4));
   }
 
   3.4% {
-    opacity: 0.62;
+    opacity: 0.81;
     clip-path: inset(57% 0 39% 0);
     transform: translateX(calc(var(--px) * -2));
   }
 
   4.8% {
-    opacity: 0.48;
+    opacity: 0.62;
     clip-path: inset(25% 0 71% 0);
     transform: translateX(calc(var(--px) * 3));
   }
 
   6.2% {
-    opacity: 0.58;
+    opacity: 0.75;
     clip-path: inset(73% 0 23% 0);
     transform: translateX(calc(var(--px) * -5));
   }
@@ -639,31 +648,31 @@ ul {
   }
 
   0.5% {
-    opacity: 0.58;
+    opacity: 0.75;
     clip-path: inset(46% 0 50% 0);
     transform: translateX(calc(var(--px) * 4));
   }
 
   1.8% {
-    opacity: 0.68;
+    opacity: 0.88;
     clip-path: inset(19% 0 77% 0);
     transform: translateX(calc(var(--px) * -4));
   }
 
   3.1% {
-    opacity: 0.5;
+    opacity: 0.65;
     clip-path: inset(66% 0 30% 0);
     transform: translateX(calc(var(--px) * 2));
   }
 
   4.4% {
-    opacity: 0.62;
+    opacity: 0.81;
     clip-path: inset(31% 0 65% 0);
     transform: translateX(calc(var(--px) * -3));
   }
 
   5.8% {
-    opacity: 0.44;
+    opacity: 0.57;
     clip-path: inset(85% 0 11% 0);
     transform: translateX(calc(var(--px) * 5));
   }
@@ -679,31 +688,31 @@ ul {
   }
 
   0.5% {
-    opacity: 0.5;
+    opacity: 0.65;
     clip-path: inset(8% 0 88% 0);
     transform: translateX(calc(var(--px) * 3));
   }
 
   1.7% {
-    opacity: 0.62;
+    opacity: 0.81;
     clip-path: inset(52% 0 44% 0);
     transform: translateX(calc(var(--px) * -5));
   }
 
   2.9% {
-    opacity: 0.54;
+    opacity: 0.7;
     clip-path: inset(28% 0 68% 0);
     transform: translateX(calc(var(--px) * 2));
   }
 
   4.2% {
-    opacity: 0.68;
+    opacity: 0.88;
     clip-path: inset(78% 0 18% 0);
     transform: translateX(calc(var(--px) * -3));
   }
 
   5.5% {
-    opacity: 0.48;
+    opacity: 0.62;
     clip-path: inset(61% 0 35% 0);
     transform: translateX(calc(var(--px) * 5));
   }
@@ -730,7 +739,7 @@ ul {
 /* Dark bands */
 
 .chapter {
-  border-top: 1px solid rgba(244, 241, 234, 0.07);
+  border-top: 1px solid var(--hairline);
 }
 
 .chapter__inner {
@@ -764,7 +773,7 @@ ul {
   font-family: var(--font-reading);
   font-size: clamp(17px, 1.35vw, 20px);
   line-height: 1.55;
-  color: rgba(244, 241, 234, 0.74);
+  color: rgba(17, 21, 22, 0.7);
 }
 
 .chapter__content .action {
@@ -774,7 +783,7 @@ ul {
 /* Gatekeeper */
 
 .gatekeeper-visual {
-  border: 1px solid var(--line-dark);
+  border: 1px solid var(--line);
 }
 
 .gatekeeper-visual img {
@@ -783,15 +792,14 @@ ul {
 
 .gatekeeper-visual figcaption {
   padding: 11px 14px;
-  color: rgba(244, 241, 234, 0.55);
-  border-top: 1px solid var(--line-dark);
+  color: var(--muted);
+  border-top: 1px solid var(--line);
 }
 
-/* Paper band */
+/* The three build questions. Same white as the rest; only the rule divides. */
 
 .standard {
-  color: var(--ink);
-  background: var(--paper);
+  border-top: 1px solid var(--hairline);
 }
 
 .standard__inner {
@@ -821,12 +829,12 @@ ul {
   display: grid;
   margin-top: clamp(48px, 6vw, 80px);
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--line-light);
+  border-top: 1px solid var(--line);
 }
 
 .principle {
   padding: 26px 32px 30px 0;
-  border-right: 1px solid var(--line-light);
+  border-right: 1px solid var(--line);
 }
 
 .principle + .principle {
@@ -861,7 +869,7 @@ ul {
 
 .system-ledger {
   margin-top: clamp(44px, 5vw, 72px);
-  border-top: 1px solid var(--line-dark);
+  border-top: 1px solid var(--line);
 }
 
 .system-row {
@@ -870,7 +878,7 @@ ul {
   align-items: baseline;
   gap: 24px;
   padding-block: 26px;
-  border-bottom: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line);
 }
 
 .system-row__id {
@@ -878,7 +886,7 @@ ul {
 }
 
 .system-row--quiet .system-row__id {
-  color: rgba(244, 241, 234, 0.34);
+  color: var(--muted);
 }
 
 .system-row h3 {
@@ -889,7 +897,7 @@ ul {
 }
 
 .system-row--quiet h3 {
-  color: rgba(244, 241, 234, 0.62);
+  color: rgba(17, 21, 22, 0.66);
 }
 
 .system-row div p {
@@ -898,7 +906,7 @@ ul {
   font-family: var(--font-reading);
   font-size: 16px;
   line-height: 1.5;
-  color: rgba(244, 241, 234, 0.56);
+  color: rgba(17, 21, 22, 0.6);
 }
 
 .system-row > a {
@@ -918,9 +926,9 @@ ul {
 /* Footer */
 
 .footer {
-  color: rgba(244, 241, 234, 0.55);
-  background: var(--night);
-  border-top: 1px solid rgba(244, 241, 234, 0.07);
+  color: var(--muted);
+  background: var(--page);
+  border-top: 1px solid var(--hairline);
 }
 
 .footer__inner {
@@ -932,7 +940,7 @@ ul {
 }
 
 .logo--footer {
-  color: var(--white);
+  color: var(--ink);
 }
 
 .footer__links {
@@ -948,7 +956,7 @@ ul {
 }
 
 .footer__links a:hover {
-  color: var(--white);
+  color: var(--ink);
 }
 
 @media (max-width: 1000px) {
@@ -961,9 +969,38 @@ ul {
     max-width: 720px;
   }
 
+  /* Side by side stops fitting here, so the mark moves above the copy rather
+     than sliding underneath it. It is also less than half the size, so the
+     blocks, the scanlines and the tearing all halve with it — at full strength
+     a 200px mark comes apart too far to read as a 99. */
+
+  .hero__inner {
+    min-height: 0;
+    padding-top: calc(var(--nav-height) + 200px);
+    padding-bottom: 72px;
+  }
+
+  .hero__copy {
+    max-width: 620px;
+  }
+
   .hero__mark {
-    font-size: min(40vw, 340px);
-    opacity: 0.8;
+    top: calc(var(--nav-height) + 14px);
+    right: auto;
+    left: var(--gutter);
+    font-size: min(47vw, 200px);
+    --px: 6px;
+    transform: none;
+  }
+
+  .hero__mark__signal {
+    filter: url("#pixel-99-fine");
+    -webkit-mask-image:
+      repeating-linear-gradient(to bottom, #000 0, #000 4px, transparent 4px, transparent 6px),
+      repeating-linear-gradient(to right, #000 0, #000 5px, transparent 5px, transparent 6px);
+    mask-image:
+      repeating-linear-gradient(to bottom, #000 0, #000 4px, transparent 4px, transparent 6px),
+      repeating-linear-gradient(to right, #000 0, #000 5px, transparent 5px, transparent 6px);
   }
 }
 
@@ -982,7 +1019,7 @@ ul {
 
   .principle:last-child {
     padding-left: 0;
-    border-top: 1px solid var(--line-light);
+    border-top: 1px solid var(--line);
   }
 }
 
@@ -1021,35 +1058,6 @@ ul {
     grid-row: 1;
   }
 
-  .hero__inner {
-    min-height: 0;
-    padding-top: calc(var(--nav-height) + 200px);
-    padding-bottom: 72px;
-  }
-
-  .hero__mark {
-    top: calc(var(--nav-height) + 14px);
-    right: auto;
-    left: var(--gutter);
-    font-size: min(47vw, 200px);
-    --px: 6px;
-    transform: none;
-  }
-
-  /* The mark is less than half the size here, so the blocks, the scanlines and
-     the tearing all halve with it. Otherwise the glyphs come apart so far that
-     they stop reading as a 99. */
-
-  .hero__mark__signal {
-    filter: url("#pixel-99-fine");
-    -webkit-mask-image:
-      repeating-linear-gradient(to bottom, #000 0, #000 4px, transparent 4px, transparent 6px),
-      repeating-linear-gradient(to right, #000 0, #000 5px, transparent 5px, transparent 6px);
-    mask-image:
-      repeating-linear-gradient(to bottom, #000 0, #000 4px, transparent 4px, transparent 6px),
-      repeating-linear-gradient(to right, #000 0, #000 5px, transparent 5px, transparent 6px);
-  }
-
   .hero__title {
     font-size: clamp(38px, 11vw, 52px);
   }
@@ -1069,7 +1077,7 @@ ul {
     padding: 24px 0 28px;
     border-right: 0;
     border-top: 0;
-    border-bottom: 1px solid var(--line-light);
+    border-bottom: 1px solid var(--line);
   }
 
   .principle:last-child {
@@ -1127,12 +1135,42 @@ ul {
   }
 
   .system-row {
-    grid-template-columns: 58px minmax(0, 1fr);
+    grid-template-columns: 68px minmax(0, 1fr);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+}
+
+/* Readers who ask their system for more contrast get full-strength ink on every
+   secondary text, and rules solid enough to find. */
+
+@media (prefers-contrast: more) {
+  :root {
+    --muted: rgba(17, 21, 22, 0.82);
+    --edge: var(--ink);
+    --line: rgba(17, 21, 22, 0.45);
+    --hairline: rgba(17, 21, 22, 0.3);
+    --accent: #8f3d21;
+  }
+
+  .hero__deck,
+  .chapter__copy,
+  .standard__intro,
+  .principle p,
+  .system-row div p,
+  .system-row--quiet h3 {
+    color: var(--ink);
+  }
+
+  .hero__mark {
+    display: none;
+  }
+
+  .hero__inner {
+    padding-top: calc(var(--nav-height) + 72px);
   }
 }
