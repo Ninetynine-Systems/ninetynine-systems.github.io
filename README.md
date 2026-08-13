@@ -33,9 +33,8 @@ The site remains zero-build and GitHub Pages-native, with responsibilities
 split across:
 
 - `index.html` — semantic content and metadata.
-- `styles.css` — tokens, layout, vignettes, and the reveal transition.
-- `app.js` — the header hairline on scroll and the reveal-on-scroll
-  IntersectionObserver. Nothing else.
+- `styles.css` — tokens, layout, and the vignettes.
+- `app.js` — the header hairline on scroll. Nothing else.
 - `orvia/` — the Orvia product page, served at `/orvia/`. See below.
 
 The four product rows each pair a decorative window vignette (hand-built
@@ -43,9 +42,8 @@ HTML/CSS, `aria-hidden`) with the real text. The vignettes are the only place
 lighter grays are allowed; real text uses only `--ink` and `--muted`, both of
 which clear WCAG 2.2 AA against white.
 
-Rows fade in as they enter the viewport. The effect is additive: it only
-engages when JavaScript is running (`.has-js`) AND the user has no
-reduced-motion preference. In every other case the page renders fully visible.
+The page is static: no scroll animations, no transitions on content. The
+only scroll behavior is the hairline that appears under the sticky header.
 
 ## The Orvia page
 
