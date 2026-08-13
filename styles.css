@@ -311,66 +311,77 @@ a { color: inherit; }
   color: var(--page);
 }
 
-/* The Orvia strip: the app's three home pages in miniature. The notes
-   panel is monospaced because the product's notes page is monospaced —
-   it is illustration, not site typography. */
+/* The Orvia phone: the app's home screen in miniature — conversation on
+   top, launcher icon rows, the composer at the bottom. */
 
-.trio {
-  display: grid;
-  grid-template-columns: 1.1fr 1.2fr 1fr;
-}
-
-.trio__panel {
-  padding: 12px 10px;
-  min-width: 0;
-}
-
-.trio__panel + .trio__panel { border-left: 1px solid var(--line); }
-
-.trio__label {
-  font-size: var(--text-xs);
-  color: var(--faint);
-  margin-bottom: 8px;
-}
-
-.notes-text {
-  font-family: ui-monospace, Menlo, monospace;
-  font-size: var(--text-xs);
-  line-height: 1.7;
-  color: #444444;
-  overflow-wrap: break-word;
-}
-
-.notes-text__orvia { color: var(--faint); }
-
-.trio .chat {
-  font-size: var(--text-xs);
-  padding: 6px 8px;
-  max-width: 100%;
-}
-
-.trio .chat--mine { max-width: 75%; }
-
-.trio-card {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 8px 10px;
+.phone {
+  width: 250px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--vig-edge);
+  border-radius: 28px;
   background: var(--page);
-  margin-bottom: 6px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  padding: 12px 12px 14px;
 }
 
-.trio-card__num {
-  display: block;
-  font-size: var(--text-lg);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-}
-
-.trio-card__cap {
-  display: block;
+.phone__status {
+  text-align: center;
   font-size: var(--text-xs);
   color: var(--faint);
+  padding-block: 2px 12px;
+}
+
+.phone__chat { flex: 1; }
+
+.phone .chat {
+  font-size: var(--text-xs);
+  padding: 7px 10px;
+  max-width: 85%;
+}
+
+.phone .chat--mine { max-width: 60%; }
+
+.phone__apps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 14px 6px;
+}
+
+.phone__icon {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  background: var(--pill-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--faint);
+}
+
+.phone__composer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  padding: 6px 6px 6px 14px;
+}
+
+.phone__composer-field {
+  flex: 1;
+  font-size: var(--text-xs);
+  color: var(--faint);
+}
+
+.phone__composer-mic {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--ink);
 }
 
 .chat {
