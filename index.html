@@ -4,22 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ninetynine.systems — software that has to keep working</title>
-  <meta name="description" content="ninetynine.systems is an independent software studio. We make Gatekeeper, approval infrastructure that holds an action until a person signs off.">
+  <meta name="description" content="ninetynine.systems is a software studio. Four systems, each built to do one job well: Gatekeeper, Orvia, Planner, and Billhead.">
   <meta name="theme-color" content="#ffffff">
 
   <link rel="canonical" href="https://ninetynine.systems/">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="./assets/fonts/source-serif-4/files/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/inter/files/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="./assets/fonts/inter/index.css">
-  <link rel="stylesheet" href="./assets/fonts/source-serif-4/index.css">
-  <link rel="stylesheet" href="./assets/fonts/jetbrains-mono/index.css">
   <link rel="stylesheet" href="./styles.css">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ninetynine.systems">
   <meta property="og:url" content="https://ninetynine.systems/">
   <meta property="og:title" content="ninetynine.systems — software that has to keep working">
-  <meta property="og:description" content="An independent software studio. We make Gatekeeper, approval infrastructure that holds an action until a person signs off.">
+  <meta property="og:description" content="A software studio. Four systems, each built to do one job well: Gatekeeper, Orvia, Planner, and Billhead.">
   <meta name="twitter:card" content="summary">
 
   <script type="application/ld+json">
@@ -28,34 +26,12 @@
       "@type": "Organization",
       "name": "ninetynine.systems",
       "url": "https://ninetynine.systems/",
-      "email": "s@ninetynine.systems"
+      "email": "sazidozon@gmail.com"
     }
   </script>
 </head>
 <body id="top">
   <a class="skip-link" href="#main">Skip to content</a>
-
-  <!-- Pixelation for the 99. Each filter floods a small dot, crops it to one
-       cell, tiles that cell into a grid, samples the glyphs through the grid,
-       then dilates every sample back out to fill its cell. The result is the
-       glyphs redrawn as square blocks. Two sizes: coarse cells on wide
-       screens, finer cells on phones where the 99 itself is much smaller. -->
-  <svg class="pixel-filters" aria-hidden="true" focusable="false">
-    <filter id="pixel-99" color-interpolation-filters="sRGB">
-      <feFlood x="5" y="5" width="2" height="2" flood-color="#ffffff"/>
-      <feComposite width="12" height="12"/>
-      <feTile result="grid"/>
-      <feComposite in="SourceGraphic" in2="grid" operator="in"/>
-      <feMorphology operator="dilate" radius="6"/>
-    </filter>
-    <filter id="pixel-99-fine" color-interpolation-filters="sRGB">
-      <feFlood x="2" y="2" width="2" height="2" flood-color="#ffffff"/>
-      <feComposite width="6" height="6"/>
-      <feTile result="grid"/>
-      <feComposite in="SourceGraphic" in2="grid" operator="in"/>
-      <feMorphology operator="dilate" radius="3"/>
-    </filter>
-  </svg>
 
   <header class="site-nav" id="site-nav">
     <div class="shell site-nav__inner">
@@ -63,169 +39,151 @@
         <span class="logo__primary">ninetynine</span><span class="logo__secondary">.systems</span>
       </a>
 
-      <nav class="app-nav" aria-label="Primary navigation">
-        <a href="#gatekeeper">Gatekeeper</a>
-        <a href="#standard">How we build</a>
+      <nav class="site-nav__links" aria-label="Primary navigation">
         <a href="#systems">Systems</a>
         <a href="#studio">Studio</a>
       </nav>
 
-      <a class="nav-contact" href="mailto:s@ninetynine.systems">
-        Get in touch <span aria-hidden="true">↗</span>
-      </a>
+      <a class="pill pill--dark site-nav__cta" href="mailto:sazidozon@gmail.com">Get in touch</a>
     </div>
   </header>
 
   <main id="main">
-    <section class="hero" id="home" aria-labelledby="hero-title">
-      <div class="hero__mark" id="static-99" aria-hidden="true">
-        <div class="hero__mark__signal">
-          <span class="hero__mark__base">99</span>
-          <span class="hero__mark__split hero__mark__split--r">99</span>
-          <span class="hero__mark__split hero__mark__split--g">99</span>
-          <span class="hero__mark__split hero__mark__split--b">99</span>
-          <span class="hero__mark__band hero__mark__band--r">99</span>
-          <span class="hero__mark__band hero__mark__band--g">99</span>
-          <span class="hero__mark__band hero__mark__band--b">99</span>
-          <span class="hero__mark__sweep">99</span>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="shell">
+        <h1 class="hero__title" id="hero-title">Software that has to<br>keep working.</h1>
+        <p class="hero__deck">Four systems, each built to do one job well — and to still be doing it years from now.</p>
+        <div class="hero__actions">
+          <a class="pill pill--dark" href="mailto:sazidozon@gmail.com">Get in touch</a>
+          <a class="pill pill--light" href="#systems">See the systems</a>
         </div>
       </div>
+    </section>
 
-      <div class="shell hero__inner">
-        <div class="hero__copy">
-          <h1 class="hero__title" id="hero-title">
-            We build software that has to keep working<span class="accent">.</span>
-          </h1>
-          <p class="hero__deck">
-            We are an independent software studio. Most of what we make sits in front of decisions that are expensive to get wrong. Deployments, access grants, payments, and actions an agent takes on its own.
-          </p>
-          <div class="hero__actions">
-            <a class="action" href="#mission">
-              Why we work this way <span aria-hidden="true">↓</span>
-            </a>
+    <section class="systems" id="systems" aria-label="Systems">
+      <p class="shell systems__label" aria-hidden="true">Systems</p>
+
+      <article class="system reveal">
+        <div class="shell system__inner">
+          <div class="vig" aria-hidden="true">
+            <div class="vig__bar"><span class="vig__dot"></span><span class="vig__dot"></span><span class="vig__dot"></span><span class="vig__name">gatekeeper — pending approvals</span></div>
+            <div class="vig__body">
+              <div class="approval">
+                <p class="approval__title">Promote model v4.2 → production</p>
+                <p class="approval__meta">requested by ci-runner · waiting on you</p>
+                <p class="approval__actions"><span class="vig-pill vig-pill--dark">Approve</span><span class="vig-pill">Refuse</span></p>
+              </div>
+              <p class="approval__done">✓ Rotate signing key — approved by sarah, 2h ago</p>
+            </div>
+          </div>
+          <div class="system__meta">
+            <h2>Gatekeeper</h2>
+            <p class="system__desc">Holds an action until a person approves it.</p>
+            <p class="system__detail">A service or an agent asks for permission. The request goes to whoever is responsible. Nothing runs until they answer, and the answer is kept as a signed record.</p>
+            <a class="system__link" href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer" aria-label="Visit gatekeeper.now (opens in a new tab)">gatekeeper.now <span aria-hidden="true">↗</span></a>
           </div>
         </div>
-      </div>
-    </section>
+      </article>
 
-    <section class="chapter" id="mission" aria-labelledby="mission-title">
-      <div class="shell chapter__inner">
-        <div class="chapter__content">
-          <h2 class="cinematic-title" id="mission-title">Someone has to stay accountable.</h2>
-          <p class="chapter__copy">
-            More software now acts without a person watching it. That works until something goes wrong and nobody can say who approved it, what it did, or how to undo it. That gap is what we build for.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="chapter" id="gatekeeper" aria-labelledby="gatekeeper-title">
-      <div class="shell chapter__inner chapter__inner--split">
-        <div class="chapter__content">
-          <h2 class="cinematic-title" id="gatekeeper-title">Gatekeeper holds an action until a person approves it.</h2>
-          <p class="chapter__copy">
-            A service or an agent asks for permission. The request goes to whoever is responsible for it. Nothing runs until they answer, and the answer is kept as a signed record.
-          </p>
-          <a class="action" href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer" aria-label="Visit gatekeeper.now (opens in a new tab)">
-            gatekeeper.now <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-
-        <figure class="gatekeeper-visual" aria-labelledby="gatekeeper-visual-caption">
-          <img src="./assets/images/gatekeeper-model-promotion.png" alt="A Gatekeeper workspace showing a model promotion waiting for someone to approve it." loading="lazy" decoding="async" width="1600" height="1000">
-          <figcaption class="ident" id="gatekeeper-visual-caption">A model promotion waiting on approval</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section class="standard" id="standard" aria-labelledby="standard-title">
-      <div class="shell standard__inner">
-        <header class="standard__header">
-          <h2 class="section-title" id="standard-title">Three questions before anything ships.</h2>
-          <p class="standard__intro reading">We ask them of our own products, and of the work we do for other people.</p>
-        </header>
-
-        <ol class="principles">
-          <li class="principle">
-            <span class="ident principle__number">01</span>
-            <h3>Who decides?</h3>
-            <p>Every action has a named owner, whether that owner is a person or a service.</p>
-          </li>
-          <li class="principle">
-            <span class="ident principle__number">02</span>
-            <h3>What if it fails?</h3>
-            <p>We design the refusal and the way back before we design the path that works.</p>
-          </li>
-          <li class="principle">
-            <span class="ident principle__number">03</span>
-            <h3>What proves it?</h3>
-            <p>Anything that matters leaves a record you can read months later and check.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="chapter" id="systems" aria-labelledby="systems-title">
-      <div class="shell chapter__inner">
-        <div class="chapter__content">
-          <h2 class="cinematic-title" id="systems-title">What we run.</h2>
-          <p class="chapter__copy">
-            Gatekeeper is out in the world. Orvia is coming. Planner is still in the workshop.
-          </p>
-        </div>
-
-        <div class="system-ledger">
-          <article class="system-card">
-            <p class="ident system-card__id">SYS-01</p>
-            <div>
-              <h3>Gatekeeper</h3>
-              <p>Approval infrastructure for actions that are hard to undo.</p>
+      <article class="system system--alt reveal">
+        <div class="shell system__inner">
+          <div class="vig" aria-hidden="true">
+            <div class="vig__bar"><span class="vig__dot"></span><span class="vig__dot"></span><span class="vig__dot"></span><span class="vig__name">orvia</span></div>
+            <div class="vig__body">
+              <p class="chat chat--theirs">dentist at 4 — traffic's building, leave by 3:20</p>
+              <p class="chat chat--mine">book the cab</p>
+              <p class="chat chat--theirs">done. also — you're out of coffee, want it on the list?</p>
             </div>
-            <a class="system-card__link" href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer" aria-label="Open Gatekeeper (opens in a new tab)">Open <span aria-hidden="true">↗</span></a>
-          </article>
-
-          <article class="system-card">
-            <p class="ident system-card__id">SYS-02</p>
-            <div>
-              <h3>Orvia</h3>
-              <p>Grows with you and helps you with your everyday tasks. Coming soon.</p>
-            </div>
-            <a class="system-card__link" href="./orvia/" aria-label="Open the Orvia page">Open <span aria-hidden="true">→</span></a>
-          </article>
-
-          <article class="system-card system-card--quiet">
-            <p class="ident system-card__id">SYS-03</p>
-            <div>
-              <h3>Planner</h3>
-              <p>In the workshop.</p>
-            </div>
-          </article>
+          </div>
+          <div class="system__meta">
+            <h2>Orvia</h2>
+            <p class="system__desc">A mobile agent that helps with your daily life, and is part of it.</p>
+            <p class="system__detail">It rides along on your phone: appointments, errands, the small logistics of a day. It learns your patterns and handles what it can, and asks when it shouldn't decide alone.</p>
+            <a class="system__link" href="./orvia/">Coming soon <span aria-hidden="true">→</span></a>
+          </div>
         </div>
-      </div>
+      </article>
+
+      <article class="system reveal">
+        <div class="shell system__inner">
+          <div class="vig" aria-hidden="true">
+            <div class="vig__bar"><span class="vig__dot"></span><span class="vig__dot"></span><span class="vig__dot"></span><span class="vig__name">planner — week 33</span></div>
+            <div class="week">
+              <div class="week__cell"><b>Mon 10</b><span class="week__note" style="width:85%"></span><span class="week__note" style="width:60%"></span></div>
+              <div class="week__cell"><b>Tue 11</b><span class="week__note" style="width:70%"></span></div>
+              <div class="week__cell"><b>Wed 12</b><span class="week__note" style="width:80%"></span><span class="week__note" style="width:45%"></span></div>
+              <div class="week__cell"><b>Thu 13</b><span class="week__note" style="width:55%"></span></div>
+              <div class="week__cell"><b>Fri 14</b><span class="week__note" style="width:75%"></span></div>
+              <div class="week__cell"><b>Sat 15</b></div>
+              <div class="week__cell"><b>Sun 16</b><span class="week__note" style="width:35%"></span></div>
+              <div class="week__cell week__cell--notes"><b>Notes</b><span class="week__note" style="width:80%"></span><span class="week__note" style="width:65%"></span></div>
+            </div>
+          </div>
+          <div class="system__meta">
+            <h2>Planner</h2>
+            <p class="system__desc">Your whole week on one page.</p>
+            <p class="system__detail">Exactly like the paper diaries that put seven days on a spread: the week at a glance, room to write, nothing to configure. A place for notes, not another calendar.</p>
+            <p class="system__status">In the workshop</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="system system--alt reveal">
+        <div class="shell system__inner">
+          <div class="vig" aria-hidden="true">
+            <div class="vig__bar"><span class="vig__dot"></span><span class="vig__dot"></span><span class="vig__dot"></span><span class="vig__name">billhead — invoice #0042</span></div>
+            <div class="vig__body">
+              <p class="invoice__head"><span class="invoice__customer">Rahman Timber &amp; Sons</span><span>12 Aug 2026</span></p>
+              <p class="invoice__row"><span>Timber, 40 ft</span><span>2,400</span></p>
+              <p class="invoice__row"><span>Cutting charge</span><span>150</span></p>
+              <p class="invoice__row"><span>Delivery</span><span>300</span></p>
+              <p class="invoice__row invoice__row--total"><span>Total due</span><span>2,850</span></p>
+              <p class="invoice__actions"><span class="vig-pill">Print</span><span class="vig-pill">Share</span><span class="vig-pill">Mark paid</span></p>
+            </div>
+          </div>
+          <div class="system__meta">
+            <h2>Billhead</h2>
+            <p class="system__desc">Invoices for businesses that run on paper and handshakes.</p>
+            <p class="system__detail">Track what you've billed, share it over any app, print it when the customer wants paper. Built for small businesses and people just starting out, especially in the physical market.</p>
+            <p class="system__status">Coming soon</p>
+          </div>
+        </div>
+      </article>
     </section>
 
-    <section class="chapter" id="studio" aria-labelledby="studio-title">
-      <div class="shell chapter__inner">
-        <div class="chapter__content">
-          <h2 class="cinematic-title" id="studio-title">How we work with other people.</h2>
-          <p class="chapter__copy">
-            We build and run our own products. We also take on client work, in any line of work that touches software.
-          </p>
-          <a class="action action--solid" href="mailto:s@ninetynine.systems">
-            Get in touch <span aria-hidden="true">↗</span>
-          </a>
-        </div>
+    <section class="studio reveal" id="studio" aria-labelledby="studio-title">
+      <div class="shell">
+        <h2 id="studio-title">We also build for other people.</h2>
+        <p class="studio__deck">The same standard we hold our own systems to, applied to yours. Client work, in any line of work that touches software.</p>
+        <a class="pill pill--dark" href="mailto:sazidozon@gmail.com">Get in touch</a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="shell footer__inner">
-      <p class="ident">© 2026</p>
-      <nav class="footer__links ident" aria-label="Footer navigation">
-        <a href="#systems">Systems</a>
-        <a href="mailto:s@ninetynine.systems">Contact</a>
+    <div class="shell footer__grid">
+      <div class="footer__col footer__col--studio">
+        <p class="footer__wordmark">ninetynine<span>.systems</span></p>
+        <p class="footer__blurb">An independent software studio.</p>
+      </div>
+      <nav class="footer__col" aria-label="Systems">
+        <p class="footer__head">Systems</p>
+        <a href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer">Gatekeeper</a>
+        <a href="./orvia/">Orvia</a>
+        <span>Planner</span>
+        <span>Billhead</span>
       </nav>
+      <nav class="footer__col" aria-label="Studio">
+        <p class="footer__head">Studio</p>
+        <a href="#studio">Client work</a>
+      </nav>
+      <div class="footer__col">
+        <p class="footer__head">Contact</p>
+        <a href="mailto:sazidozon@gmail.com">sazidozon@gmail.com</a>
+      </div>
+    </div>
+    <div class="shell footer__legal">
+      <p>© 2026 ninetynine.systems</p>
     </div>
   </footer>
 

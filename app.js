@@ -1,13 +1,10 @@
 document.documentElement.classList.add("has-js");
 
-// The only script on the page. It draws a hairline under the fixed header once
-// you have scrolled, and marks which nav link matches the section you are in.
-// Everything else on the page works with JavaScript off.
-(function initNavigation() {
+// Hairline under the sticky header once you have scrolled.
+(function initNav() {
   var nav = document.getElementById("site-nav");
   if (!nav) return;
 
-  var navLinks = Array.prototype.slice.call(nav.querySelectorAll('.app-nav a[href^="#"]'));
   var queued = false;
 
   var update = function () {
@@ -23,32 +20,24 @@ document.documentElement.classList.add("has-js");
 
   requestUpdate();
   window.addEventListener("scroll", requestUpdate, { passive: true });
+})();
 
-  if (!("IntersectionObserver" in window) || !navLinks.length) return;
+// Rows fade in as they enter the viewport. Skipped entirely under reduced
+// motion; without JavaScript the page renders fully visible.
+(function initReveal() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (!("IntersectionObserver" in window)) return;
 
-  var sections = navLinks.map(function (link) {
-    return document.querySelector(link.getAttribute("href"));
-  }).filter(Boolean);
+  var targets = document.querySelectorAll(".reveal");
+  if (!targets.length) return;
 
-  var setActive = function (id) {
-    navLinks.forEach(function (link) {
-      var active = link.getAttribute("href") === "#" + id;
-      link.classList.toggle("is-active", active);
-      if (active) link.setAttribute("aria-current", "location");
-      else link.removeAttribute("aria-current");
-    });
-  };
-
-  var sectionObserver = new IntersectionObserver(function (entries) {
+  var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
-      if (entry.isIntersecting) setActive(entry.target.id);
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
     });
-  }, {
-    rootMargin: "-30% 0px -60% 0px",
-    threshold: 0
-  });
+  }, { rootMargin: "0px 0px -10% 0px", threshold: 0.1 });
 
-  sections.forEach(function (section) {
-    sectionObserver.observe(section);
-  });
+  targets.forEach(function (target) { observer.observe(target); });
 })();
