@@ -347,6 +347,7 @@ a { color: inherit; }
 .phone__screen {
   display: flex;
   flex-direction: column;
+  min-height: 500px;
   background: var(--page);
   border-radius: 26px;
   padding: 8px 12px 8px;
