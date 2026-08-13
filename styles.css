@@ -312,25 +312,90 @@ a { color: inherit; }
 }
 
 /* The Orvia phone: the app's home screen in miniature — conversation on
-   top, launcher icon rows, the composer at the bottom. */
+   top, a launcher icon row, the composer at the bottom — inside an
+   Android body: dark bezel, side buttons, punch-hole camera, status bar,
+   gesture navbar. */
 
 .phone {
-  width: 250px;
+  position: relative;
+  width: 260px;
   margin-inline: auto;
+  background: var(--ink);
+  border-radius: 34px;
+  padding: 9px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.phone__btn {
+  position: absolute;
+  right: -3px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--ink);
+}
+
+.phone__btn--volume {
+  top: 84px;
+  height: 46px;
+}
+
+.phone__btn--power {
+  top: 142px;
+  height: 28px;
+}
+
+.phone__screen {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--vig-edge);
-  border-radius: 28px;
   background: var(--page);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  padding: 12px 12px 14px;
+  border-radius: 26px;
+  padding: 8px 12px 8px;
+  overflow: hidden;
 }
 
 .phone__status {
-  text-align: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 4px 14px;
+}
+
+.phone__time {
   font-size: var(--text-xs);
   color: var(--faint);
-  padding-block: 2px 12px;
+}
+
+.phone__camera {
+  position: absolute;
+  left: 50%;
+  top: 7px;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.phone__status-icons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--faint);
+}
+
+.phone__status-icons svg {
+  width: 11px;
+  height: 11px;
+}
+
+.phone__navbar {
+  display: block;
+  width: 64px;
+  height: 4px;
+  border-radius: var(--radius-control);
+  background: #dddddd;
+  margin: 12px auto 4px;
 }
 
 .phone__chat { flex: 1; }
