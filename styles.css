@@ -357,10 +357,10 @@ a { color: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--text-xs);
-  font-weight: 600;
   color: var(--faint);
 }
+
+.phone__icon svg { width: 18px; height: 18px; }
 
 .phone__composer {
   display: flex;

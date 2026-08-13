@@ -198,10 +198,18 @@ h1 {
 }
 
 .board-card__name {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-size: 12px;
   font-weight: 600;
   margin-bottom: 6px;
+}
+
+.board-card__name svg {
+  width: 13px;
+  height: 13px;
+  color: var(--faint);
 }
 
 .board-card__num {
