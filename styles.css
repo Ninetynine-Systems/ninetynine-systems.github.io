@@ -311,6 +311,68 @@ a { color: inherit; }
   color: var(--page);
 }
 
+/* The Orvia strip: the app's three home pages in miniature. The notes
+   panel is monospaced because the product's notes page is monospaced —
+   it is illustration, not site typography. */
+
+.trio {
+  display: grid;
+  grid-template-columns: 1.1fr 1.2fr 1fr;
+}
+
+.trio__panel {
+  padding: 12px 10px;
+  min-width: 0;
+}
+
+.trio__panel + .trio__panel { border-left: 1px solid var(--line); }
+
+.trio__label {
+  font-size: var(--text-xs);
+  color: var(--faint);
+  margin-bottom: 8px;
+}
+
+.notes-text {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: var(--text-xs);
+  line-height: 1.7;
+  color: #444444;
+  overflow-wrap: break-word;
+}
+
+.notes-text__orvia { color: var(--faint); }
+
+.trio .chat {
+  font-size: var(--text-xs);
+  padding: 6px 8px;
+  max-width: 100%;
+}
+
+.trio .chat--mine { max-width: 75%; }
+
+.trio-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: var(--page);
+  margin-bottom: 6px;
+}
+
+.trio-card__num {
+  display: block;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.trio-card__cap {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--faint);
+}
+
 .chat {
   border-radius: 10px;
   padding: 8px 11px;

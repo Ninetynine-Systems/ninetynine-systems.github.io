@@ -42,6 +42,11 @@ HTML/CSS, `aria-hidden`) with the real text. The vignettes are the only place
 lighter grays are allowed; real text uses only `--ink` and `--muted`, both of
 which clear WCAG 2.2 AA against white.
 
+One vignette-only exception: the Orvia notes illustrations (homepage strip
+and `/orvia/`) use the generic system monospace stack, because the product's
+notes page is monospaced. That is illustration, not site typography — no
+mono font is shipped, and real text stays Inter.
+
 The page is static: no scroll animations, no transitions on content. The
 only scroll behavior is the hairline that appears under the sticky header.
 
