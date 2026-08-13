@@ -443,11 +443,21 @@ a { color: inherit; }
   color: var(--faint);
 }
 
-.phone__composer-mic {
+.phone__composer-send {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 24px;
   height: 24px;
   border-radius: 50%;
   background: var(--ink);
+  color: var(--page);
+  flex-shrink: 0;
+}
+
+.phone__composer-send svg {
+  width: 13px;
+  height: 13px;
 }
 
 .chat {
