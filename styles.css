@@ -484,6 +484,9 @@ a { color: inherit; }
 /* --- small screens ----------------------------------------------------- */
 
 @media (max-width: 820px) {
+  /* Let the headline wrap naturally; the hard break is for wide screens. */
+  .hero__title br { display: none; }
+
   .site-nav__links { display: none; }
 
   .site-nav__inner { justify-content: space-between; }
