@@ -1,25 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ninetynine.systems — software that has to keep working</title>
-  <meta name="description" content="ninetynine.systems is a software studio. Four systems, each built to do one job well: Gatekeeper, Orvia, Planner, and Billhead.">
+  <title>ninetynine.systems LLC — software systems built to keep working</title>
+  <meta name="description" content="ninetynine.systems LLC is a U.S. software company building focused systems for how teams plan, decide, and operate.">
   <meta name="theme-color" content="#ffffff">
-
   <link rel="canonical" href="https://ninetynine.systems/">
-  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="./assets/fonts/inter/files/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="./assets/fonts/inter/index.css">
-  <link rel="stylesheet" href="./styles.css">
-
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/inter/files/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts/inter/index.css">
+  <link rel="stylesheet" href="/styles.css">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ninetynine.systems">
   <meta property="og:url" content="https://ninetynine.systems/">
-  <meta property="og:title" content="ninetynine.systems — software that has to keep working">
-  <meta property="og:description" content="A software studio. Four systems, each built to do one job well: Gatekeeper, Orvia, Planner, and Billhead.">
-  <meta name="twitter:card" content="summary">
-
+  <meta property="og:title" content="Software systems built to keep working.">
+  <meta property="og:description" content="Focused software systems from ninetynine.systems LLC.">
+  <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -27,189 +24,219 @@
       "name": "ninetynine.systems",
       "legalName": "ninetynine.systems LLC",
       "url": "https://ninetynine.systems/",
-      "email": "sazidozon@gmail.com"
+      "email": "sazidozon@gmail.com",
+      "areaServed": "US"
     }
   </script>
 </head>
-<body id="top">
+<body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-nav" id="site-nav">
-    <div class="shell site-nav__inner">
-      <a class="logo" href="#top" aria-label="ninetynine.systems home">
-        <span class="logo__primary">ninetynine</span><span class="logo__secondary">.systems</span>
-      </a>
-
-      <nav class="site-nav__links" aria-label="Primary navigation">
-        <a href="#systems">Systems</a>
-        <a href="#studio">Studio</a>
+  <header class="site-header" id="site-header">
+    <div class="shell site-header__inner">
+      <a class="legalmark" href="/">ninetynine.systems</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="/products/">Products</a>
+        <a href="/studio/">Studio</a>
+        <a href="/company/">Company</a>
+        <a href="/contact/">Contact</a>
       </nav>
-
-      <a class="pill pill--dark site-nav__cta" href="mailto:sazidozon@gmail.com">Get in touch</a>
     </div>
   </header>
 
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="shell">
-        <h1 class="hero__title" id="hero-title">Systems that has to <br>keep working.</h1>
-        <div class="hero__actions">
-          <a class="pill pill--dark" href="mailto:sazidozon@gmail.com">Get in touch</a>
-          <a class="pill pill--light" href="#systems">See the systems</a>
+      <div class="shell hero__inner" data-reveal>
+        <h1 id="hero-title">Software systems built <br>to keep working.</h1>
+        <p class="hero__deck">We build focused software systems for how teams plan, decide, and operate.</p>
+        <div class="button-row">
+          <a class="button" href="#gatekeeper">See the systems</a>
+          <a class="button button--light" href="/contact/">Start a project</a>
         </div>
       </div>
     </section>
 
-    <section class="systems" id="systems" aria-label="Systems">
-      <p class="shell systems__label" aria-hidden="true">Systems</p>
+    <nav class="chapter-nav" aria-label="Product chapters">
+      <div class="shell chapter-nav__inner">
+        <a class="chapter-link" href="#gatekeeper"><strong>Gatekeeper</strong><span>Approvals that hold</span></a>
+        <a class="chapter-link" href="#orvia"><strong>Orvia</strong><span>Mini apps, skills, bots</span></a>
+        <a class="chapter-link" href="#planner"><strong>Planner</strong><span>In development</span></a>
+        <a class="chapter-link" href="#billhead"><strong>Billhead</strong><span>In development</span></a>
+      </div>
+    </nav>
 
-      <article class="system">
-        <div class="shell system__inner">
-          <div class="vig" aria-hidden="true">
-            <div class="vig__bar"><span class="vig__dot"></span><span class="vig__dot"></span><span class="vig__dot"></span><span class="vig__name">gatekeeper — pending approvals</span></div>
-            <div class="vig__body">
-              <div class="approval">
-                <p class="approval__title">Promote model v4.2 → production</p>
-                <p class="approval__meta">requested by ci-runner · waiting on you</p>
-                <p class="approval__actions"><span class="vig-pill vig-pill--dark">Approve</span><span class="vig-pill">Refuse</span></p>
-              </div>
-              <p class="approval__done">✓ Rotate signing key — approved by sarah, 2h ago</p>
-            </div>
-          </div>
-          <div class="system__meta">
-            <h2>Gatekeeper</h2>
-            <p class="system__desc">Holds an action until a person approves it.</p>
-            <p class="system__detail">A human, a service or an agent asks for permission. The request goes to whoever is responsible. Nothing moves forward until they answer, and the answer is kept as a signed record.</p>
-            <a class="system__link" href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer" aria-label="Visit gatekeeper.now (opens in a new tab)">gatekeeper.now <span aria-hidden="true">↗</span></a>
+    <section class="product-chapter" id="gatekeeper" aria-labelledby="gatekeeper-title">
+      <div class="shell product-chapter__inner">
+        <div class="product-copy" data-reveal>
+          <p class="eyebrow">Gatekeeper</p>
+          <h2 id="gatekeeper-title">Nothing moves until the right person approves.</h2>
+          <p>Policy-driven approvals, clear timelines, and an audit trail your team can trust.</p>
+          <div class="button-row">
+            <a class="button" href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer">Open Gatekeeper</a>
           </div>
         </div>
+        <figure class="product-media product-media--gatekeeper" data-reveal>
+          <img src="/assets/images/gatekeeper/approval-legal-nda.png" alt="Gatekeeper approval request showing a legal contract decision and its timeline" width="2880" height="1620">
+        </figure>
+      </div>
+    </section>
+
+    <section class="product-chapter product-chapter--soft" id="orvia" aria-labelledby="orvia-title">
+      <div class="shell product-chapter__inner">
+        <div class="product-copy" data-reveal>
+          <p class="eyebrow">Orvia</p>
+          <h2 id="orvia-title">Mini apps. Skills. Bots. Everyday actions.</h2>
+          <p>Orvia brings the tools you use and the help you need into one place on your phone.</p>
+          <div class="button-row">
+            <a class="button" href="/orvia/">Explore Orvia</a>
+          </div>
+        </div>
+        <div class="phone-pair" data-reveal>
+          <figure class="phone-shot">
+            <img src="/assets/images/orvia/Screenshot_20260902_134439_Orvia.jpg" alt="Orvia mini apps board with a calendar and watchlist" width="1080" height="2340">
+          </figure>
+          <figure class="phone-shot">
+            <img src="/assets/images/orvia/Screenshot_20260902_133223_Orvia.jpg" alt="Orvia bots for focused assistants and conversations" width="1080" height="2340">
+          </figure>
+          <figure class="phone-shot">
+            <img src="/assets/images/orvia/Screenshot_20260902_150911_Orvia.jpg" alt="Orvia conversation setting timers, reminders, and checking the weather" width="1080" height="2340">
+          </figure>
+          <figure class="phone-shot">
+            <img src="/assets/images/orvia/Screenshot_20260902_133129_Orvia.jpg" alt="Orvia available from the phone home screen" width="1080" height="2340">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="development-list" aria-label="Products in development">
+      <article class="shell development-row" id="planner">
+        <div class="development-copy" data-reveal>
+          <div class="development-copy__top"><h2>Planner</h2><span class="status">In development</span></div>
+          <h3>Plans that stay in sync.</h3>
+          <p>A new planning system for aligned weeks, clear priorities, and accountable delivery.</p>
+        </div>
+        <figure class="concept-media" data-reveal>
+          <img src="/assets/images/products/planner-concept.png" alt="Concept preview of Planner showing a weekly schedule" width="1536" height="864">
+          <figcaption>Concept preview · in development</figcaption>
+        </figure>
       </article>
 
-      <article class="system system--alt">
-        <div class="shell system__inner">
-          <div class="phone" aria-hidden="true">
-            <span class="phone__btn phone__btn--volume"></span>
-            <span class="phone__btn phone__btn--power"></span>
-            <div class="phone__screen">
-            <div class="phone__status">
-              <span class="phone__time">10:08</span>
-              <span class="phone__camera"></span>
-              <span class="phone__status-icons">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/></svg>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h.01"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></svg>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="10" x="2" y="7" rx="2" ry="2"/><line x1="22" x2="22" y1="11" y2="13"/></svg>
-              </span>
-            </div>
-            <div class="phone__chat">
-              <p class="chat chat--theirs">morning. today: rent, dentist at 4, call the electrician.</p>
-              <p class="chat chat--mine">add - pick up the birthday cake</p>
-              <p class="chat chat--theirs">added. the bakery closes at 7, i'll remind you by 5.</p>
-            </div>
-            <div class="phone__apps">
-              <span class="phone__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-              <span class="phone__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
-              <span class="phone__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></span>
-              <span class="phone__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg></span>
-            </div>
-            <div class="phone__composer">
-              <span class="phone__composer-field">Ask Orvia</span>
-              <span class="phone__composer-send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg></span>
-            </div>
-            <span class="phone__navbar"></span>
-            </div>
-          </div>
-          <div class="system__meta">
-            <h2>Orvia</h2>
-            <p class="system__desc">A mobile agent that helps with your daily life, and is part of it.</p>
-            <p class="system__detail">It rides along on your phone: appointments, errands, the small logistics of a day. It learns your patterns and handles what it can. Build and run your own miniapps and take notes that Orvia watches over</p>
-            <a class="system__link" href="./orvia/">Coming soon <span aria-hidden="true">→</span></a>
-          </div>
+      <article class="shell development-row" id="billhead">
+        <div class="development-copy" data-reveal>
+          <div class="development-copy__top"><h2>Billhead</h2><span class="status">In development</span></div>
+          <h3>Invoices without friction.</h3>
+          <p>Professional billing, clean records, and simple handoff for small businesses.</p>
         </div>
-      </article>
-
-      <article class="system">
-        <div class="shell system__inner">
-          <div class="vig" aria-hidden="true">
-            <div class="vig__bar"><span class="vig__dot"></span><span class="vig__dot"></span><span class="vig__dot"></span><span class="vig__name">planner — week 33</span></div>
-            <div class="week">
-              <div class="week__cell"><b>Mon 10</b><span class="week__note" style="width:85%"></span><span class="week__note" style="width:60%"></span></div>
-              <div class="week__cell"><b>Tue 11</b><span class="week__note" style="width:70%"></span></div>
-              <div class="week__cell"><b>Wed 12</b><span class="week__note" style="width:80%"></span><span class="week__note" style="width:45%"></span></div>
-              <div class="week__cell"><b>Thu 13</b><span class="week__note" style="width:55%"></span></div>
-              <div class="week__cell"><b>Fri 14</b><span class="week__note" style="width:75%"></span></div>
-              <div class="week__cell"><b>Sat 15</b></div>
-              <div class="week__cell"><b>Sun 16</b><span class="week__note" style="width:35%"></span></div>
-              <div class="week__cell week__cell--notes"><b>Notes</b><span class="week__note" style="width:80%"></span><span class="week__note" style="width:65%"></span></div>
-            </div>
-          </div>
-          <div class="system__meta">
-            <h2>Planner</h2>
-            <p class="system__desc">Your whole week on one page.</p>
-            <p class="system__detail">Similar to paper diaries that put seven days on a page.</p>
-            <p class="system__status">In the workshop</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="system system--alt">
-        <div class="shell system__inner">
-          <div class="vig" aria-hidden="true">
-            <div class="vig__bar"><span class="vig__dot"></span><span class="vig__dot"></span><span class="vig__dot"></span><span class="vig__name">billhead — invoice #0042</span></div>
-            <div class="vig__body">
-              <p class="invoice__head"><span class="invoice__customer">Rahman Timber &amp; Sons</span><span>12 Aug 2026</span></p>
-              <p class="invoice__row"><span>Timber, 40 ft</span><span>2,400</span></p>
-              <p class="invoice__row"><span>Cutting charge</span><span>150</span></p>
-              <p class="invoice__row"><span>Delivery</span><span>300</span></p>
-              <p class="invoice__row invoice__row--total"><span>Total due</span><span>2,850</span></p>
-              <p class="invoice__actions"><span class="vig-pill">Print</span><span class="vig-pill">Share</span><span class="vig-pill">Mark paid</span></p>
-            </div>
-          </div>
-          <div class="system__meta">
-            <h2>Billhead</h2>
-            <p class="system__desc">Invoices for businesses that run on paper and handshakes.</p>
-            <p class="system__detail">Track what you've billed, share it over any app, print it when the customer wants paper. Built for small businesses and people just starting out.</p>
-            <p class="system__status">Coming soon</p>
-          </div>
-        </div>
+        <figure class="concept-media" data-reveal>
+          <img src="/assets/images/products/billhead-concept.png" alt="Concept preview of Billhead showing a sample invoice layout" width="1536" height="864">
+          <figcaption>Concept preview · in development</figcaption>
+        </figure>
       </article>
     </section>
 
-    <section class="studio" id="studio" aria-labelledby="studio-title">
-      <div class="shell">
-        <h2 id="studio-title">We also build for YOU (and other people).</h2>
-        <p class="studio__deck">Holding the same standard as our own systems - we build yours. Client work, in any line of work that touches software.</p>
-        <a class="pill pill--dark" href="mailto:sazidozon@gmail.com">Get in touch</a>
+    <section class="studio-band" aria-labelledby="studio-band-title">
+      <div class="shell studio-band__grid">
+        <div class="studio-band__lead" data-reveal>
+          <h2 id="studio-band-title">Studio</h2>
+          <p>We design, build, and support software systems that stay dependable as the work grows.</p>
+          <a class="button" href="/studio/">Work with us</a>
+        </div>
+        <article class="principle" data-reveal>
+          <h3>Focused systems</h3>
+          <p>Purpose-built tools shaped around one clear operational problem.</p>
+        </article>
+        <article class="principle" data-reveal>
+          <h3>Built to endure</h3>
+          <p>Clear architecture, understandable data, and disciplined delivery from day one.</p>
+        </article>
+        <article class="principle" data-reveal>
+          <h3>Ongoing partnership</h3>
+          <p>We support what we ship and keep improving it when the work changes.</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-label="Company, process, and frequently asked questions">
+      <div class="shell info-grid">
+        <article class="info-panel" data-reveal>
+          <h2>Company</h2>
+          <p>ninetynine.systems LLC is a founder-led U.S. software company. We build our own products and partner with teams that value clarity, quality, and long-term thinking.</p>
+          <a class="text-link" href="/company/">About the company</a>
+        </article>
+        <article class="info-panel" data-reveal>
+          <h2>Process</h2>
+          <ol class="process-list">
+            <li><strong>Understand</strong> Learn the goals, constraints, and context.</li>
+            <li><strong>Build</strong> Ship working systems in focused cycles.</li>
+            <li><strong>Support</strong> Operate what we build and keep improving.</li>
+          </ol>
+        </article>
+        <article class="info-panel" data-reveal>
+          <h2>FAQ</h2>
+          <div class="faq-list">
+            <details>
+              <summary>What kinds of systems do you build?</summary>
+              <p>Focused web, mobile, automation, and agent-assisted software for real operational work.</p>
+            </details>
+            <details>
+              <summary>Do you work with small teams?</summary>
+              <p>Yes. We work directly with founders and lean teams that need clear ownership and a practical delivery path.</p>
+            </details>
+            <details>
+              <summary>Where are you based?</summary>
+              <p>ninetynine.systems LLC is a U.S. company and works remotely.</p>
+            </details>
+            <details>
+              <summary>How do we get started?</summary>
+              <p>Send a short note about the problem, the people it affects, and what a good outcome looks like.</p>
+            </details>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <div class="shell closing__inner">
+        <div>
+          <h2 id="closing-title">Let’s build what keeps your work moving.</h2>
+          <p>Tell us about the system you need. We’ll take it from there.</p>
+        </div>
+        <div class="button-row">
+          <a class="button button--on-dark" href="/contact/">Start a project</a>
+          <a class="button button--ghost-dark" href="mailto:sazidozon@gmail.com">Email us</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="shell footer__grid">
-      <div class="footer__col footer__col--studio">
-        <p class="footer__wordmark">ninetynine<span>.systems</span></p>
-        <p class="footer__blurb">An independent software studio.<br>ninetynine.systems LLC · U.S.</p>
+  <footer class="site-footer">
+    <div class="shell site-footer__grid">
+      <div>
+        <p class="site-footer__identity">ninetynine.systems LLC</p>
+        <p class="site-footer__note">Focused software systems built to keep working.</p>
       </div>
-      <nav class="footer__col" aria-label="Systems">
-        <p class="footer__head">Systems</p>
-        <a href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer">Gatekeeper</a>
-        <a href="./orvia/">Orvia</a>
-        <span>Planner</span>
-        <span>Billhead</span>
+      <nav class="footer-column" aria-label="Products">
+        <h3>Products</h3>
+        <a href="/gatekeeper/">Gatekeeper</a>
+        <a href="/orvia/">Orvia</a>
+        <span>Planner · in development</span>
+        <span>Billhead · in development</span>
       </nav>
-      <nav class="footer__col" aria-label="Studio">
-        <p class="footer__head">Studio</p>
-        <a href="#studio">Client work</a>
+      <nav class="footer-column" aria-label="Company">
+        <h3>Company</h3>
+        <a href="/studio/">Studio</a>
+        <a href="/company/">About</a>
+        <a href="/contact/">Contact</a>
       </nav>
-      <div class="footer__col">
-        <p class="footer__head">Contact</p>
-        <a href="mailto:sazidozon@gmail.com">sazidozon@gmail.com</a>
-      </div>
+      <nav class="footer-column" aria-label="Legal">
+        <h3>Legal</h3>
+        <a href="/terms/">Terms</a>
+        <a href="/privacy/">Privacy</a>
+      </nav>
     </div>
-    <div class="shell footer__legal">
-      <p>© 2026 ninetynine.systems LLC · U.S.</p>
-    </div>
+    <p class="shell site-footer__legal">© 2026 ninetynine.systems LLC. All rights reserved.</p>
   </footer>
 
-  <script src="./app.js" defer></script>
+  <script src="/app.js" defer></script>
 </body>
 </html>

@@ -1,15 +1,23 @@
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-
-const html = readFileSync(join(root, 'index.html'), 'utf8');
+const pages = [
+  'index.html',
+  'products/index.html',
+  'gatekeeper/index.html',
+  'orvia/index.html',
+  'studio/index.html',
+  'company/index.html',
+  'contact/index.html',
+  'privacy/index.html',
+  'terms/index.html',
+];
+const pageSource = pages.map((page) => readFileSync(join(root, page), 'utf8'));
 const css = readFileSync(join(root, 'styles.css'), 'utf8');
-const readme = readFileSync(join(root, 'README.md'), 'utf8');
-const orviaHtml = readFileSync(join(root, 'orvia/index.html'), 'utf8');
-const orviaCss = readFileSync(join(root, 'orvia/styles.css'), 'utf8');
-const source = `${html}\n${css}`;
+const app = readFileSync(join(root, 'app.js'), 'utf8');
+const source = `${pageSource.join('\n')}\n${css}\n${app}`;
 
 function assert(condition, message) {
   if (!condition) {
@@ -18,86 +26,68 @@ function assert(condition, message) {
   }
 }
 
-// --- wiring ---
-assert(existsSync(join(root, 'app.js')), 'app.js should exist');
-assert(html.includes('href="./styles.css"'), 'index.html should load styles.css');
-assert(html.includes('src="./app.js"'), 'index.html should load app.js');
-assert(html.includes('href="./favicon.svg"'), 'index.html should load favicon.svg');
+for (const page of pages) {
+  assert(existsSync(join(root, page)), `${page} should exist`);
+}
+
+for (const [index, html] of pageSource.entries()) {
+  const page = pages[index];
+  assert(html.includes('href="/styles.css"'), `${page} should load the shared stylesheet`);
+  assert(html.includes('href="/assets/fonts/inter/index.css"'), `${page} should load the local Inter package`);
+  assert(html.includes('src="/app.js"'), `${page} should load the shared interaction script`);
+  assert(html.includes('href="/favicon.svg"'), `${page} should load the favicon`);
+  assert(html.includes('class="legalmark" href="/">ninetynine.systems</a>'), `${page} should use the concise header mark`);
+  assert(html.includes('class="site-footer__identity">ninetynine.systems LLC</p>'), `${page} should state the LLC identity in the footer`);
+  assert(!html.includes('<style'), `${page} should not contain inline style blocks`);
+  assert(!html.includes('<svg'), `${page} should not use hand-built inline SVG imagery`);
+  assert(!html.includes('href="#"'), `${page} should not contain placeholder links`);
+}
+
 assert(existsSync(join(root, 'favicon.svg')), 'favicon.svg should exist');
-assert(!html.includes('<style'), 'site styles should stay in styles.css');
+assert(existsSync(join(root, 'app.js')), 'app.js should exist');
+assert(css.includes('--font-sans: "Inter Variable"'), 'the shared Inter token should exist');
+assert(!source.includes('fonts.googleapis.com'), 'runtime Google Fonts requests are not allowed');
+assert(!source.includes('fonts.gstatic.com'), 'runtime Google Fonts requests are not allowed');
+assert(!source.includes('linear-gradient('), 'the selected design does not use gradients');
+assert(!source.includes('radial-gradient('), 'the selected design does not use gradients');
 
-// --- one typeface, self-hosted ---
-assert(html.includes('href="./assets/fonts/inter/index.css"'), 'index.html should load the Inter package');
 const interFiles = join(root, 'assets/fonts/inter/files');
-assert(existsSync(interFiles), 'Inter woff2 files directory should exist');
-assert(readdirSync(interFiles).some((n) => n.endsWith('.woff2')), 'Inter package should contain woff2 files');
+assert(existsSync(interFiles), 'Inter files should exist');
+assert(readdirSync(interFiles).some((name) => name.endsWith('.woff2')), 'Inter should include local woff2 files');
 
-for (const dir of ['assets/fonts/source-serif-4', 'assets/fonts/jetbrains-mono']) {
-  assert(!existsSync(join(root, dir)), `${dir} must be deleted — Inter is the only typeface`);
-}
-assert(!existsSync(join(root, 'assets/images/gatekeeper-model-promotion.png')),
-  'the Gatekeeper screenshot is retired; vignettes are hand-built HTML');
-
-// --- tokens ---
-assert(css.includes('--font-sans: "Inter Variable"'), 'missing --font-sans token');
-assert(!css.includes('--font-serif'), 'the serif token must be gone');
-assert(!css.includes('--font-mono'), 'the mono token must be gone');
-
-for (const scale of [
-  '--text-xs: 12px', '--text-sm: 14px', '--text-md: 16px', '--text-lg: 18px',
-  '--text-xl: 24px', '--text-2xl: 32px', '--text-3xl: 48px', '--text-4xl: 64px',
+for (const asset of [
+  'assets/images/gatekeeper/approval-legal-nda.png',
+  'assets/images/gatekeeper/approval-finance-invoice.png',
+  'assets/images/gatekeeper/approval-devops-rollback.png',
+  'assets/images/gatekeeper/approval-healthcare-protocol.png',
+  'assets/images/products/planner-concept.png',
+  'assets/images/products/billhead-concept.png',
+  'assets/images/orvia/Screenshot_20260902_133129_Orvia.jpg',
+  'assets/images/orvia/Screenshot_20260902_133223_Orvia.jpg',
+  'assets/images/orvia/Screenshot_20260902_134439_Orvia.jpg',
+  'assets/images/orvia/Screenshot_20260902_134520_Orvia.jpg',
+  'assets/images/orvia/Screenshot_20260902_150911_Orvia.jpg',
 ]) {
-  assert(css.includes(scale), `missing type scale value ${scale}`);
+  const path = join(root, asset);
+  assert(existsSync(path), `${asset} should exist`);
+  if (existsSync(path)) assert(statSync(path).size > 10_000, `${asset} should be a real image asset`);
 }
 
-// --- selector rules ---
-const selectorRules = [
-  [/html,\s*body\s*\{[\s\S]*?font-family:\s*var\(--font-sans\);[\s\S]*?font-size:\s*var\(--text-md\);[\s\S]*?font-weight:\s*400;/, 'body defaults to Inter at 16px/400'],
-  [/\.logo\s*\{[\s\S]*?font-weight:\s*700;/, 'the wordmark is Inter 700'],
-  [/\.logo__secondary\s*\{\s*color:\s*var\(--muted\);\s*\}/, 'the .systems half only changes color, never font or size'],
-];
-for (const [pattern, message] of selectorRules) {
-  assert(pattern.test(css), message);
-}
+const home = pageSource[0];
+assert(home.includes('Software systems built to keep working.'), 'the selected homepage headline should be present');
+assert(!home.includes('hero__identity'), 'the homepage should not repeat the legal identity in the hero');
+assert(home.includes('/assets/images/orvia/Screenshot_20260902_133223_Orvia.jpg'), 'the homepage should use the selected Orvia bots screen');
+assert(home.includes('/assets/images/orvia/Screenshot_20260902_133129_Orvia.jpg'), 'the homepage should use the supplied Orvia home-screen capture');
+assert(home.includes('/assets/images/orvia/Screenshot_20260902_150911_Orvia.jpg'), 'the homepage should use the supplied Orvia conversation capture');
+assert(!home.includes('/assets/images/orvia/Screenshot_20260902_134520_Orvia.jpg'), 'the replaced Orvia guides screen should not remain on the homepage');
+assert(home.includes('mailto:sazidozon@gmail.com'), 'the working contact email should remain available');
+assert(home.includes('Concept preview · in development'), 'generated product images should be labeled honestly');
+assert(home.includes('target="_blank" rel="noopener noreferrer"'), 'external product actions should be safe');
 
-// --- forbidden ---
-for (const forbidden of [
-  'Source Serif', 'JetBrains Mono', 'Syne', 'Archivo',
-  'fonts.googleapis.com', 'fonts.gstatic.com',
-  'font-weight: 300', 'font-weight: 800', 'font-weight: 900',
-  'pixel-99', 'hero__mark', 'cinematic-title',
-  's@ninetynine.systems',
-]) {
-  assert(!source.includes(forbidden), `remove stale or forbidden content: ${forbidden}`);
-}
-
-const declaredWeights = [...css.matchAll(/font-weight:\s*([0-9]+)/g)].map((m) => Number(m[1]));
-const allowedWeights = new Set([400, 500, 600, 700]);
+const declaredWeights = [...css.matchAll(/font-weight:\s*([0-9]+)/g)].map((match) => Number(match[1]));
 for (const weight of declaredWeights) {
-  assert(allowedWeights.has(weight), `font weight ${weight} is outside the documented system`);
+  assert(weight >= 400 && weight <= 700, `font weight ${weight} is outside the Inter system`);
 }
 
-// --- contact ---
-assert(html.includes('mailto:sazidozon@gmail.com'), 'the site-wide action must mail sazidozon@gmail.com');
-
-// --- the Orvia page is on the same system ---
-assert(orviaHtml.includes('href="../assets/fonts/inter/index.css"'), 'orvia/index.html should load the shared Inter package');
-assert(!`${orviaHtml}\n${orviaCss}`.includes('Archivo'), 'Archivo is retired from the Orvia page');
-assert(!existsSync(join(root, 'orvia/fonts/archivo-variable.woff2')), 'the Archivo woff2 must be deleted');
-assert(existsSync(join(root, 'orvia/LICENSE-thinking-orbs.txt')), 'the Thinking Orbs licence must stay');
-assert(orviaCss.includes('--orb-ink'), 'the orb still reads --orb-ink from CSS');
-
-// --- README documents the system ---
-for (const claim of [
-  'Inter is the only typeface',
-  '12 / 14 / 16 / 18 / 24 / 32 / 48 / 64',
-  'sazidozon@gmail.com',
-]) {
-  assert(readme.includes(claim), `README should state: ${claim}`);
-}
-
-if (process.exitCode) {
-  process.exit(process.exitCode);
-}
-
-console.log('Guardrail passed.');
+if (process.exitCode) process.exit(process.exitCode);
+console.log(`Guardrail passed for ${pages.length} pages.`);
