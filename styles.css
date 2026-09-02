@@ -227,12 +227,36 @@ a { color: inherit; }
 }
 
 .system__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  padding: 10px 15px;
+  border-radius: var(--radius-control);
+  background: var(--ink);
+  color: var(--page);
   font-size: var(--text-sm);
   font-weight: 500;
   text-decoration: none;
+  transition: background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
 }
 
-.system__link:hover { text-decoration: underline; }
+.system__link span {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.system__link:hover {
+  background: #2c2c2c;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+  transform: translateY(-1px);
+}
+
+.system__link:active { transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .system__link { transition: none; }
+}
 
 .system__status {
   font-size: var(--text-sm);
