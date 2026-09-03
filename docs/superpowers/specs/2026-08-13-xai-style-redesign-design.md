@@ -62,7 +62,7 @@ Scope is the homepage (`index.html`, `styles.css`, `app.js`) and the Orvia page
 
 1. **Nav** — wordmark `ninetynine.systems` (bold "ninetynine", gray
    ".systems"); links: Systems, Studio (anchor links); right: black pill
-   "Get in touch" → `mailto:sazidozon@gmail.com`.
+   "Get in touch" → `mailto:sazid@ninetynine.systems`.
 
 2. **Hero** — centered:
    - H1: "Software that has to keep working."
@@ -98,7 +98,7 @@ Scope is the homepage (`index.html`, `styles.css`, `app.js`) and the Orvia page
 5. **Footer** — multi-column: studio blurb column ("ninetynine.systems" over
    the line "An independent software studio." — the line moves here from the
    hero, it does not disappear from the site), Systems column (four product
-   links), Studio column (anchor links), Contact column (sazidozon@gmail.com).
+   links), Studio column (anchor links), Contact column (sazid@ninetynine.systems).
    Below: thin copyright bar "© 2026 ninetynine.systems".
 
 ## Orvia page (`orvia/`)
@@ -118,7 +118,7 @@ Brought onto the same system, keeping its splash character:
 
 - `app.js` is reduced to: nav state (if any) and an IntersectionObserver that
   fades sections in on scroll; both skipped under `prefers-reduced-motion`.
-- Contact email changes from s@ninetynine.systems to sazidozon@gmail.com
+- Contact email is `sazid@ninetynine.systems` across the site.
   everywhere (nav, studio CTA, footer, JSON-LD).
 - Meta/OG descriptions rewritten to the studio-first framing; title stays
   "ninetynine.systems — software that has to keep working".

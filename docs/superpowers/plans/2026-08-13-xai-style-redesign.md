@@ -11,7 +11,7 @@
 ## Global Constraints
 
 - Brand name is ALWAYS lowercase: `ninetynine.systems`.
-- Contact email is `sazidozon@gmail.com` everywhere (mailto links, footer, JSON-LD). The string `s@ninetynine.systems` must not survive anywhere.
+- Contact email is `sazid@ninetynine.systems` everywhere (mailto links, footer, JSON-LD).
 - No badge chips of any kind ("NEW", "LIVE", "EARLY BETA") and no numbered stat rows.
 - One typeface: `"Inter Variable"`. Allowed weights: 400/500/600/700. Type scale: 12/14/16/18/24/32/48/64, body 16px.
 - Text colors: `--ink: #111111` and `--muted: #6b6b6b` only. Lighter grays (`#9a9a9a`) may appear ONLY inside `aria-hidden` vignettes.
@@ -100,7 +100,6 @@ for (const forbidden of [
   'fonts.googleapis.com', 'fonts.gstatic.com',
   'font-weight: 300', 'font-weight: 800', 'font-weight: 900',
   'pixel-99', 'hero__mark', 'cinematic-title',
-  's@ninetynine.systems',
 ]) {
   assert(!source.includes(forbidden), `remove stale or forbidden content: ${forbidden}`);
 }
@@ -112,7 +111,7 @@ for (const weight of declaredWeights) {
 }
 
 // --- contact ---
-assert(html.includes('mailto:sazidozon@gmail.com'), 'the site-wide action must mail sazidozon@gmail.com');
+assert(html.includes('mailto:sazid@ninetynine.systems'), 'the site-wide action must mail sazid@ninetynine.systems');
 
 // --- the Orvia page is on the same system ---
 assert(orviaHtml.includes('href="../assets/fonts/inter/index.css"'), 'orvia/index.html should load the shared Inter package');
@@ -125,7 +124,7 @@ assert(orviaCss.includes('--orb-ink'), 'the orb still reads --orb-ink from CSS')
 for (const claim of [
   'Inter is the only typeface',
   '12 / 14 / 16 / 18 / 24 / 32 / 48 / 64',
-  'sazidozon@gmail.com',
+  'sazid@ninetynine.systems',
 ]) {
   assert(readme.includes(claim), `README should state: ${claim}`);
 }
@@ -140,7 +139,7 @@ console.log('Guardrail passed.');
 - [ ] **Step 2: Run it to verify it fails against the old site**
 
 Run: `node scripts/check-typography.mjs`
-Expected: many `Guardrail failed:` lines (serif/mono dirs exist, old tokens present, `pixel-99` present, `s@ninetynine.systems` present, Orvia loads Archivo…), exit code 1. If it PASSES, the script is wrong — stop and fix.
+Expected: many `Guardrail failed:` lines (serif/mono dirs exist, old tokens present, `pixel-99` present, Orvia loads Archivo…), exit code 1. If it PASSES, the script is wrong — stop and fix.
 
 - [ ] **Step 3: Do NOT commit yet** — the script is committed together with the homepage in Task 2 so no commit on `main` has a red gate against its own files. Move on.
 
@@ -188,7 +187,7 @@ Expected: many `Guardrail failed:` lines (serif/mono dirs exist, old tokens pres
       "@type": "Organization",
       "name": "ninetynine.systems",
       "url": "https://ninetynine.systems/",
-      "email": "sazidozon@gmail.com"
+      "email": "sazid@ninetynine.systems"
     }
   </script>
 </head>
@@ -206,7 +205,7 @@ Expected: many `Guardrail failed:` lines (serif/mono dirs exist, old tokens pres
         <a href="#studio">Studio</a>
       </nav>
 
-      <a class="pill pill--dark site-nav__cta" href="mailto:sazidozon@gmail.com">Get in touch</a>
+      <a class="pill pill--dark site-nav__cta" href="mailto:sazid@ninetynine.systems">Get in touch</a>
     </div>
   </header>
 
@@ -216,7 +215,7 @@ Expected: many `Guardrail failed:` lines (serif/mono dirs exist, old tokens pres
         <h1 class="hero__title" id="hero-title">Software that has to<br>keep working.</h1>
         <p class="hero__deck">Four systems, each built to do one job well — and to still be doing it years from now.</p>
         <div class="hero__actions">
-          <a class="pill pill--dark" href="mailto:sazidozon@gmail.com">Get in touch</a>
+          <a class="pill pill--dark" href="mailto:sazid@ninetynine.systems">Get in touch</a>
           <a class="pill pill--light" href="#systems">See the systems</a>
         </div>
       </div>
@@ -317,7 +316,7 @@ Expected: many `Guardrail failed:` lines (serif/mono dirs exist, old tokens pres
       <div class="shell">
         <h2 id="studio-title">We also build for other people.</h2>
         <p class="studio__deck">The same standard we hold our own systems to, applied to yours. Client work, in any line of work that touches software.</p>
-        <a class="pill pill--dark" href="mailto:sazidozon@gmail.com">Get in touch</a>
+        <a class="pill pill--dark" href="mailto:sazid@ninetynine.systems">Get in touch</a>
       </div>
     </section>
   </main>
@@ -341,7 +340,7 @@ Expected: many `Guardrail failed:` lines (serif/mono dirs exist, old tokens pres
       </nav>
       <div class="footer__col">
         <p class="footer__head">Contact</p>
-        <a href="mailto:sazidozon@gmail.com">sazidozon@gmail.com</a>
+        <a href="mailto:sazid@ninetynine.systems">sazid@ninetynine.systems</a>
       </div>
     </div>
     <div class="shell footer__legal">
@@ -994,7 +993,7 @@ git commit -m "delete the serif and mono font packages and the gatekeeper screen
 
 <header class="page-nav">
   <a class="logo" href="../">ninetynine<span>.systems</span></a>
-  <a class="pill" href="mailto:sazidozon@gmail.com">Get in touch</a>
+  <a class="pill" href="mailto:sazid@ninetynine.systems">Get in touch</a>
 </header>
 
 <main>
@@ -1183,7 +1182,7 @@ git commit -m "restyle the orvia page onto the site-wide system"
 - Modify: `README.md` (full replacement)
 
 **Interfaces:**
-- Consumes: guardrail asserts the README contains the exact strings `Inter is the only typeface`, `12 / 14 / 16 / 18 / 24 / 32 / 48 / 64`, and `sazidozon@gmail.com` — all present below.
+- Consumes: guardrail asserts the README contains the exact strings `Inter is the only typeface`, `12 / 14 / 16 / 18 / 24 / 32 / 48 / 64`, and `sazid@ninetynine.systems` — all present below.
 
 - [ ] **Step 1: Replace `README.md` entirely with:**
 
@@ -1199,7 +1198,7 @@ The site follows the x.ai-style system specified in
 page (`#ffffff`), near-black text, pill-shaped controls, and the four products
 presented as equal full-width index rows that alternate white and faint gray.
 No badge chips ("NEW", "LIVE"), no numbered stat rows, no sales language. The
-site-wide action is "Get in touch", which mails sazidozon@gmail.com.
+site-wide action is "Get in touch", which mails sazid@ninetynine.systems.
 
 ## Typography
 
@@ -1291,7 +1290,7 @@ Read the browser console and network log. Expected: no console errors; every req
 Read the rendered page (accessibility tree) and confirm:
 - One h1 ("Software that has to keep working."), h2s: Gatekeeper, Orvia, Planner, Billhead, "We also build for other people."
 - No "NEW"/"LIVE"/"EARLY BETA" text anywhere. No "01"/"02"/"03" row.
-- All three "Get in touch" links (nav, studio, footer) point to `mailto:sazidozon@gmail.com`.
+- All three "Get in touch" links (nav, studio, footer) point to `mailto:sazid@ninetynine.systems`.
 - Gatekeeper row links to `https://gatekeeper.now/`; Orvia row links to `./orvia/`; Planner shows "In the workshop" and Billhead "Coming soon" as plain text, not links.
 - Tab through the page: skip link appears first; every link shows a visible focus outline.
 

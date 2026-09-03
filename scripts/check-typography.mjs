@@ -80,9 +80,15 @@ assert(home.includes('/assets/images/orvia/Screenshot_20260902_133223_Orvia.jpg'
 assert(home.includes('/assets/images/orvia/Screenshot_20260902_133129_Orvia.jpg'), 'the homepage should use the supplied Orvia home-screen capture');
 assert(home.includes('/assets/images/orvia/Screenshot_20260902_150911_Orvia.jpg'), 'the homepage should use the supplied Orvia conversation capture');
 assert(!home.includes('/assets/images/orvia/Screenshot_20260902_134520_Orvia.jpg'), 'the replaced Orvia guides screen should not remain on the homepage');
-assert(home.includes('mailto:sazidozon@gmail.com'), 'the working contact email should remain available');
+assert(home.includes('mailto:sazid@ninetynine.systems'), 'the working contact email should remain available');
 assert(home.includes('Concept preview · in development'), 'generated product images should be labeled honestly');
 assert(home.includes('target="_blank" rel="noopener noreferrer"'), 'external product actions should be safe');
+
+const mailtoTargets = [...pageSource.join('\n').matchAll(/mailto:([^?"']+)/g)].map((match) => match[1]);
+assert(mailtoTargets.length > 0, 'the site should include contact email links');
+for (const address of mailtoTargets) {
+  assert(address === 'sazid@ninetynine.systems', `unexpected contact email: ${address}`);
+}
 
 const declaredWeights = [...css.matchAll(/font-weight:\s*([0-9]+)/g)].map((match) => Number(match[1]));
 for (const weight of declaredWeights) {

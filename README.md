@@ -35,7 +35,7 @@ they are not presented as shipped interfaces.
 
 ## Contact
 
-The working site-wide address is `sazidozon@gmail.com`. The contact page uses a
+The working site-wide address is `sazid@ninetynine.systems`. The contact page uses a
 direct mail link instead of a form, so the static site does not collect form
 submissions.
 
