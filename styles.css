@@ -35,6 +35,8 @@ body { overflow-x: hidden; }
 
 img { display: block; max-width: 100%; height: auto; }
 
+figure { margin: 0; }
+
 a { color: inherit; }
 
 p,
@@ -184,6 +186,7 @@ textarea { font: inherit; }
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
+  white-space: nowrap;
   text-decoration: none;
   transition: transform 160ms ease, background-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
 }
@@ -203,16 +206,17 @@ textarea { font: inherit; }
 
 .button--light:hover { background: #f4f4f4; }
 
-.button--on-dark {
-  border-color: white;
-  background: white;
-  color: var(--ink);
+.closing .button--on-dark {
+  border-color: #fff;
+  background-color: #fff;
+  color: #080808;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
 }
 
-.button--ghost-dark {
-  border-color: #666;
-  background: transparent;
-  color: white;
+.closing .button--on-dark:hover {
+  border-color: #f0f0f0;
+  background-color: #f0f0f0;
+  color: #080808;
 }
 
 .text-link {
@@ -343,7 +347,7 @@ textarea { font: inherit; }
 
 .product-media img { width: 100%; height: auto; }
 
-.product-media--gatekeeper img { aspect-ratio: 16 / 9; object-fit: cover; object-position: center; }
+.product-media--gatekeeper img { aspect-ratio: 8 / 5; object-fit: cover; object-position: center; }
 
 .phone-pair {
   display: flex;
@@ -883,12 +887,17 @@ textarea { font: inherit; }
 
 }
 
+@media (max-width: 840px) {
+  .product-chapter__inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    min-height: 0;
+  }
+}
+
 @media (max-width: 760px) {
-  .product-chapter__inner,
   .section-header,
   .contact-panel { grid-template-columns: 1fr; gap: 36px; }
-
-  .product-chapter__inner { min-height: 0; }
 
   .studio-band__grid { grid-template-columns: repeat(2, 1fr); }
 

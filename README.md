@@ -1,6 +1,6 @@
 # ninetynine.systems company website
 
-Static GitHub Pages website for **ninetynine.systems LLC**, a U.S. software
+Static GitHub Pages website for **ninetynine.systems LLC**, an independent software
 company. The site presents the company, its product portfolio, its software
 studio, contact information, and public website policies.
 

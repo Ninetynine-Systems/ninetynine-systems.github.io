@@ -46,6 +46,8 @@ for (const [index, html] of pageSource.entries()) {
 assert(existsSync(join(root, 'favicon.svg')), 'favicon.svg should exist');
 assert(existsSync(join(root, 'app.js')), 'app.js should exist');
 assert(css.includes('--font-sans: "Inter Variable"'), 'the shared Inter token should exist');
+assert(css.includes('figure { margin: 0; }'), 'figure defaults should not shrink product media');
+assert(css.includes('.product-media--gatekeeper img { aspect-ratio: 8 / 5;'), 'the Gatekeeper preview should preserve its source aspect ratio');
 assert(!source.includes('fonts.googleapis.com'), 'runtime Google Fonts requests are not allowed');
 assert(!source.includes('fonts.gstatic.com'), 'runtime Google Fonts requests are not allowed');
 assert(!source.includes('linear-gradient('), 'the selected design does not use gradients');
@@ -74,13 +76,23 @@ for (const asset of [
 }
 
 const home = pageSource[0];
+const company = pageSource[5];
 assert(home.includes('Software systems built to keep working.'), 'the selected homepage headline should be present');
 assert(!home.includes('hero__identity'), 'the homepage should not repeat the legal identity in the hero');
 assert(home.includes('/assets/images/orvia/Screenshot_20260902_133223_Orvia.jpg'), 'the homepage should use the selected Orvia bots screen');
 assert(home.includes('/assets/images/orvia/Screenshot_20260902_133129_Orvia.jpg'), 'the homepage should use the supplied Orvia home-screen capture');
 assert(home.includes('/assets/images/orvia/Screenshot_20260902_150911_Orvia.jpg'), 'the homepage should use the supplied Orvia conversation capture');
 assert(!home.includes('/assets/images/orvia/Screenshot_20260902_134520_Orvia.jpg'), 'the replaced Orvia guides screen should not remain on the homepage');
-assert(home.includes('mailto:sazid@ninetynine.systems'), 'the working contact email should remain available');
+assert(home.includes('class="button button--on-dark" href="/contact/">Start a project</a>'), 'the homepage should keep one clear closing action');
+assert(!home.includes('class="button button--light" href="/contact/">Start a project</a>'), 'the homepage hero should focus on the product systems');
+assert(!home.includes('Email us'), 'the homepage closing action should not be duplicated');
+assert(!home.includes('founder-led U.S. software company'), 'the homepage should not conflate leadership, registration, and team location');
+assert(!source.includes('founder-led'), 'company positioning should not rely on founder-led language');
+assert(!source.includes('Dhaka'), 'the public website should not disclose the team location');
+assert(!source.includes('Where are you based?'), 'the homepage should not foreground operating location');
+assert(company.includes('Legal and business details.'), 'the company page should introduce the formal company information plainly');
+assert(!company.includes('Team location'), 'the company details should not publish the team location');
+assert(company.includes('<strong>Registration</strong><span>Missouri, United States</span>'), 'the company page should identify the registration jurisdiction');
 assert(home.includes('Concept preview · in development'), 'generated product images should be labeled honestly');
 assert(home.includes('target="_blank" rel="noopener noreferrer"'), 'external product actions should be safe');
 

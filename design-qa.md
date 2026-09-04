@@ -2,7 +2,7 @@
 
 ## Comparison target
 
-- Source visual truth: `docs/design/option-3-reference.png`, the annotated Orvia section capture, and the supplied `assets/images/orvia/Screenshot_20260902_150911_Orvia.jpg` and `assets/images/orvia/Screenshot_20260902_133129_Orvia.jpg` captures.
+- Source visual truth: `docs/design/option-3-reference.png`, the annotated Orvia section capture, the supplied `assets/images/orvia/Screenshot_20260902_150911_Orvia.jpg` and `assets/images/orvia/Screenshot_20260902_133129_Orvia.jpg` captures, the annotated hero capture at `C:/Users/sazid/AppData/Local/Temp/codex-clipboard-04102a1e-0876-438a-a960-fb8efc518680.png`, and the annotated Gatekeeper capture at a 763 × 1143 CSS-pixel viewport.
 - Source pixels: 864 × 1821
 - Implementation: `http://127.0.0.1:4173/`
 - Implementation screenshot: captured and emitted from the Codex in-app Browser during this task. The browser capture API did not expose a filesystem save path.
@@ -77,6 +77,36 @@ No actionable P0, P1, or P2 mismatches remained in the stable desktop, interior-
   - Fix: explicitly reset overlap margins and card transforms below 760px, then retained only a restrained vertical stagger.
   - Post-fix evidence: the 390 × 844 iframe showed two large, non-overlapping cards per row; the second row and transition to Planner were inspected separately.
 - A fresh in-app Browser tab loaded all four images and reported no console warnings or errors.
+
+### Iteration 6 — closing CTA simplification
+
+- [P2] The closing section presented two competing actions, while the intended primary `Start a project` action could render with insufficient contrast against the black background.
+  - Fix: removed the duplicate `Email us` action and gave the remaining contact-route CTA an explicit white surface, near-black text, restrained shadow, and clear hover state scoped to the closing section.
+  - Post-fix evidence: the final browser capture shows one high-contrast `Start a project` button; computed styles report a white background and `rgb(8, 8, 8)` text, the link resolves to `/contact/`, and no console warnings or errors were reported.
+
+### Iteration 7 — product-first company positioning
+
+- [P2] The hero gave product discovery and studio lead generation equal weight, weakening the product-first message.
+  - Fix: removed the hero-level `Start a project` action and retained `See the systems` as the single primary action. The project contact path remains available in the navigation, Studio section, and closing section.
+  - Post-fix evidence: the final browser capture shows one centered product-discovery CTA in the hero and the existing product chapter navigation directly below it.
+- [P2] Repeated `U.S. software company` and `founder-led` language blurred the distinction between the team’s operating location and the company’s legal registration.
+  - Fix: positioned ninetynine.systems as an independent software company in marketing copy, stated that the team is based in Dhaka, Bangladesh, and reserved the Missouri, United States registration detail for the location FAQ and Company details.
+  - Post-fix evidence: the expanded homepage location FAQ and Company details browser captures clearly separate `Dhaka, Bangladesh` from `Missouri, United States`; the Company hero no longer uses `founder-led` or presents U.S. registration as the brand position.
+- [P2] The closing CTA wrapped onto two lines at the 752-pixel browser width after the surrounding content reflowed.
+  - Fix: kept short button labels on one line across breakpoints; the button remains within the available column without overflow.
+  - Post-fix evidence: a fresh browser capture at the same width shows `Start a project` on one line with the existing high-contrast treatment intact.
+
+### Iteration 8 — Gatekeeper preview legibility
+
+- [P2] At the annotated 763-pixel viewport, the 2720 × 1700 Gatekeeper source was squeezed to approximately 167 × 94 CSS pixels, making its interface look blurred even though the source asset was sharp.
+  - Fix: removed browser-default figure margins, corrected the image metadata and presentation ratio to the source’s 8:5 dimensions, and stacked product chapters below 840 pixels so the preview receives the full content width.
+  - Post-fix evidence: the matched 763-pixel responsive capture shows the complete Gatekeeper preview at approximately 715 pixels wide—more than four times its previous rendered width—with no crop or horizontal overflow. The standard 1280-pixel browser capture renders it at approximately 759 × 475 CSS pixels from the original 2720 × 1700 source.
+
+### Iteration 9 — public company-detail simplification
+
+- [P2] The Company details and homepage FAQ disclosed the team’s operating location even though that information is not needed for the site’s public company presentation.
+  - Fix: removed the Dhaka and team-location references, removed the location FAQ, and retained only the formal Missouri registration alongside the legal name, structure, business activity, and contact address.
+  - Post-fix evidence: the Company details section now uses the neutral heading `Legal and business details.` and contains no operating-location field; the homepage FAQ contains three product and engagement questions with no location disclosure.
 
 ## Follow-up polish
 
