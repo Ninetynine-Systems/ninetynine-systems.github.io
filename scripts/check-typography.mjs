@@ -36,7 +36,10 @@ for (const [index, html] of pageSource.entries()) {
   assert(html.includes('href="/assets/fonts/inter/index.css"'), `${page} should load the local Inter package`);
   assert(html.includes('src="/app.js"'), `${page} should load the shared interaction script`);
   assert(html.includes('href="/favicon.svg"'), `${page} should load the favicon`);
-  assert(html.includes('class="legalmark" href="/">ninetynine.systems</a>'), `${page} should use the concise header mark`);
+  assert(html.includes('class="legalmark" href="/" aria-label="ninetynine.systems home"'), `${page} should label the company home link`);
+  assert(html.includes('class="legalmark__symbol" src="/assets/brand-mark.svg"'), `${page} should use the shared connected header mark`);
+  assert(html.includes('<span>ninetynine.systems</span></a>'), `${page} should keep the company name as readable text`);
+  assert(html.includes('href="/favicon.ico"'), `${page} should load the ICO fallback`);
   assert(html.includes('class="site-footer__identity">ninetynine.systems LLC</p>'), `${page} should state the LLC identity in the footer`);
   assert(!html.includes('<style'), `${page} should not contain inline style blocks`);
   assert(!html.includes('<svg'), `${page} should not use hand-built inline SVG imagery`);
@@ -44,6 +47,8 @@ for (const [index, html] of pageSource.entries()) {
 }
 
 assert(existsSync(join(root, 'favicon.svg')), 'favicon.svg should exist');
+assert(existsSync(join(root, 'favicon.ico')), 'favicon.ico should exist');
+assert(existsSync(join(root, 'assets/brand-mark.svg')), 'the shared header mark should exist');
 assert(existsSync(join(root, 'app.js')), 'app.js should exist');
 assert(css.includes('--font-sans: "Inter Variable"'), 'the shared Inter token should exist');
 assert(css.includes('figure { margin: 0; }'), 'figure defaults should not shrink product media');

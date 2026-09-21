@@ -39,6 +39,15 @@ The working site-wide address is `sazid@ninetynine.systems`. The contact page us
 direct mail link instead of a form, so the static site does not collect form
 submissions.
 
+## Branding
+
+The shared header mark is `assets/brand-mark.svg`. `favicon.svg` uses the same
+connected geometry in white on a dark tile; `favicon.ico` contains 16, 32, 48,
+64, 128, and 256px versions. Regenerate it on macOS with
+`swift scripts/generate-favicon.swift` after editing the favicon SVG. These are
+static assets; GitHub Pages does not need Swift. Google Play developer icon
+and header exports are kept in `output/google-play/`.
+
 ## Validation
 
 Run the local guardrail before deployment:

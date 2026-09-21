@@ -126,12 +126,19 @@ textarea { font: inherit; }
 }
 
 .legalmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  white-space: nowrap;
   flex: 0 0 auto;
   font-size: 13px;
   font-weight: 650;
   letter-spacing: -0.02em;
   text-decoration: none;
 }
+
+.legalmark__symbol { width: 28px; height: auto; flex-shrink: 0; }
 
 .site-nav {
   display: flex;
@@ -944,6 +951,8 @@ textarea { font: inherit; }
   .site-header__inner { min-height: 58px; gap: 14px; }
 
   .legalmark { max-width: 145px; font-size: 11px; line-height: 1.2; }
+
+  .legalmark__symbol { width: 24px; }
 
   .site-nav { gap: 16px; }
 
