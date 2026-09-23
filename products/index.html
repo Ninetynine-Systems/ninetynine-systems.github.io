@@ -8,11 +8,12 @@
   <link rel="canonical" href="https://ninetynine.systems/products/">
   <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64 128x128 256x256">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
-  <link rel="stylesheet" href="/assets/fonts/inter/index.css">
+  <link rel="preload" href="/assets/fonts/inter/files/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+  <div id="scroll-sentinel" class="scroll-sentinel" aria-hidden="true"></div>
   <header class="site-header" id="site-header">
     <div class="shell site-header__inner">
       <a class="legalmark" href="/" aria-label="ninetynine.systems home"><img class="legalmark__symbol" src="/assets/brand-mark.svg" width="28" height="26" alt=""><span>ninetynine.systems</span></a>
@@ -41,7 +42,7 @@
           <h2>Human approval before action.</h2>
           <p>Gatekeeper holds a risky action until the responsible person says yes, then keeps a durable record of the decision.</p>
           <div class="product-card__media">
-            <img src="/assets/images/gatekeeper/approval-legal-nda.png" alt="Gatekeeper legal approval request" width="2880" height="1620">
+            <img src="/assets/images/gatekeeper/approval-legal-nda-800.webp" srcset="/assets/images/gatekeeper/approval-legal-nda-800.webp 800w, /assets/images/gatekeeper/approval-legal-nda-1600.webp 1600w" sizes="(max-width: 720px) calc(100vw - 32px), 620px" alt="Gatekeeper legal approval request" width="2720" height="1700" decoding="async">
           </div>
           <div class="button-row">
             <a class="button" href="https://gatekeeper.now/" target="_blank" rel="noopener noreferrer">Open Gatekeeper</a>
@@ -54,8 +55,8 @@
           <h2>A mobile agent for daily life.</h2>
           <p>Skills, mini apps, bots, and conversations come together in one mobile workspace designed around everyday actions.</p>
           <div class="product-card__media product-card__media--phones">
-            <img src="/assets/images/orvia/Screenshot_20260902_134439_Orvia.jpg" alt="Orvia mini apps board" width="1080" height="2340">
-            <img src="/assets/images/orvia/Screenshot_20260902_134520_Orvia.jpg" alt="Orvia guides" width="1080" height="2340">
+            <img src="/assets/images/orvia/Screenshot_20260902_134439_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_134439_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_134439_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_134439_Orvia-720.webp 720w" sizes="(max-width: 720px) 40vw, 240px" alt="Orvia mini apps board" width="1080" height="2340" loading="lazy" decoding="async">
+            <img src="/assets/images/orvia/Screenshot_20260902_134520_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_134520_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_134520_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_134520_Orvia-720.webp 720w" sizes="(max-width: 720px) 40vw, 240px" alt="Orvia guides" width="1080" height="2340" loading="lazy" decoding="async">
           </div>
           <div class="button-row"><a class="button" href="/orvia/">Explore Orvia</a></div>
         </article>
@@ -65,7 +66,7 @@
           <h2>Plans that stay in sync.</h2>
           <p>A planning system for aligned weeks, clear priorities, and accountable delivery.</p>
           <div class="product-card__media">
-            <img src="/assets/images/products/planner-concept.png" alt="Planner concept preview" width="1536" height="864">
+            <img src="/assets/images/products/planner-concept-880.webp" srcset="/assets/images/products/planner-concept-880.webp 880w, /assets/images/products/planner-concept-1400.webp 1400w" sizes="(max-width: 720px) calc(100vw - 32px), 620px" alt="Planner concept preview" width="1774" height="887" loading="lazy" decoding="async">
           </div>
         </article>
 
@@ -74,7 +75,7 @@
           <h2>Invoices without friction.</h2>
           <p>Professional billing, clean records, and simple handoff for small businesses.</p>
           <div class="product-card__media">
-            <img src="/assets/images/products/billhead-concept.png" alt="Billhead concept preview" width="1536" height="864">
+            <img src="/assets/images/products/billhead-concept-880.webp" srcset="/assets/images/products/billhead-concept-880.webp 880w, /assets/images/products/billhead-concept-1400.webp 1400w" sizes="(max-width: 720px) calc(100vw - 32px), 620px" alt="Billhead concept preview" width="1774" height="887" loading="lazy" decoding="async">
           </div>
         </article>
       </div>

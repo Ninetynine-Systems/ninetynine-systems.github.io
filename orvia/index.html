@@ -8,11 +8,12 @@
   <link rel="canonical" href="https://ninetynine.systems/orvia/">
   <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64 128x128 256x256">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
-  <link rel="stylesheet" href="/assets/fonts/inter/index.css">
+  <link rel="preload" href="/assets/fonts/inter/files/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+  <div id="scroll-sentinel" class="scroll-sentinel" aria-hidden="true"></div>
   <header class="site-header" id="site-header">
     <div class="shell site-header__inner">
       <a class="legalmark" href="/" aria-label="ninetynine.systems home"><img class="legalmark__symbol" src="/assets/brand-mark.svg" width="28" height="26" alt=""><span>ninetynine.systems</span></a>
@@ -34,10 +35,10 @@
       <div class="shell">
         <div class="section-header" data-reveal><p class="eyebrow">One mobile workspace</p><div><h2>Mini apps. Skills. Bots. Everyday actions.</h2><p>Orvia is designed to make useful software feel close at hand: discover a guide, create a small tool, run a bot, or move directly into the action you need.</p></div></div>
         <div class="phone-gallery">
-          <figure data-reveal><img src="/assets/images/orvia/Screenshot_20260902_133117_Orvia.jpg" alt="Orvia connectors screen" width="1080" height="2340"><figcaption>Connectors</figcaption></figure>
-          <figure data-reveal><img src="/assets/images/orvia/Screenshot_20260902_133223_Orvia.jpg" alt="Orvia bots screen" width="1080" height="2340"><figcaption>Bots</figcaption></figure>
-          <figure data-reveal><img src="/assets/images/orvia/Screenshot_20260902_134439_Orvia.jpg" alt="Orvia mini apps board" width="1080" height="2340"><figcaption>Mini apps</figcaption></figure>
-          <figure data-reveal><img src="/assets/images/orvia/Screenshot_20260902_134520_Orvia.jpg" alt="Orvia guides screen" width="1080" height="2340"><figcaption>Guides</figcaption></figure>
+          <figure data-reveal><img src="/assets/images/orvia/Screenshot_20260902_133117_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_133117_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_133117_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_133117_Orvia-720.webp 720w" sizes="(max-width: 430px) 92vw, (max-width: 760px) 46vw, 300px" alt="Orvia connectors screen" width="1080" height="2340" loading="lazy" decoding="async"><figcaption>Connectors</figcaption></figure>
+          <figure data-reveal><img src="/assets/images/orvia/Screenshot_20260902_133223_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_133223_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_133223_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_133223_Orvia-720.webp 720w" sizes="(max-width: 430px) 92vw, (max-width: 760px) 46vw, 300px" alt="Orvia bots screen" width="1080" height="2340" loading="lazy" decoding="async"><figcaption>Bots</figcaption></figure>
+          <figure data-reveal><img src="/assets/images/orvia/Screenshot_20260902_134439_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_134439_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_134439_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_134439_Orvia-720.webp 720w" sizes="(max-width: 430px) 92vw, (max-width: 760px) 46vw, 300px" alt="Orvia mini apps board" width="1080" height="2340" loading="lazy" decoding="async"><figcaption>Mini apps</figcaption></figure>
+          <figure data-reveal><img src="/assets/images/orvia/Screenshot_20260902_134520_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_134520_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_134520_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_134520_Orvia-720.webp 720w" sizes="(max-width: 430px) 92vw, (max-width: 760px) 46vw, 300px" alt="Orvia guides screen" width="1080" height="2340" loading="lazy" decoding="async"><figcaption>Guides</figcaption></figure>
         </div>
       </div>
     </section>
@@ -58,10 +59,10 @@
       <div class="shell">
         <div class="section-header" data-reveal><p class="eyebrow">More views</p><div><h2>Playful when it can be. Useful when it matters.</h2><p>Orvia can move between practical tools and small, personal experiences without losing the simplicity of one home.</p></div></div>
         <div class="phone-gallery">
-          <figure data-reveal><img src="/assets/images/orvia/Screenshot_20260902_134058_Orvia.jpg" alt="Color Snake mini app in Orvia" width="1080" height="2340"><figcaption>A mini app</figcaption></figure>
-          <figure data-reveal><img src="/assets/images/orvia/Screenshot_20260902_134510_Orvia.jpg" alt="Orvia guides overview" width="1080" height="2340"><figcaption>Guides overview</figcaption></figure>
-          <figure data-reveal><img src="/assets/images/orvia/Screenshot_20260902_134525_Orvia.jpg" alt="Orvia skills screen" width="1080" height="2340"><figcaption>Skills</figcaption></figure>
-          <figure data-reveal><img src="/assets/images/orvia/Screenshot_20260902_133256_Orvia.jpg" alt="Create a bot in Orvia" width="1080" height="2340"><figcaption>Create a bot</figcaption></figure>
+          <figure data-reveal><img src="/assets/images/orvia/Screenshot_20260902_134058_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_134058_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_134058_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_134058_Orvia-720.webp 720w" sizes="(max-width: 430px) 92vw, (max-width: 760px) 46vw, 300px" alt="Color Snake mini app in Orvia" width="1080" height="2340" loading="lazy" decoding="async"><figcaption>A mini app</figcaption></figure>
+          <figure data-reveal><img src="/assets/images/orvia/Screenshot_20260902_134510_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_134510_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_134510_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_134510_Orvia-720.webp 720w" sizes="(max-width: 430px) 92vw, (max-width: 760px) 46vw, 300px" alt="Orvia guides overview" width="1080" height="2340" loading="lazy" decoding="async"><figcaption>Guides overview</figcaption></figure>
+          <figure data-reveal><img src="/assets/images/orvia/Screenshot_20260902_134525_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_134525_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_134525_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_134525_Orvia-720.webp 720w" sizes="(max-width: 430px) 92vw, (max-width: 760px) 46vw, 300px" alt="Orvia skills screen" width="1080" height="2340" loading="lazy" decoding="async"><figcaption>Skills</figcaption></figure>
+          <figure data-reveal><img src="/assets/images/orvia/Screenshot_20260902_133256_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_133256_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_133256_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_133256_Orvia-720.webp 720w" sizes="(max-width: 430px) 92vw, (max-width: 760px) 46vw, 300px" alt="Create a bot in Orvia" width="1080" height="2340" loading="lazy" decoding="async"><figcaption>Create a bot</figcaption></figure>
         </div>
       </div>
     </section>

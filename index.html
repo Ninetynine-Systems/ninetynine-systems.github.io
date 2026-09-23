@@ -10,7 +10,6 @@
   <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64 128x128 256x256">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
   <link rel="preload" href="/assets/fonts/inter/files/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/fonts/inter/index.css">
   <link rel="stylesheet" href="/styles.css">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ninetynine.systems">
@@ -31,6 +30,7 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+  <div id="scroll-sentinel" class="scroll-sentinel" aria-hidden="true"></div>
 
   <header class="site-header" id="site-header">
     <div class="shell site-header__inner">
@@ -75,7 +75,7 @@
           </div>
         </div>
         <figure class="product-media product-media--gatekeeper" data-reveal>
-          <img src="/assets/images/gatekeeper/approval-legal-nda.png" alt="Gatekeeper approval request showing a legal contract decision and its timeline" width="2720" height="1700">
+          <img src="/assets/images/gatekeeper/approval-legal-nda-800.webp" srcset="/assets/images/gatekeeper/approval-legal-nda-800.webp 800w, /assets/images/gatekeeper/approval-legal-nda-1600.webp 1600w" sizes="(max-width: 840px) calc(100vw - 32px), 800px" alt="Gatekeeper approval request showing a legal contract decision and its timeline" width="2720" height="1700" fetchpriority="high" decoding="async">
         </figure>
       </div>
     </section>
@@ -92,16 +92,16 @@
         </div>
         <div class="phone-pair" data-reveal>
           <figure class="phone-shot">
-            <img src="/assets/images/orvia/Screenshot_20260902_134439_Orvia.jpg" alt="Orvia mini apps board with a calendar and watchlist" width="1080" height="2340">
+            <img src="/assets/images/orvia/Screenshot_20260902_134439_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_134439_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_134439_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_134439_Orvia-720.webp 720w" sizes="(max-width: 760px) 46vw, 210px" alt="Orvia mini apps board with a calendar and watchlist" width="1080" height="2340" loading="lazy" decoding="async">
           </figure>
           <figure class="phone-shot">
-            <img src="/assets/images/orvia/Screenshot_20260902_133223_Orvia.jpg" alt="Orvia bots for focused assistants and conversations" width="1080" height="2340">
+            <img src="/assets/images/orvia/Screenshot_20260902_133223_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_133223_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_133223_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_133223_Orvia-720.webp 720w" sizes="(max-width: 760px) 46vw, 210px" alt="Orvia bots for focused assistants and conversations" width="1080" height="2340" loading="lazy" decoding="async">
           </figure>
           <figure class="phone-shot">
-            <img src="/assets/images/orvia/Screenshot_20260902_150911_Orvia.jpg" alt="Orvia conversation setting timers, reminders, and checking the weather" width="1080" height="2340">
+            <img src="/assets/images/orvia/Screenshot_20260902_150911_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_150911_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_150911_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_150911_Orvia-720.webp 720w" sizes="(max-width: 760px) 46vw, 210px" alt="Orvia conversation setting timers, reminders, and checking the weather" width="1080" height="2340" loading="lazy" decoding="async">
           </figure>
           <figure class="phone-shot">
-            <img src="/assets/images/orvia/Screenshot_20260902_133129_Orvia.jpg" alt="Orvia available from the phone home screen" width="1080" height="2340">
+            <img src="/assets/images/orvia/Screenshot_20260902_133129_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_133129_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_133129_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_133129_Orvia-720.webp 720w" sizes="(max-width: 760px) 46vw, 210px" alt="Orvia available from the phone home screen" width="1080" height="2340" loading="lazy" decoding="async">
           </figure>
         </div>
       </div>
@@ -115,7 +115,7 @@
           <p>A new planning system for aligned weeks, clear priorities, and accountable delivery.</p>
         </div>
         <figure class="concept-media" data-reveal>
-          <img src="/assets/images/products/planner-concept.png" alt="Concept preview of Planner showing a weekly schedule" width="1536" height="864">
+          <img src="/assets/images/products/planner-concept-880.webp" srcset="/assets/images/products/planner-concept-880.webp 880w, /assets/images/products/planner-concept-1400.webp 1400w" sizes="(max-width: 720px) calc(100vw - 32px), 840px" alt="Concept preview of Planner showing a weekly schedule" width="1774" height="887" loading="lazy" decoding="async">
           <figcaption>Concept preview · in development</figcaption>
         </figure>
       </article>
@@ -127,7 +127,7 @@
           <p>Professional billing, clean records, and simple handoff for small businesses.</p>
         </div>
         <figure class="concept-media" data-reveal>
-          <img src="/assets/images/products/billhead-concept.png" alt="Concept preview of Billhead showing a sample invoice layout" width="1536" height="864">
+          <img src="/assets/images/products/billhead-concept-880.webp" srcset="/assets/images/products/billhead-concept-880.webp 880w, /assets/images/products/billhead-concept-1400.webp 1400w" sizes="(max-width: 720px) calc(100vw - 32px), 840px" alt="Concept preview of Billhead showing a sample invoice layout" width="1774" height="887" loading="lazy" decoding="async">
           <figcaption>Concept preview · in development</figcaption>
         </figure>
       </article>

@@ -2,12 +2,12 @@ document.documentElement.classList.add("has-js");
 
 (function initHeader() {
   var header = document.getElementById("site-header");
-  if (!header) return;
+  var sentinel = document.getElementById("scroll-sentinel");
+  if (!header || !sentinel || !("IntersectionObserver" in window)) return;
 
-  var update = function () {
-    header.classList.toggle("is-scrolled", window.scrollY > 8);
-  };
+  var observer = new IntersectionObserver(function (entries) {
+    header.classList.toggle("is-scrolled", !entries[0].isIntersecting);
+  });
 
-  update();
-  window.addEventListener("scroll", update, { passive: true });
+  observer.observe(sentinel);
 })();

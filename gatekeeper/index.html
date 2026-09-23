@@ -8,11 +8,12 @@
   <link rel="canonical" href="https://ninetynine.systems/gatekeeper/">
   <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64 128x128 256x256">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
-  <link rel="stylesheet" href="/assets/fonts/inter/index.css">
+  <link rel="preload" href="/assets/fonts/inter/files/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+  <div id="scroll-sentinel" class="scroll-sentinel" aria-hidden="true"></div>
   <header class="site-header" id="site-header">
     <div class="shell site-header__inner">
       <a class="legalmark" href="/" aria-label="ninetynine.systems home"><img class="legalmark__symbol" src="/assets/brand-mark.svg" width="28" height="26" alt=""><span>ninetynine.systems</span></a>
@@ -48,10 +49,10 @@
       <div class="shell">
         <div class="section-header" data-reveal><p class="eyebrow">Product views</p><div><h2>Risky moments, held safely.</h2><p>Gatekeeper adapts the same approval model to legal, finance, healthcare, DevOps, and other high-consequence work.</p></div></div>
         <div class="gallery">
-          <figure data-reveal><img src="/assets/images/gatekeeper/approval-legal-nda.png" alt="Gatekeeper legal contract approval request" width="2720" height="1700"><figcaption>Legal approval request · fictional demonstration data</figcaption></figure>
-          <figure data-reveal><img src="/assets/images/gatekeeper/approval-finance-invoice.png" alt="Gatekeeper finance invoice approval request" width="2720" height="1700"><figcaption>Finance approval request · fictional demonstration data</figcaption></figure>
-          <figure data-reveal><img src="/assets/images/gatekeeper/approval-devops-rollback.png" alt="Gatekeeper DevOps rollback approval request" width="2720" height="1700"><figcaption>DevOps approval request · fictional demonstration data</figcaption></figure>
-          <figure data-reveal><img src="/assets/images/gatekeeper/approval-healthcare-protocol.png" alt="Gatekeeper healthcare protocol approval request" width="2720" height="1700"><figcaption>Healthcare approval request · fictional demonstration data</figcaption></figure>
+          <figure data-reveal><img src="/assets/images/gatekeeper/approval-legal-nda-800.webp" srcset="/assets/images/gatekeeper/approval-legal-nda-800.webp 800w, /assets/images/gatekeeper/approval-legal-nda-1600.webp 1600w" sizes="(max-width: 720px) calc(100vw - 32px), 620px" alt="Gatekeeper legal contract approval request" width="2720" height="1700" loading="lazy" decoding="async"><figcaption>Legal approval request · fictional demonstration data</figcaption></figure>
+          <figure data-reveal><img src="/assets/images/gatekeeper/approval-finance-invoice-800.webp" srcset="/assets/images/gatekeeper/approval-finance-invoice-800.webp 800w, /assets/images/gatekeeper/approval-finance-invoice-1600.webp 1600w" sizes="(max-width: 720px) calc(100vw - 32px), 620px" alt="Gatekeeper finance invoice approval request" width="2720" height="1700" loading="lazy" decoding="async"><figcaption>Finance approval request · fictional demonstration data</figcaption></figure>
+          <figure data-reveal><img src="/assets/images/gatekeeper/approval-devops-rollback-800.webp" srcset="/assets/images/gatekeeper/approval-devops-rollback-800.webp 800w, /assets/images/gatekeeper/approval-devops-rollback-1600.webp 1600w" sizes="(max-width: 720px) calc(100vw - 32px), 620px" alt="Gatekeeper DevOps rollback approval request" width="2720" height="1700" loading="lazy" decoding="async"><figcaption>DevOps approval request · fictional demonstration data</figcaption></figure>
+          <figure data-reveal><img src="/assets/images/gatekeeper/approval-healthcare-protocol-800.webp" srcset="/assets/images/gatekeeper/approval-healthcare-protocol-800.webp 800w, /assets/images/gatekeeper/approval-healthcare-protocol-1600.webp 1600w" sizes="(max-width: 720px) calc(100vw - 32px), 620px" alt="Gatekeeper healthcare protocol approval request" width="2720" height="1700" loading="lazy" decoding="async"><figcaption>Healthcare approval request · fictional demonstration data</figcaption></figure>
         </div>
       </div>
     </section>
