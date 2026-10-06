@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orvia privacy policy — ninetynine.systems LLC</title>
+  <meta name="description" content="How Orvia handles Google sign-in, subscriptions, AI requests, conversation reports, local data and deletion.">
+  <link rel="canonical" href="https://ninetynine.systems/orvia/privacy/">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64 128x128 256x256">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+  <link rel="preload" href="/assets/fonts/inter/files/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="scroll-sentinel" class="scroll-sentinel" aria-hidden="true"></div>
+  <header class="site-header" id="site-header"><div class="shell site-header__inner"><a class="legalmark" href="/" aria-label="ninetynine.systems home"><img class="legalmark__symbol" src="/assets/brand-mark.svg" width="28" height="26" alt=""><span>ninetynine.systems</span></a><nav class="site-nav" aria-label="Primary navigation"><a href="/products/">Products</a><a href="/studio/">Studio</a><a href="/company/">Company</a><a href="/contact/">Contact</a></nav></div></header>
+
+  <main id="main" class="reading prose">
+    <p class="eyebrow">Orvia · information</p>
+    <h1>Orvia privacy policy</h1>
+    <p class="effective">Updated October 6, 2026</p>
+
+    <p>This policy explains how ninetynine.systems LLC handles data in the Orvia Android app and its hosted services. Contact <a href="mailto:sazid@ninetynine.systems">sazid@ninetynine.systems</a> with privacy questions.</p>
+    <p>Orvia is currently in internal testing. Features depend on your installed version. The self-service account-deletion and conversation-reporting updates are being prepared; their availability is explained below.</p>
+
+    <h2>Data on your phone</h2>
+    <p>Orvia keeps conversations, bots, notes, reminders, automations, mini-apps, attachments, settings, permissions and activity counters in the app’s private storage. Saved provider, connector and login secrets use Android Keystore-backed encryption. This app data is excluded from Android backup.</p>
+    <p>Local data remains on your phone until you remove it. Deleting a hosted account does not erase your local conversations or settings. You can remove local data in Orvia, clear app storage in Android Settings, or uninstall the app.</p>
+
+    <h2>Google sign-in and hosted accounts</h2>
+    <p>Google sign-in supplies an identity token, account identifier and email address. Our gateway verifies the token and creates or restores your Orvia account and session. Google sign-in is required for hosted access.</p>
+    <p>We store account and session information while your hosted account exists. Refresh-token lookup uses hashes; recoverable secrets are encrypted. Expired sessions are removed through scheduled cleanup. Application logs exclude identity, access, refresh and purchase tokens.</p>
+
+    <h2>AI providers and connected services</h2>
+    <p>AI requests send your prompt, relevant conversation context, tool results and needed attachments to the selected provider. Hosted requests pass through our gateway to OpenRouter, which can route them to another model provider. Providers and connected services you configure separately receive the data needed for the features you request.</p>
+    <p>This data can include personal, health, financial, contact, calendar, document, image or audio information that you supply or allow a tool to use. Review the information and permissions before sending it.</p>
+    <p>Our gateway does not save ordinary prompts, media, tool arguments or tool results in its database or application logs. It stores account, usage and billing metadata to meter access, recover interrupted requests and prevent duplicate credits. Hosted provider calls include a stable account identifier derived with a secret key; it does not use your Google email as that identifier, but it is not anonymous.</p>
+    <p>OpenRouter, downstream model providers and connected services have their own retention and processing rules. Some endpoints may retain data or use it for training. We do not promise zero retention for every AI request. Read <a href="https://openrouter.ai/docs/guides/privacy/data-collection">OpenRouter’s data collection guide</a>, <a href="https://openrouter.ai/docs/guides/privacy/provider-logging">provider logging guide</a> and <a href="https://openrouter.ai/privacy/">privacy policy</a>.</p>
+
+    <h2>Google Play subscriptions</h2>
+    <p>Google Play handles payments. Orvia receives purchase tokens, product and plan identifiers, order and billing-period information, acknowledgement status and subscription state to grant the correct access. We associate this information with your hosted account and keep usage and allowance records. Recoverable purchase tokens are encrypted; lookup identifiers are hashed.</p>
+    <p>Orvia does not receive your card number or bank account details through the Play purchase API. Google maintains its own payment records under its policies.</p>
+
+    <h2 id="reports">Conversation reports</h2>
+    <p>Reporting is optional. In versions with Report response, you can review and consent to sharing a ZIP of one selected conversation with <a href="mailto:sazid@ninetynine.systems">sazid@ninetynine.systems</a>. It includes the selected response reference, optional reason, app version, conversation metadata, current messages, reasoning, tool inputs/results and referenced attachments.</p>
+    <p>The export excludes deleted entries, other conversations, saved credentials and phone databases. Sensitive information you wrote or attached to the selected conversation is included. Missing or oversized data makes preparation fail; a smaller report is not silently substituted.</p>
+    <p>Open email app prepares a draft and ZIP in a compatible email app. You choose the sending account and tap Send there. The recipient can see that account’s email address, and your email app may add a signature. This path sends no ZIP to our gateway. Opening the draft does not prove that it was sent.</p>
+    <p>Prepared ZIPs stay in memory until email handoff. Orvia then makes a private cache copy and grants temporary read access to that file. Copies become eligible for cleanup after 24 hours, on startup, another handoff, reboot/update and an inexact Android alarm that can be delayed. The cache is excluded from Android backup.</p>
+    <p>Direct submission from Orvia is a separate option only when the gateway’s email delivery is configured. It is currently disabled. A disabled request sends and stores nothing. If enabled, the gateway forwards the ZIP through Cloudflare Email Service without unpacking, saving in its database, queuing or logging its contents. Service acceptance is not proof of inbox delivery.</p>
+    <p>Reports are used to investigate unsafe or offensive responses and improve safeguards. They are not sold or used for advertising. Our retention policy for company report emails, ZIPs and downloaded review copies is 30 days from receipt, using manual cleanup. Closing or reopening a review does not extend that period. You can request earlier removal with the report reference.</p>
+    <p>The company mailbox uses Zoho Mail. Zoho has a separate server recovery period that can retain removed email for another 30 days after it leaves Trash. See <a href="https://www.zoho.com/mail/help/data-deletion-policy.html">Zoho’s deletion policy</a>. Your own drafts, sent copies and email provider’s records follow their own policies. Hosted-account deletion does not automatically identify or remove emailed reports; include their references in a separate removal request.</p>
+
+    <h2 id="deletion">Account deletion and retention</h2>
+    <p>You can <a href="/orvia/delete-account/">request hosted-account and associated-data deletion</a> without reinstalling Orvia. Requests currently go to support for identity verification and processing. Sending an email is not confirmation that deletion has finished. The self-service update is not yet available.</p>
+    <p>The planned self-service flow stops future Play payments, waits for running usage to settle and removes hosted Google identity/email, sessions, usage, allowance records, subscriptions and recoverable purchase tokens. It keeps only hashed identifiers and a deletion receipt for 180 days from acceptance to handle late billing events and repeated requests. These are the rules for that update, not a claim that its automated cleanup is already running.</p>
+    <p>Until a verified deletion request is completed, hosted account and billing records remain in the active service. Backups have a separate lifecycle, so older copies can remain after removal from the active database. We cannot currently guarantee a specific expiry date for every backup copy; contact us for the retention information relevant to your request. Google, AI providers and other services retain their own records under their policies.</p>
+
+    <h2>Service providers and operational records</h2>
+    <p>Google provides sign-in, Play payments and billing notifications. Cloudflare runs the gateway and database connection service. Aiven/MySQL stores hosted account and billing metadata. Zoho Mail handles company emails. OpenRouter and downstream model providers process hosted AI requests. Any provider or connector you add has separate terms and privacy practices.</p>
+    <p>The inspected Cloudflare configuration retains queryable Worker logs for seven days. Google billing-notification subscriptions have separate seven-day retention windows; forwarding a failed notification can extend its overall lifetime. The Google project’s default operational logs have 30-day retention and its required audit logs have 400-day retention. These are operational records, not the ordinary conversation contents described above, and do not cover every provider-held security or billing record.</p>
+
+    <h2>Device permissions</h2>
+    <p>Permissions are requested for the related feature: microphone for voice, camera for input you start, contacts or calendar for requested lookups and changes, notifications for alerts, and Do Not Disturb access for interruption settings you request.</p>
+    <p>Double-tap to lock is optional. Its Accessibility service locks the screen only after your direct double-tap on empty home-screen space or a labelled Lock screen action. It does not read screen content, monitor other apps, take screenshots or collect accessibility data. You can refuse or disable it without losing other launcher features.</p>
+
+    <h2>Advertising, security and your choices</h2>
+    <p>Orvia has no advertising, general analytics or crash-reporting SDK in this app version. The Usage page is calculated locally. Its separate aggregate export excludes conversation content; a full conversation report has different contents, described above.</p>
+    <p>Remote gateway, provider and connector connections require HTTPS. Plain HTTP is allowed only for a provider running on the same device. AI processing and report email are not end-to-end encrypted against the receiving services or company reviewer.</p>
+    <p>Orvia is not directed to children under 13. You can ask about access, correction or removal of data by emailing <a href="mailto:sazid@ninetynine.systems">sazid@ninetynine.systems</a>. Do not include passwords or login/purchase tokens. We may need to verify that the request concerns your account.</p>
+    <p>We update this notice when practices change. The date above identifies this version. The company website has a separate <a href="/privacy/">website privacy notice</a>.</p>
+
+    <nav aria-label="Orvia information">
+      <ul>
+        <li><a href="/orvia/privacy/">Privacy policy</a></li>
+        <li><a href="/orvia/terms/">Terms of use</a></li>
+        <li><a href="/orvia/delete-account/">Request account deletion</a></li>
+        <li><a href="/orvia/support/">Support and AI reports</a></li>
+      </ul>
+    </nav>
+  </main>
+
+  <footer class="site-footer"><div class="shell site-footer__grid"><div><p class="site-footer__identity">ninetynine.systems LLC</p><p class="site-footer__note">Focused software systems built to keep working.</p></div><nav class="footer-column" aria-label="Products"><h3>Products</h3><a href="/gatekeeper/">Gatekeeper</a><a href="/orvia/">Orvia</a><span>Planner · in development</span><span>Billhead · in development</span></nav><nav class="footer-column" aria-label="Company"><h3>Company</h3><a href="/studio/">Studio</a><a href="/company/">About</a><a href="/contact/">Contact</a></nav><nav class="footer-column" aria-label="Legal"><h3>Legal</h3><a href="/orvia/terms/">Orvia terms</a><a href="/orvia/privacy/">Orvia privacy</a><a href="/privacy/">Website privacy</a></nav></div><p class="shell site-footer__legal">© 2026 ninetynine.systems LLC. All rights reserved.</p></footer>
+  <script src="/app.js" defer></script>
+</body>
+</html>

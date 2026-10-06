@@ -14,6 +14,9 @@ studio, contact information, and public website policies.
 - `/company/` — company identity and operating principles
 - `/contact/` — direct project contact path
 - `/privacy/` and `/terms/` — website notices
+- `/orvia/privacy/` and `/orvia/terms/` — Orvia app and hosted-service notices
+- `/orvia/delete-account/` — account and associated-data deletion requests through support
+- `/orvia/support/` — support, AI-response reporting, and subscription help
 
 The site remains zero-build and GitHub Pages-native. Shared responsibilities are
 split across `styles.css`, `app.js`, and semantic HTML files for each route.
@@ -59,3 +62,17 @@ node scripts/check-typography.mjs
 The script checks every public route, shared assets, local typography, legal
 identity, working links, honest concept labels, and the absence of inline
 placeholder artwork.
+
+## Orvia public documents
+
+The Orvia notices were updated on 6 October 2026 from the Android/gateway release
+records. They cover the current internal test service and identify the upcoming
+deletion/reporting/plan-change updates as unavailable. The deletion page offers a
+support email request without sending the user back to the app or linking to the
+undeployed gateway deletion page. No email is sent merely by opening a page.
+
+The company report-retention policy is 30 days from receipt with manual cleanup;
+provider recovery copies and user email copies have separate retention. Publication
+does not establish that the pending release, automatic deletion, inbox cleanup,
+or Play declarations have passed live verification. Keep the Android release
+checklist and bundled notices in sync when that rollout completes.

@@ -13,6 +13,10 @@ const pages = [
   'contact/index.html',
   'privacy/index.html',
   'terms/index.html',
+  'orvia/privacy/index.html',
+  'orvia/terms/index.html',
+  'orvia/delete-account/index.html',
+  'orvia/support/index.html',
 ];
 const pageSource = pages.map((page) => readFileSync(join(root, page), 'utf8'));
 const css = readFileSync(join(root, 'styles.css'), 'utf8');
@@ -33,7 +37,7 @@ for (const page of pages) {
 for (const [index, html] of pageSource.entries()) {
   const page = pages[index];
   assert(html.includes('href="/styles.css"'), `${page} should load the shared stylesheet`);
-  assert(html.includes('href="/assets/fonts/inter/index.css"'), `${page} should load the local Inter package`);
+  assert(html.includes('href="/assets/fonts/inter/files/inter-latin-wght-normal.woff2"'), `${page} should preload the local Inter font`);
   assert(html.includes('src="/app.js"'), `${page} should load the shared interaction script`);
   assert(html.includes('href="/favicon.svg"'), `${page} should load the favicon`);
   assert(html.includes('class="legalmark" href="/" aria-label="ninetynine.systems home"'), `${page} should label the company home link`);
@@ -44,6 +48,22 @@ for (const [index, html] of pageSource.entries()) {
   assert(!html.includes('<style'), `${page} should not contain inline style blocks`);
   assert(!html.includes('<svg'), `${page} should not use hand-built inline SVG imagery`);
   assert(!html.includes('href="#"'), `${page} should not contain placeholder links`);
+
+  // Validate the files visitors actually request, including responsive image variants.
+  const references = [
+    ...[...html.matchAll(/(?:href|src)="([^"\s]+)"/g)].map((match) => match[1]),
+    ...[...html.matchAll(/srcset="([^"]+)"/g)].flatMap((match) => match[1].split(',').map((item) => item.trim().split(/\s+/)[0])),
+  ];
+  for (const reference of references) {
+    if (!reference.startsWith('/') || reference.startsWith('//')) continue;
+    const [pathname, fragment] = reference.split('#');
+    const localPath = join(root, pathname.split('?')[0]);
+    const target = existsSync(localPath) && statSync(localPath).isDirectory() ? join(localPath, 'index.html') : localPath;
+    assert(existsSync(target), `${page} has a missing local resource: ${reference}`);
+    if (fragment && existsSync(target) && target.endsWith('.html')) {
+      assert(readFileSync(target, 'utf8').includes(`id="${fragment}"`), `${page} links to a missing section: ${reference}`);
+    }
+  }
 }
 
 assert(existsSync(join(root, 'favicon.svg')), 'favicon.svg should exist');
@@ -61,6 +81,10 @@ assert(!source.includes('radial-gradient('), 'the selected design does not use g
 const interFiles = join(root, 'assets/fonts/inter/files');
 assert(existsSync(interFiles), 'Inter files should exist');
 assert(readdirSync(interFiles).some((name) => name.endsWith('.woff2')), 'Inter should include local woff2 files');
+for (const name of ['inter-latin-wght-normal.woff2', 'inter-latin-ext-wght-normal.woff2']) {
+  assert(css.includes(`/assets/fonts/inter/files/${name}`), `shared CSS should load ${name}`);
+  assert(existsSync(join(interFiles, name)), `${name} should exist`);
+}
 
 for (const asset of [
   'assets/images/gatekeeper/approval-legal-nda.png',
@@ -84,9 +108,9 @@ const home = pageSource[0];
 const company = pageSource[5];
 assert(home.includes('Software systems built to keep working.'), 'the selected homepage headline should be present');
 assert(!home.includes('hero__identity'), 'the homepage should not repeat the legal identity in the hero');
-assert(home.includes('/assets/images/orvia/Screenshot_20260902_133223_Orvia.jpg'), 'the homepage should use the selected Orvia bots screen');
-assert(home.includes('/assets/images/orvia/Screenshot_20260902_133129_Orvia.jpg'), 'the homepage should use the supplied Orvia home-screen capture');
-assert(home.includes('/assets/images/orvia/Screenshot_20260902_150911_Orvia.jpg'), 'the homepage should use the supplied Orvia conversation capture');
+assert(home.includes('/assets/images/orvia/Screenshot_20260902_133223_Orvia-400.webp'), 'the homepage should use the selected Orvia bots screen');
+assert(home.includes('/assets/images/orvia/Screenshot_20260902_133129_Orvia-400.webp'), 'the homepage should use the supplied Orvia home-screen capture');
+assert(home.includes('/assets/images/orvia/Screenshot_20260902_150911_Orvia-400.webp'), 'the homepage should use the supplied Orvia conversation capture');
 assert(!home.includes('/assets/images/orvia/Screenshot_20260902_134520_Orvia.jpg'), 'the replaced Orvia guides screen should not remain on the homepage');
 assert(home.includes('class="button button--on-dark" href="/contact/">Start a project</a>'), 'the homepage should keep one clear closing action');
 assert(!home.includes('class="button button--light" href="/contact/">Start a project</a>'), 'the homepage hero should focus on the product systems');
@@ -107,7 +131,9 @@ for (const address of mailtoTargets) {
   assert(address === 'sazid@ninetynine.systems', `unexpected contact email: ${address}`);
 }
 
-const declaredWeights = [...css.matchAll(/font-weight:\s*([0-9]+)/g)].map((match) => Number(match[1]));
+// A variable font's supported range is separate from weights used by the design.
+const designCss = css.replace(/@font-face\s*\{[^}]*\}/g, '');
+const declaredWeights = [...designCss.matchAll(/font-weight:\s*([0-9]+)/g)].map((match) => Number(match[1]));
 for (const weight of declaredWeights) {
   assert(weight >= 400 && weight <= 700, `font weight ${weight} is outside the Inter system`);
 }
