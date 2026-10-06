@@ -39,11 +39,12 @@ for (const [index, html] of pageSource.entries()) {
   assert(html.includes('href="/styles.css"'), `${page} should load the shared stylesheet`);
   assert(html.includes('href="/assets/fonts/inter/files/inter-latin-wght-normal.woff2"'), `${page} should preload the local Inter font`);
   assert(html.includes('src="/app.js"'), `${page} should load the shared interaction script`);
-  assert(html.includes('href="/favicon.svg"'), `${page} should load the favicon`);
+  const faviconPrefix = page.startsWith('orvia/') ? '/orvia' : '';
+  assert(html.includes(`href="${faviconPrefix}/favicon.svg"`), `${page} should load its favicon`);
   assert(html.includes('class="legalmark" href="/" aria-label="ninetynine.systems home"'), `${page} should label the company home link`);
   assert(html.includes('class="legalmark__symbol" src="/assets/brand-mark.svg"'), `${page} should use the shared connected header mark`);
   assert(html.includes('<span>ninetynine.systems</span></a>'), `${page} should keep the company name as readable text`);
-  assert(html.includes('href="/favicon.ico"'), `${page} should load the ICO fallback`);
+  assert(html.includes(`href="${faviconPrefix}/favicon.ico"`), `${page} should load its ICO fallback`);
   assert(html.includes('class="site-footer__identity">ninetynine.systems LLC</p>'), `${page} should state the LLC identity in the footer`);
   assert(!html.includes('<style'), `${page} should not contain inline style blocks`);
   assert(!html.includes('<svg'), `${page} should not use hand-built inline SVG imagery`);

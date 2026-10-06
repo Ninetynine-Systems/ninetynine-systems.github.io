@@ -112,6 +112,21 @@ textarea { font: inherit; }
   text-transform: uppercase;
 }
 
+.product-identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.product-identity img {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+}
+
+.page-hero--center .product-identity { justify-content: center; }
+.page-hero .product-identity img { width: 64px; height: 64px; }
+
 .lede {
   max-width: 680px;
   color: var(--muted);

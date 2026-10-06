@@ -1,9 +1,11 @@
-// Run on macOS: swift scripts/generate-favicon.swift
+// Run on macOS: swift scripts/generate-favicon.swift [orvia]
 // Render the SVG source into a multi-resolution ICO; no website build step.
 import AppKit
 
 let root = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
-guard let source = NSImage(contentsOf: root.appendingPathComponent("favicon.svg")) else {
+let directory = CommandLine.arguments.count > 1
+    ? root.appendingPathComponent(CommandLine.arguments[1]) : root
+guard let source = NSImage(contentsOf: directory.appendingPathComponent("favicon.svg")) else {
     fatalError("Cannot read favicon.svg")
 }
 
@@ -49,5 +51,5 @@ for (size, png) in zip(sizes, images) {
     offset += png.count
 }
 for png in images { ico.append(png) }
-try ico.write(to: root.appendingPathComponent("favicon.ico"))
+try ico.write(to: directory.appendingPathComponent("favicon.ico"))
 print("Generated favicon.ico: \(sizes.map(String.init).joined(separator: ", "))px")

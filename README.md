@@ -51,6 +51,20 @@ connected geometry in white on a dark tile; `favicon.ico` contains 16, 32, 48,
 static assets; GitHub Pages does not need Swift. Google Play developer icon
 and header exports are kept in `output/google-play/`.
 
+Orvia uses the selected Orbit mark in its product chapter, portfolio card, product
+page, and public notices. Its SVG/ICO favicons are under `orvia/`; the company
+favicon and header keep the company mark. `orvia/mark.svg` is the transparent
+standalone version. These are generated copies of `branding/orvia-orbit.svg`
+in the Orvia Android repository. Refresh them from that checkout with:
+
+```bash
+python3 scripts/export-orvia-brand.py --website-dir ../ninetyninesystems.github.io
+```
+
+For an ICO-only export on macOS, run `swift scripts/generate-favicon.swift orvia`.
+Keep visible Orvia text beside decorative logo images. Historical product
+screenshots are not edited to simulate branding from a newer app build.
+
 ## Validation
 
 Run the local guardrail before deployment:
