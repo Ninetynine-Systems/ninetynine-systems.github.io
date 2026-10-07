@@ -79,14 +79,17 @@ placeholder artwork.
 
 ## Orvia public documents
 
-The Orvia notices were updated on 6 October 2026 from the Android/gateway release
-records. They cover the current internal test service and identify the upcoming
-deletion/reporting/plan-change updates as unavailable. The deletion page offers a
-support email request without sending the user back to the app or linking to the
-undeployed gateway deletion page. No email is sent merely by opening a page.
+The Orvia notices were prepared on 7 October 2026 from the Android/gateway release
+records. They cover the current internal test service, the deployed company-hosted
+deletion page, and the upcoming response-only reporting app update. The full
+conversation email remains a separate optional choice. The deletion page links
+to the verified HTTPS/Google sign-in flow and retains support email as an alternative.
+No deletion or email occurs merely by opening a page. The source privacy paragraphs
+are also copied into Android's bundled current-service notice, with link URLs
+preserved. Publish the website update before uploading the matching Android build.
 
 The company report-retention policy is 30 days from receipt with manual cleanup;
 provider recovery copies and user email copies have separate retention. Publication
-does not establish that the pending release, automatic deletion, inbox cleanup,
+does not establish that the pending release, live deletion execution, inbox cleanup,
 or Play declarations have passed live verification. Keep the Android release
 checklist and bundled notices in sync when that rollout completes.
