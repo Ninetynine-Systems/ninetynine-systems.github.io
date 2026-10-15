@@ -8,8 +8,8 @@ studio, contact information, and public website policies.
 
 - `/` — company homepage and product chapters
 - `/products/` — portfolio overview
-- `/gatekeeper/` — Gatekeeper product page with real product captures
 - `/orvia/` — Orvia product page with real mobile captures
+- `docs/parked/gatekeeper/` — Gatekeeper public listings parked until release-ready
 - `/studio/` — capabilities, process, and working model
 - `/company/` — company identity and operating principles
 - `/contact/` — direct project contact path
@@ -32,9 +32,10 @@ Inter is the only typeface. It is self-hosted under `assets/fonts/inter/` and
 loaded without third-party font requests. The layout is responsive, motion is
 subtle, and `prefers-reduced-motion` is respected.
 
-Gatekeeper and Orvia use real product screenshots. Planner and Billhead use
-generated concept images that are visibly labeled as in-development previews so
-they are not presented as shipped interfaces.
+Orvia uses real product screenshots. Planner and Billhead use generated concept
+images that are visibly labeled as in-development previews so they are not
+presented as shipped interfaces. Gatekeeper captures remain under
+`assets/images/gatekeeper/` for when the product is relisted.
 
 ## Contact
 

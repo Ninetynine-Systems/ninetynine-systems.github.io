@@ -6,7 +6,6 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const pages = [
   'index.html',
   'products/index.html',
-  'gatekeeper/index.html',
   'orvia/index.html',
   'studio/index.html',
   'company/index.html',
@@ -106,7 +105,7 @@ for (const asset of [
 }
 
 const home = pageSource[0];
-const company = pageSource[5];
+const company = pageSource[4];
 assert(home.includes('Software systems built to keep working.'), 'the selected homepage headline should be present');
 assert(!home.includes('hero__identity'), 'the homepage should not repeat the legal identity in the hero');
 assert(home.includes('/assets/images/orvia/Screenshot_20260902_133223_Orvia-400.webp'), 'the homepage should use the selected Orvia bots screen');
@@ -124,7 +123,10 @@ assert(company.includes('Legal and business details.'), 'the company page should
 assert(!company.includes('Team location'), 'the company details should not publish the team location');
 assert(company.includes('<strong>Registration</strong><span>Missouri, United States</span>'), 'the company page should identify the registration jurisdiction');
 assert(home.includes('Concept preview · in development'), 'generated product images should be labeled honestly');
-assert(home.includes('target="_blank" rel="noopener noreferrer"'), 'external product actions should be safe');
+assert(!home.includes('id="gatekeeper"'), 'Gatekeeper stays unlisted on the homepage until release-ready');
+assert(!home.includes('href="/gatekeeper/"'), 'Gatekeeper should not appear in homepage footers while parked');
+assert(existsSync(join(root, 'docs/parked/gatekeeper/product-page.html')), 'parked Gatekeeper product page should be preserved');
+assert(existsSync(join(root, 'docs/parked/gatekeeper/landing-snippets.html')), 'parked Gatekeeper landing snippets should be preserved');
 
 const mailtoTargets = [...pageSource.join('\n').matchAll(/mailto:([^?"']+)/g)].map((match) => match[1]);
 assert(mailtoTargets.length > 0, 'the site should include contact email links');
