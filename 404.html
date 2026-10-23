@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Page not found — ninetynine.systems LLC</title>
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64 128x128 256x256">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+  <link rel="stylesheet" href="/styles.css">
+  <script>
+    // Orvia promo share links, /r/<CODE>. With Orvia installed, Android opens the app before this
+    // page loads. Otherwise send the person to Play with the code in the install referrer, which
+    // Orvia reads on first launch. The code is not checked here; the app does that after sign-in.
+    (function () {
+      var match = /^\/r\/([A-Za-z0-9-]{3,64})\/?$/.exec(location.pathname);
+      if (!match) return;
+      var code = match[1].replace(/-/g, "").toUpperCase();
+      var play = "https://play.google.com/store/apps/details?id=systems.ninetynine.orvia&referrer=" +
+        encodeURIComponent("promo=" + code);
+      document.documentElement.setAttribute("data-promo", play);
+      location.replace(play);
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header"><div class="shell site-header__inner"><a class="legalmark" href="/" aria-label="ninetynine.systems home"><img class="legalmark__symbol" src="/assets/brand-mark.svg" width="28" height="26" alt=""><span>ninetynine.systems</span></a><nav class="site-nav" aria-label="Primary navigation"><a href="/products/">Products</a><a href="/studio/">Studio</a><a href="/company/">Company</a><a href="/contact/">Contact</a></nav></div></header>
+
+  <main id="main" class="reading prose">
+    <h1 id="title">Page not found</h1>
+    <p id="body">There is nothing at this address. Go to the <a href="/">home page</a>.</p>
+  </main>
+  <script>
+    // A promo link that has not left yet: say where it is going, with a link in case it does not.
+    (function () {
+      var play = document.documentElement.getAttribute("data-promo");
+      if (!play) return;
+      document.title = "Get Orvia — ninetynine.systems LLC";
+      document.getElementById("title").textContent = "Opening Orvia on Google Play";
+      var body = document.getElementById("body");
+      body.textContent = "Install Orvia, then sign in. Your promo code is added for you. ";
+      var link = document.createElement("a");
+      link.href = play;
+      link.textContent = "Open Google Play";
+      body.appendChild(link);
+    })();
+  </script>
+</body>
+</html>
