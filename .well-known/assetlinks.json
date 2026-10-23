@@ -3,6 +3,16 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
+      "package_name": "systems.ninetynine.orvia",
+      "sha256_cert_fingerprints": [
+        "87:D7:4C:79:9F:B4:DB:3C:03:8D:71:48:11:01:1A:C8:97:88:FA:8D:05:D0:56:17:F1:FB:54:40:0F:D7:AC:14"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
       "package_name": "systems.ninetynine.orvia.test",
       "sha256_cert_fingerprints": [
         "57:BB:91:F0:80:C3:B2:2C:53:2D:EA:2B:2D:4A:5A:25:C4:E6:6B:85:72:DF:14:44:44:5E:3C:9D:50:FA:B7:19"
