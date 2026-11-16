@@ -1,7 +1,7 @@
 # Agent notes — ninetynine.systems website
 
-Static GitHub Pages site. Prefer the existing editorial layout in `styles.css`
-and semantic HTML per route. Run `node scripts/check-typography.mjs` before
+Static GitHub Pages site. Every page has `class="plain"` on its body; keep to that plain,
+text-first look (the `.plain` rules at the end of `styles.css`) and semantic HTML per route. Run `node scripts/check-typography.mjs` before
 claiming a change is ready.
 
 ## Gatekeeper temporarily unlisted

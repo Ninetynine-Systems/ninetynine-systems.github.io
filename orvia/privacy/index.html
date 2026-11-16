@@ -11,10 +11,10 @@
   <link rel="preload" href="/assets/fonts/inter/files/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
+<body class="plain">
   <a class="skip-link" href="#main">Skip to content</a>
   <div id="scroll-sentinel" class="scroll-sentinel" aria-hidden="true"></div>
-  <header class="site-header" id="site-header"><div class="shell site-header__inner"><a class="legalmark" href="/" aria-label="ninetynine.systems home"><img class="legalmark__symbol" src="/assets/brand-mark.svg" width="28" height="26" alt=""><span>ninetynine.systems</span></a><nav class="site-nav" aria-label="Primary navigation"><a href="/products/">Products</a><a href="/studio/">Studio</a><a href="/company/">Company</a><a href="/contact/">Contact</a></nav></div></header>
+  <header class="site-header" id="site-header"><div class="shell site-header__inner"><a class="legalmark" href="/" aria-label="ninetynine.systems home"><img class="legalmark__symbol" src="/assets/brand-mark.svg" width="28" height="26" alt=""><span>ninetynine.systems</span></a><nav class="site-nav" aria-label="Primary navigation"><a href="/products/">products</a><a href="/studio/">studio</a><a href="/company/">company</a><a href="/contact/">contact</a></nav></div></header>
 
   <main id="main" class="reading prose">
     <p class="eyebrow product-identity"><img src="/orvia/favicon.svg" width="32" height="32" alt="">Orvia · information</p>
@@ -83,7 +83,14 @@
     </nav>
   </main>
 
-  <footer class="site-footer"><div class="shell site-footer__grid"><div><p class="site-footer__identity">ninetynine.systems LLC</p><p class="site-footer__note">Focused software systems built to keep working.</p></div><nav class="footer-column" aria-label="Products"><h3>Products</h3><a href="/orvia/">Orvia</a><a href="/uslides/">uslides</a><span>Planner · in development</span><span>Billhead · in development</span></nav><nav class="footer-column" aria-label="Company"><h3>Company</h3><a href="/studio/">Studio</a><a href="/company/">About</a><a href="/contact/">Contact</a></nav><nav class="footer-column" aria-label="Legal"><h3>Legal</h3><a href="/orvia/terms/">Orvia terms</a><a href="/orvia/privacy/">Orvia privacy</a><a href="/privacy/">Website privacy</a></nav></div><p class="shell site-footer__legal">© 2026 ninetynine.systems LLC. All rights reserved.</p></footer>
+  <footer class="plain-footer">
+    <div class="shell plain-footer__inner">
+      <p class="site-footer__identity">ninetynine.systems LLC</p>
+      <span>© 2026</span>
+      <a href="/terms/">terms</a>
+      <a href="/privacy/">privacy</a>
+    </div>
+  </footer>
   <script src="/app.js" defer></script>
 </body>
 </html>

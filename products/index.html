@@ -11,17 +11,17 @@
   <link rel="preload" href="/assets/fonts/inter/files/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
+<body class="plain">
   <a class="skip-link" href="#main">Skip to content</a>
   <div id="scroll-sentinel" class="scroll-sentinel" aria-hidden="true"></div>
   <header class="site-header" id="site-header">
     <div class="shell site-header__inner">
       <a class="legalmark" href="/" aria-label="ninetynine.systems home"><img class="legalmark__symbol" src="/assets/brand-mark.svg" width="28" height="26" alt=""><span>ninetynine.systems</span></a>
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="/products/" aria-current="page">Products</a>
-        <a href="/studio/">Studio</a>
-        <a href="/company/">Company</a>
-        <a href="/contact/">Contact</a>
+        <a href="/products/" aria-current="page">products</a>
+        <a href="/studio/">studio</a>
+        <a href="/company/">company</a>
+        <a href="/contact/">contact</a>
       </nav>
     </div>
   </header>
@@ -59,7 +59,7 @@
         </article>
 
         <article class="product-card" data-reveal>
-          <div class="product-card__top"><strong>Planner</strong><span class="status">In development</span></div>
+          <div class="product-card__top"><strong>Planner</strong><span class="status">Concept preview · in development</span></div>
           <h2>Plans that stay in sync.</h2>
           <p>A planning system for aligned weeks, clear priorities, and accountable delivery.</p>
           <div class="product-card__media">
@@ -68,7 +68,7 @@
         </article>
 
         <article class="product-card" data-reveal>
-          <div class="product-card__top"><strong>Billhead</strong><span class="status">In development</span></div>
+          <div class="product-card__top"><strong>Billhead</strong><span class="status">Concept preview · in development</span></div>
           <h2>Invoices without friction.</h2>
           <p>Professional billing, clean records, and simple handoff for small businesses.</p>
           <div class="product-card__media">
@@ -86,14 +86,13 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="shell site-footer__grid">
-      <div><p class="site-footer__identity">ninetynine.systems LLC</p><p class="site-footer__note">Focused software systems built to keep working.</p></div>
-      <nav class="footer-column" aria-label="Products"><h3>Products</h3><a href="/orvia/">Orvia</a><a href="/uslides/">uslides</a><span>Planner · in development</span><span>Billhead · in development</span></nav>
-      <nav class="footer-column" aria-label="Company"><h3>Company</h3><a href="/studio/">Studio</a><a href="/company/">About</a><a href="/contact/">Contact</a></nav>
-      <nav class="footer-column" aria-label="Legal"><h3>Legal</h3><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a></nav>
+  <footer class="plain-footer">
+    <div class="shell plain-footer__inner">
+      <p class="site-footer__identity">ninetynine.systems LLC</p>
+      <span>© 2026</span>
+      <a href="/terms/">terms</a>
+      <a href="/privacy/">privacy</a>
     </div>
-    <p class="shell site-footer__legal">© 2026 ninetynine.systems LLC. All rights reserved.</p>
   </footer>
   <script src="/app.js" defer></script>
 </body>

@@ -25,10 +25,12 @@ split across `styles.css`, `app.js`, and semantic HTML files for each route.
 
 ## Design language
 
-The selected direction is a restrained editorial company site: white and
-near-black surfaces, thin rules, large quiet headings, real product imagery,
-and black primary buttons. It is based on the approved Option 3 mockup stored at
-`docs/design/option-3-reference.png`.
+Every page uses one plain, text-first style: a thin grey top bar with lowercase blue links,
+small bold headings with a rule under them, a narrow column, ordinary blue links, flat
+screenshots with a thin grey border, and one blue button style. There are no dark sections,
+cards, shadows, or rounded corners. Each page has `class="plain"` on its body, and the look
+lives in the `.plain` rules at the end of `styles.css`. The earlier editorial mockup is kept
+at `docs/design/option-3-reference.png` for reference only.
 
 Inter is the only typeface. It is self-hosted under `assets/fonts/inter/` and
 loaded without third-party font requests. The layout is responsive, motion is
