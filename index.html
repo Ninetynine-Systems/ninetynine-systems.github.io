@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ninetynine.systems LLC — software systems built to keep working</title>
   <meta name="description" content="ninetynine.systems LLC builds focused software products and dependable systems for how teams plan, decide, and operate.">
-  <meta name="theme-color" content="#0a0a0a">
+  <meta name="theme-color" content="#f1f3f5">
   <link rel="canonical" href="https://ninetynine.systems/">
   <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64 128x128 256x256">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
@@ -28,110 +28,83 @@
     }
   </script>
 </head>
-<body>
+<body class="plain">
   <a class="skip-link" href="#main">Skip to content</a>
   <div id="scroll-sentinel" class="scroll-sentinel" aria-hidden="true"></div>
 
-  <header class="site-header site-header--dark" id="site-header">
+  <header class="site-header" id="site-header">
     <div class="shell site-header__inner">
       <a class="legalmark" href="/" aria-label="ninetynine.systems home"><img class="legalmark__symbol" src="/assets/brand-mark.svg" width="28" height="26" alt=""><span>ninetynine.systems</span></a>
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="/products/">Products</a>
-        <a href="/studio/">Studio</a>
-        <a href="/company/">Company</a>
-        <a href="/contact/">Contact</a>
+        <a href="/products/">products</a>
+        <a href="/studio/">studio</a>
+        <a href="/company/">company</a>
+        <a href="/contact/">contact</a>
       </nav>
     </div>
   </header>
 
-  <main id="main">
-    <section class="hero-dark" aria-labelledby="hero-title">
-      <div class="shell">
-        <div class="hero-dark__top" data-reveal>
-          <h1 id="hero-title">Software systems built to keep working.</h1>
-          <a class="button button--light" href="#products">See the products</a>
-        </div>
-        <div class="hero-dark__stage" data-reveal>
-          <img class="hero-dark__screen" src="/assets/images/uslides/uslides-editor-880.webp" srcset="/assets/images/uslides/uslides-editor-880.webp 880w, /assets/images/uslides/uslides-editor-1400.webp 1400w" sizes="(max-width: 720px) calc(100vw - 32px), 800px" alt="uslides with a Markdown deck in the editor and its slides drawn beside it" width="2880" height="1440" fetchpriority="high" decoding="async">
-          <img class="hero-dark__phone hero-dark__phone--a" src="/assets/images/orvia/Screenshot_20260902_150911_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_150911_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_150911_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_150911_Orvia-720.webp 720w" sizes="220px" alt="Orvia conversation setting timers, reminders, and checking the weather" width="1080" height="2340" decoding="async">
-          <img class="hero-dark__phone hero-dark__phone--b" src="/assets/images/orvia/Screenshot_20260902_133129_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_133129_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_133129_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_133129_Orvia-720.webp 720w" sizes="220px" alt="Orvia available from the phone home screen" width="1080" height="2340" decoding="async">
-        </div>
-      </div>
+  <main id="main" class="shell">
+    <section class="plain-intro" aria-labelledby="hero-title">
+      <h1 id="hero-title">Software systems built to keep working.</h1>
+      <p>ninetynine.systems LLC makes its own software products and builds software for teams.</p>
     </section>
 
-    <section class="wall" id="products" aria-label="Products and studio">
-      <div class="shell wall__grid">
-        <article class="wall-tile wall-tile--uslides" id="uslides" data-reveal>
-          <div class="wall-tile__top">
-            <h2 class="wall-tile__name"><img src="/assets/images/uslides/mark.svg" width="28" height="28" alt="">uslides</h2>
-            <a class="wall-tile__link" href="https://uslides.ninetynine.systems/">Open the app →</a>
-          </div>
-          <p class="wall-tile__line">Slides from one Markdown file.</p>
-          <img class="wall-tile__shot" src="/assets/images/uslides/uslides-present-1280.webp" alt="A uslides deck in present mode, with coloured boxes placed on a slide" width="1280" height="720" loading="lazy" decoding="async">
+    <div class="plain-cols">
+      <section class="plain-main" id="products" aria-labelledby="products-title">
+        <h2 class="plain-h" id="products-title">products</h2>
+
+        <article class="plain-item" id="uslides">
+          <h3><a href="/uslides/">uslides</a></h3>
+          <p>Slides from one Markdown file. Runs in the browser, works offline, no account.</p>
+          <img class="plain-shot" src="/assets/images/uslides/uslides-editor-880.webp" srcset="/assets/images/uslides/uslides-editor-880.webp 880w, /assets/images/uslides/uslides-editor-1400.webp 1400w" sizes="(max-width: 720px) calc(100vw - 40px), 680px" alt="uslides with a Markdown deck in the editor and its slides drawn beside it" width="2880" height="1440" fetchpriority="high" decoding="async">
         </article>
 
-        <article class="wall-tile wall-tile--orvia" id="orvia" data-reveal>
-          <div class="wall-tile__top">
-            <h2 class="wall-tile__name"><img src="/orvia/favicon.svg" width="28" height="28" alt="">Orvia <span class="wall-tile__state">Coming soon</span></h2>
-            <a class="wall-tile__link" href="/orvia/">Explore →</a>
-          </div>
-          <p class="wall-tile__line">A mobile agent for daily life.</p>
-          <div class="wall-tile__phones">
-            <img src="/assets/images/orvia/Screenshot_20260902_134439_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_134439_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_134439_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_134439_Orvia-720.webp 720w" sizes="(max-width: 840px) 44vw, 220px" alt="Orvia mini apps board with a calendar and watchlist" width="1080" height="2340" loading="lazy" decoding="async">
-            <img src="/assets/images/orvia/Screenshot_20260902_133223_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_133223_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_133223_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_133223_Orvia-720.webp 720w" sizes="(max-width: 840px) 44vw, 220px" alt="Orvia bots for focused assistants and conversations" width="1080" height="2340" loading="lazy" decoding="async">
-          </div>
+        <article class="plain-item" id="orvia">
+          <h3><a href="/orvia/">Orvia</a> <span class="plain-state">coming soon</span></h3>
+          <p>A mobile agent for daily life. Android.</p>
+          <div class="plain-phones">
+              <img src="/assets/images/orvia/Screenshot_20260902_134439_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_134439_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_134439_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_134439_Orvia-720.webp 720w" sizes="(max-width: 720px) 42vw, 150px" alt="Orvia mini apps board with a calendar and watchlist" width="1080" height="2340" loading="lazy" decoding="async">
+              <img src="/assets/images/orvia/Screenshot_20260902_133223_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_133223_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_133223_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_133223_Orvia-720.webp 720w" sizes="(max-width: 720px) 42vw, 150px" alt="Orvia bots for focused assistants and conversations" width="1080" height="2340" loading="lazy" decoding="async">
+              <img src="/assets/images/orvia/Screenshot_20260902_150911_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_150911_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_150911_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_150911_Orvia-720.webp 720w" sizes="(max-width: 720px) 42vw, 150px" alt="Orvia conversation setting timers, reminders, and checking the weather" width="1080" height="2340" loading="lazy" decoding="async">
+              <img src="/assets/images/orvia/Screenshot_20260902_133129_Orvia-400.webp" srcset="/assets/images/orvia/Screenshot_20260902_133129_Orvia-240.webp 240w, /assets/images/orvia/Screenshot_20260902_133129_Orvia-400.webp 400w, /assets/images/orvia/Screenshot_20260902_133129_Orvia-720.webp 720w" sizes="(max-width: 720px) 42vw, 150px" alt="Orvia available from the phone home screen" width="1080" height="2340" loading="lazy" decoding="async">
+            </div>
         </article>
 
-        <article class="wall-tile wall-tile--small" id="planner" data-reveal>
-          <h2>Planner</h2>
-          <p>Concept preview · in development</p>
-          <img src="/assets/images/products/planner-concept-880.webp" alt="Concept preview of Planner showing a weekly schedule" width="1774" height="887" loading="lazy" decoding="async">
+        <article class="plain-item">
+          <h3><span id="planner">Planner</span>, <span id="billhead">Billhead</span> <span class="plain-state">in development</span></h3>
+          <p>A planning tool and an invoicing tool. Nothing to show yet.</p>
         </article>
+      </section>
 
-        <article class="wall-tile wall-tile--small" id="billhead" data-reveal>
-          <h2>Billhead</h2>
-          <p>Concept preview · in development</p>
-          <img src="/assets/images/products/billhead-concept-880.webp" alt="Concept preview of Billhead showing a sample invoice layout" width="1774" height="887" loading="lazy" decoding="async">
-        </article>
+      <aside class="plain-side">
+        <section class="plain-box" aria-labelledby="studio-title">
+          <h2 id="studio-title">studio</h2>
+          <p>We build for teams too: web and mobile software, automation, and support after launch.</p>
+          <a class="plain-button" href="/contact/">Start a project</a>
+          <p class="plain-small"><a href="/studio/">How we work</a></p>
+        </section>
 
-        <article class="closing studio-tile" data-reveal>
-          <p class="eyebrow">Studio</p>
-          <h2>We build for teams too.</h2>
-          <div class="button-row">
-            <a class="button button--on-dark" href="/contact/">Start a project</a>
-            <a class="wall-tile__link" href="/studio/">How we work →</a>
-          </div>
-        </article>
-      </div>
-    </section>
+        <section aria-labelledby="contact-title">
+          <h2 class="plain-h plain-h--small" id="contact-title">contact</h2>
+          <p class="plain-mono"><a href="mailto:sazid@ninetynine.systems">sazid@ninetynine.systems</a></p>
+        </section>
+
+        <section aria-labelledby="company-title">
+          <h2 class="plain-h plain-h--small" id="company-title">company</h2>
+          <p class="plain-small">ninetynine.systems LLC<br>Registered in Missouri, United States<br><a href="/company/">About the company</a></p>
+        </section>
+      </aside>
+    </div>
   </main>
 
-  <footer class="site-footer">
-    <div class="shell site-footer__grid">
-      <div>
-        <p class="site-footer__identity">ninetynine.systems LLC</p>
-        <p class="site-footer__note">Focused software systems built to keep working.</p>
-      </div>
-      <nav class="footer-column" aria-label="Products">
-        <h3>Products</h3>
-        <a href="/orvia/">Orvia</a>
-        <a href="https://uslides.ninetynine.systems/">uslides</a>
-        <span>Planner · in development</span>
-        <span>Billhead · in development</span>
-      </nav>
-      <nav class="footer-column" aria-label="Company">
-        <h3>Company</h3>
-        <a href="/studio/">Studio</a>
-        <a href="/company/">About</a>
-        <a href="/contact/">Contact</a>
-      </nav>
-      <nav class="footer-column" aria-label="Legal">
-        <h3>Legal</h3>
-        <a href="/terms/">Terms</a>
-        <a href="/privacy/">Privacy</a>
-      </nav>
+  <footer class="plain-footer">
+    <div class="shell plain-footer__inner">
+      <p class="site-footer__identity">ninetynine.systems LLC</p>
+      <span>© 2026</span>
+      <a href="/terms/">terms</a>
+      <a href="/privacy/">privacy</a>
     </div>
-    <p class="shell site-footer__legal">© 2026 ninetynine.systems LLC. All rights reserved.</p>
   </footer>
 
   <script src="/app.js" defer></script>

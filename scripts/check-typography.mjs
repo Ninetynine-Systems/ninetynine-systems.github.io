@@ -16,6 +16,7 @@ const pages = [
   'orvia/terms/index.html',
   'orvia/delete-account/index.html',
   'orvia/support/index.html',
+  'uslides/index.html',
 ];
 const pageSource = pages.map((page) => readFileSync(join(root, page), 'utf8'));
 const css = readFileSync(join(root, 'styles.css'), 'utf8');
@@ -112,7 +113,7 @@ assert(home.includes('/assets/images/orvia/Screenshot_20260902_133223_Orvia-400.
 assert(home.includes('/assets/images/orvia/Screenshot_20260902_133129_Orvia-400.webp'), 'the homepage should use the supplied Orvia home-screen capture');
 assert(home.includes('/assets/images/orvia/Screenshot_20260902_150911_Orvia-400.webp'), 'the homepage should use the supplied Orvia conversation capture');
 assert(!home.includes('/assets/images/orvia/Screenshot_20260902_134520_Orvia.jpg'), 'the replaced Orvia guides screen should not remain on the homepage');
-assert(home.includes('class="button button--on-dark" href="/contact/">Start a project</a>'), 'the homepage should keep one clear closing action');
+assert(home.split('href="/contact/">Start a project</a>').length === 2, 'the homepage should keep one clear project action');
 assert(!home.includes('class="button button--light" href="/contact/">Start a project</a>'), 'the homepage hero should focus on the product systems');
 assert(!home.includes('Email us'), 'the homepage closing action should not be duplicated');
 assert(!home.includes('founder-led U.S. software company'), 'the homepage should not conflate leadership, registration, and team location');
@@ -122,7 +123,7 @@ assert(!source.includes('Where are you based?'), 'the homepage should not foregr
 assert(company.includes('Legal and business details.'), 'the company page should introduce the formal company information plainly');
 assert(!company.includes('Team location'), 'the company details should not publish the team location');
 assert(company.includes('<strong>Registration</strong><span>Missouri, United States</span>'), 'the company page should identify the registration jurisdiction');
-assert(home.includes('Concept preview · in development'), 'generated product images should be labeled honestly');
+assert(!home.includes('-concept') || home.includes('Concept preview · in development'), 'generated product images should be labeled honestly');
 assert(!home.includes('id="gatekeeper"'), 'Gatekeeper stays unlisted on the homepage until release-ready');
 assert(!home.includes('href="/gatekeeper/"'), 'Gatekeeper should not appear in homepage footers while parked');
 assert(existsSync(join(root, 'docs/parked/gatekeeper/product-page.html')), 'parked Gatekeeper product page should be preserved');

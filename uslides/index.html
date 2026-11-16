@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>uslides — ninetynine.systems LLC</title>
+  <meta name="description" content="uslides is a slides app that runs in the browser. A deck is one Markdown file. It works offline and needs no account.">
+  <link rel="canonical" href="https://ninetynine.systems/uslides/">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64 128x128 256x256">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+  <link rel="preload" href="/assets/fonts/inter/files/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="scroll-sentinel" class="scroll-sentinel" aria-hidden="true"></div>
+  <header class="site-header" id="site-header">
+    <div class="shell site-header__inner">
+      <a class="legalmark" href="/" aria-label="ninetynine.systems home"><img class="legalmark__symbol" src="/assets/brand-mark.svg" width="28" height="26" alt=""><span>ninetynine.systems</span></a>
+      <nav class="site-nav" aria-label="Primary navigation"><a href="/products/" aria-current="page">Products</a><a href="/studio/">Studio</a><a href="/company/">Company</a><a href="/contact/">Contact</a></nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero page-hero--center">
+      <div class="shell" data-reveal>
+        <p class="eyebrow product-identity"><img src="/assets/images/uslides/mark.svg" width="32" height="32" alt="">uslides · available now</p>
+        <h1>Write it. See it. Show it.</h1>
+        <p class="lede">uslides turns one Markdown file into a slide deck, right in your browser.</p>
+        <div class="button-row"><a class="button" href="https://uslides.ninetynine.systems/">Open uslides</a><a class="button button--light" href="#screens">See the product</a></div>
+      </div>
+    </section>
+
+    <section class="section section--soft" id="screens">
+      <div class="shell">
+        <div class="section-header" data-reveal><p class="eyebrow">In the browser</p><div><h2>Type on the left. Slides on the right.</h2><p>A line with three dashes starts a new slide. Boxes place text and colour anywhere on a grid.</p></div></div>
+        <div class="screen-pair">
+          <figure data-reveal><div class="product-media"><img src="/assets/images/uslides/uslides-editor-880.webp" srcset="/assets/images/uslides/uslides-editor-880.webp 880w, /assets/images/uslides/uslides-editor-1400.webp 1400w" sizes="(max-width: 760px) calc(100vw - 32px), 620px" alt="uslides with a Markdown deck in the editor and its slides drawn beside it" width="2880" height="1440" decoding="async"></div><figcaption>Editing a deck</figcaption></figure>
+          <figure data-reveal><div class="product-media"><img src="/assets/images/uslides/uslides-present-1280.webp" alt="A uslides deck in present mode, with coloured boxes placed on a slide" width="1280" height="720" loading="lazy" decoding="async"></div><figcaption>Presenting</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-header" data-reveal><p class="eyebrow">How it works</p><h2>Nothing to install. Nothing to sign up for.</h2></div>
+        <div class="card-grid">
+          <article class="card" data-reveal><h3>One file</h3><p>A deck is one Markdown file you can keep, share, or put in version control.</p></article>
+          <article class="card" data-reveal><h3>Offline</h3><p>It keeps working without a connection once it has loaded.</p></article>
+          <article class="card" data-reveal><h3>No account</h3><p>There is no server. Your decks stay in your browser.</p></article>
+          <article class="card" data-reveal><h3>Phone or computer</h3><p>Edit and present on either.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft" aria-labelledby="uslides-links">
+      <div class="shell">
+        <div class="section-header"><p class="eyebrow">Links</p><div><h2 id="uslides-links">The app, and files for AI agents.</h2><p>An agent that follows the skill file can write decks for uslides.</p></div></div>
+        <nav aria-label="uslides links"><ul class="link-list"><li><a href="https://uslides.ninetynine.systems/">uslides.ninetynine.systems</a>, the app</li><li><a href="https://uslides.ninetynine.systems/SKILL.md">SKILL.md</a>, how an agent writes a deck</li><li><a href="https://uslides.ninetynine.systems/llms.txt">llms.txt</a>, a short index for agents</li></ul></nav>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="shell closing__inner"><div><h2>uslides is live.</h2><p>Open it and start typing.</p></div><a class="button button--on-dark" href="https://uslides.ninetynine.systems/">Open uslides</a></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell site-footer__grid">
+      <div><p class="site-footer__identity">ninetynine.systems LLC</p><p class="site-footer__note">Focused software systems built to keep working.</p></div>
+      <nav class="footer-column" aria-label="Products"><h3>Products</h3><a href="/orvia/">Orvia</a><a href="/uslides/">uslides</a><span>Planner · in development</span><span>Billhead · in development</span></nav>
+      <nav class="footer-column" aria-label="Company"><h3>Company</h3><a href="/studio/">Studio</a><a href="/company/">About</a><a href="/contact/">Contact</a></nav>
+      <nav class="footer-column" aria-label="Legal"><h3>Legal</h3><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a></nav>
+    </div>
+    <p class="shell site-footer__legal">© 2026 ninetynine.systems LLC. All rights reserved.</p>
+  </footer>
+  <script src="/app.js" defer></script>
+</body>
+</html>
