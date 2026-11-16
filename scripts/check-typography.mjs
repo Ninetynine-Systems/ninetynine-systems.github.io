@@ -106,6 +106,15 @@ for (const asset of [
 }
 
 const home = pageSource[0];
+for (const [index, source] of pageSource.entries()) {
+  for (const tag of source.match(/<a [^>]*href="https:\/\/[a-z]+\.ninetynine\.systems\/[^"]*"[^>]*>/g) ?? []) {
+    if (tag.includes('gateway.')) continue;
+    assert(tag.includes('target="_blank"') && tag.includes('rel="noopener"'), `${pages[index]} should open app links in a new tab: ${tag}`);
+  }
+  for (const name of ['uslides', 'Orvia']) {
+    assert(!new RegExp(`href="https://[^"]*"[^>]*>${name}</a>`).test(source), `${pages[index]} should link the ${name} name to its own page`);
+  }
+}
 const company = pageSource[4];
 assert(home.includes('Software systems built to keep working.'), 'the selected homepage headline should be present');
 assert(!home.includes('hero__identity'), 'the homepage should not repeat the legal identity in the hero');
