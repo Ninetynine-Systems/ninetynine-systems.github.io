@@ -9,6 +9,8 @@ studio, contact information, and public website policies.
 - `/` — company homepage and product chapters
 - `/products/` — portfolio overview
 - `/orvia/` — Orvia product page with real mobile captures
+- uslides — homepage chapter and portfolio card only; the app itself lives at
+  https://uslides.ninetynine.systems/ (a real capture is under `assets/images/uslides/`)
 - `docs/parked/gatekeeper/` — Gatekeeper public listings parked until release-ready
 - `/studio/` — capabilities, process, and working model
 - `/company/` — company identity and operating principles

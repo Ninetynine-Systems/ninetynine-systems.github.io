@@ -852,6 +852,10 @@ textarea { font: inherit; }
 
 .product-card__media--phones img { align-self: end; border: 1px solid #ddd; border-radius: 18px 18px 0 0; object-fit: contain; }
 
+.product-card__media--screen { min-height: 0; padding: 18px; }
+
+.product-card__media--screen img { height: auto; border: 1px solid #ddd; border-radius: 10px; background: white; object-fit: contain; }
+
 .product-card .button-row { margin-top: 24px; }
 
 .prose { padding-block: 72px 96px; }
